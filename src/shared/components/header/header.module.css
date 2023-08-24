@@ -6,6 +6,10 @@
   padding-right: 15px;
 }
 
+.navbar {
+  display: none;
+}
+
 .app_title {
   display: flex;
   column-gap: 10px;
@@ -31,6 +35,7 @@
   font-size: 25px;
   font-family: 'Philosopher', sans-serif;
   color: rgb(43, 43, 43);
+  margin-left: 30px;
 }
 
 .options {
@@ -45,4 +50,42 @@
   background: url("../../../assets/options.svg");
   background-size: 30px 30px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .header_wrapper {
+    padding: 10px;
+  }
+
+  .options {
+    column-gap: 5px;
+  }
+
+  .app_title {
+    column-gap: 5px;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .app_logo {
+    width: 40px;
+    height: 40px;
+    background-size: 40px 40px;
+  }
+
+  .board_name {
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 0px;
+  }
+
+  .navbar {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: url("../../../assets/down.svg");
+    cursor: pointer;
+  }
 }
