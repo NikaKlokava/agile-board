@@ -1,5 +1,6 @@
-import { Button } from "../button";
-import cl from "./header.module.css";
+import { Button } from "../../../shared/components/button";
+import { OptionsModal } from "./OptionsModal";
+import cl from "./styles/header.module.css";
 
 export const Header = () => {
   return (
@@ -14,6 +15,7 @@ export const Header = () => {
         <Button text={"Add New Task"} />
         <div className={cl.options_icon}></div>
       </div>
+      <OptionsModal />
     </div>
   );
 };

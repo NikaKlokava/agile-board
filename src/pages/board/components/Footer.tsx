@@ -1,4 +1,4 @@
-import cl from "./footer.module.css";
+import cl from "./styles/footer.module.css";
 
 export const Footer = () => {
   return (

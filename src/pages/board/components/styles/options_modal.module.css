@@ -1,0 +1,38 @@
+.options_modal_wrapper {
+  position: absolute;
+  top: 70px;
+  right: 35px;
+  padding-left: 15px;
+  padding-right: 35px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.251);
+  border-radius: 10px;
+}
+
+.option_text {
+  line-height: 35px;
+  font-size: 16px;
+  font-family: 'Philosopher', sans-serif;
+  color: #2b2b2b;
+}
+
+.delete {
+  color: rgb(231, 43, 43);
+
+}
+
+.delete:hover {
+  text-shadow: 0px 1px 5px rgba(176, 15, 15, 0.384);
+}
+
+.delete,
+.edit {
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.edit:hover {
+  color: #7c52de;
+}

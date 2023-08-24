@@ -1,4 +1,4 @@
-import cl from "./board_content.module.css";
+import cl from "./styles/board_content.module.css";
 
 export const BoardContent = () => {
   return (

@@ -1,5 +1,5 @@
 import classes from "classnames";
-import cl from "./sidebar.module.css";
+import cl from "./styles/sidebar.module.css";
 
 export const Sidebar = () => {
   return (

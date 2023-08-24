@@ -32,13 +32,13 @@
 .icon {
   width: 20px;
   height: 20px;
-  background: url("../../../assets/board-item.svg");
+  background: url("../../../../assets/board-item.svg");
 }
 
 .icon_new_board {
   width: 20px;
   height: 20px;
-  background: url("../../../assets/new_board.svg");
+  background: url("../../../../assets/new_board.svg");
 }
 
 .title_item,
@@ -74,7 +74,7 @@
 .hide_icon {
   width: 25px;
   height: 25px;
-  background: url("../../../assets/hide.svg");
+  background: url("../../../../assets/hide.svg");
 }
 
 
