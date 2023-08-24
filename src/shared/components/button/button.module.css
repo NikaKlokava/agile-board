@@ -1,10 +1,9 @@
 .button {
-  font-size: 20px;
-  font-family: 'Philosopher', sans-serif;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
   padding-left: 15px;
   padding-right: 15px;
-  line-height: 40px;
-  color: aliceblue;
   border-radius: 25px;
   border: 1px solid #7c52de;
   box-shadow: 1px 2px 7px #452e7b;
@@ -13,7 +12,35 @@
   transition: 0.3s ease-in-out;
 }
 
+.button_icon {
+  width: 15px;
+  height: 15px;
+  background: url("../../../assets/plus.svg");
+}
+
 .button:hover {
   background: #9466ff;
   border: 1px solid #9466ff;
+}
+
+.button_text {
+  font-size: 20px;
+  font-family: 'Philosopher', sans-serif;
+  line-height: 40px;
+  color: #f0f8ff;
+}
+
+@media screen and (max-width: 600px) {
+  .button_text {
+    display: none;
+  }
+
+  .button {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: none;
+  }
 }

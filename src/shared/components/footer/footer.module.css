@@ -34,5 +34,10 @@
 
 .github {
   background: url("../../../assets/github.svg");
+}
 
+@media screen and (max-width: 1200px) {
+  .footer_wrapper {
+    grid-column: 1/3;
+  }
 }

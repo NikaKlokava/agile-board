@@ -9,3 +9,10 @@
   display: grid;
   grid-template-columns: 1fr 4.5fr;
 }
+
+@media screen and (max-width: 1200px) {
+  .board {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10fr 1fr;
+  }
+}

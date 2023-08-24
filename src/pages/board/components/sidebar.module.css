@@ -82,3 +82,9 @@
   font-size: 17px;
   font-family: 'Philosopher', sans-serif;
 }
+
+@media screen and (max-width: 1200px) {
+  .sidebar_wrapper {
+    display: none;
+  }
+}

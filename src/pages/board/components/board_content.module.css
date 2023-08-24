@@ -1,5 +1,4 @@
 .board_content_wrapper {
-  height: 100%;
   display: flex;
   column-gap: 50px;
   overflow-x: scroll;
@@ -100,4 +99,21 @@
 .add_column_title {
   font-size: 25px;
   color: #2b2b2baf;
+}
+
+@media screen and (max-width: 1200px) {
+  .board_content_wrapper {
+    grid-row: 2/3;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .board_content_wrapper {
+    margin-left: 0px;
+    padding-left: 20px;
+  }
+
+  .add_column_title {
+    font-size: 20px;
+  }
 }
