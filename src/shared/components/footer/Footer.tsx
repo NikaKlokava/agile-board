@@ -7,13 +7,13 @@ export const Footer = () => {
       <p className={cl.footer_text}>2023</p>
       <div className={cl.footer_links}>
         <a href="https://instagram.com/nika_klokava?igshid=MmIzYWVlNDQ5Yg==">
-          <div className={cl.instagram}/>
+          <div className={cl.instagram} />
         </a>
         <a href="https://linkedin.com/in/veranika-klokava-858b5b287">
-          <div className={cl.linkedin}/>
+          <div className={cl.linkedin} />
         </a>
-        <a href="ttps://github.com/NikaKlokava">
-          <div className={cl.github}/>
+        <a href="https://github.com/NikaKlokava">
+          <div className={cl.github} />
         </a>
       </div>
     </div>
