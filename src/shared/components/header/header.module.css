@@ -1,0 +1,28 @@
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+}
+
+.board_name {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: 'Philosopher', sans-serif;
+  color: rgb(43, 43, 43);
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.options_icon {
+  width: 30px;
+  height: 30px;
+  background: url("../../../assets/options.svg");
+  background-size: 30px 30px;
+  cursor: pointer;
+}
