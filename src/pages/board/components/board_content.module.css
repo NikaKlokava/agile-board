@@ -1,0 +1,103 @@
+.board_content_wrapper {
+  height: 100%;
+  display: flex;
+  column-gap: 50px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.802);
+}
+
+.board_content_wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.column_title,
+.task_title,
+.task_success,
+.add_column_title {
+  font-family: 'Philosopher', sans-serif;
+}
+
+.content_column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  min-width: 280px;
+}
+
+.title_container {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  color: #2b2b2baf;
+}
+
+.column_circle {
+  width: 17px;
+  height: 17px;
+  border-radius: 10px;
+  background-color: rgb(216, 153, 16);
+}
+
+.column_title {
+  font-size: 18px;
+  letter-spacing: 4px;
+}
+
+
+.tasks_container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  row-gap: 15px;
+  padding: 15px;
+  padding-top: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.251);
+  cursor: pointer;
+  color: #2b2b2b;
+  transition: 0.3s ease-in-out;
+}
+
+.tasks_container:hover {
+  color: #7c52de;
+}
+
+
+.task_title {
+  font-size: 18px;
+}
+
+.task_success {
+  font-size: 12px;
+  color: #2b2b2baf;
+}
+
+.add_column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-width: 230px;
+  border-radius: 20px;
+  background-color: #7c52de3b;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.add_column:hover {
+  background-color: #9375db3b;
+  box-shadow: 0px 2px 15px #49317f9d;
+  text-shadow: 0px 1px 2px #7c52de;
+}
+
+.add_column_title {
+  font-size: 25px;
+  color: #2b2b2baf;
+}

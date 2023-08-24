@@ -1,0 +1,38 @@
+.footer_wrapper {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer_text {
+  color: #2b2b2b;
+  font-size: 18px;
+}
+
+.footer_links {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.instagram,
+.linkedin,
+.github {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.instagram {
+  background: url("../../../assets/instagram.svg");
+}
+
+.linkedin {
+  background: url("../../../assets/linkedin.svg");
+}
+
+.github {
+  background: url("../../../assets/github.svg");
+
+}

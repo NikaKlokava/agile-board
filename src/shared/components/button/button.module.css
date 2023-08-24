@@ -1,0 +1,19 @@
+.button {
+  font-size: 20px;
+  font-family: 'Philosopher', sans-serif;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 40px;
+  color: aliceblue;
+  border-radius: 25px;
+  border: 1px solid #7c52de;
+  box-shadow: 1px 2px 7px #452e7b;
+  background: #7c52de;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.button:hover {
+  background: #9466ff;
+  border: 1px solid #9466ff;
+}
