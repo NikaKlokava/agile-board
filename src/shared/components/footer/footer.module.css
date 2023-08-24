@@ -1,5 +1,4 @@
 .footer_wrapper {
-  background-color: white;
   padding: 15px;
   display: flex;
   align-items: center;
@@ -20,8 +19,8 @@
 .instagram,
 .linkedin,
 .github {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 
