@@ -1,5 +1,3 @@
-import cl from "./select.module.css";
-
 export const Select = () => {
   return (
     <select>
