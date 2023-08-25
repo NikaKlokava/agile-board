@@ -1,13 +1,13 @@
-import { Button } from "../../../shared/components/button";
-import { FieldWrapper } from "../../../shared/components/field_wrapper";
-import { Input } from "../../../shared/components/input";
-import { ModalWrapper } from "../../../shared/components/modal_wrapper";
-import cl from "./styles/edit_board_modal.module.css";
+import { Button } from "../../../../shared/components/button";
+import { FieldWrapper } from "../../../../shared/components/field_wrapper";
+import { Input } from "../../../../shared/components/input";
+import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
+import cl from "./modal_styles.module.css";
 
 export const EditBoardModal = () => {
   return (
     <ModalWrapper>
-      <h2 className={cl.add_task_title}>Edit Board</h2>
+      <h2 className={cl.modal_title}>Edit Board</h2>
       <FieldWrapper fieldName="Board Name">
         <Input withDelete={false} />
       </FieldWrapper>

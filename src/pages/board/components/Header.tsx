@@ -1,5 +1,5 @@
 import { Button } from "../../../shared/components/button";
-import { OptionsModal } from "./OptionsModal";
+// import { OptionsModal } from "./modals/OptionsModal";
 import cl from "./styles/header.module.css";
 
 export const Header = () => {
@@ -15,7 +15,7 @@ export const Header = () => {
         <Button text={"Add New Task"} withIcon={true} />
         <div className={cl.options_icon}></div>
       </div>
-      <OptionsModal />
+      {/* <OptionsModal /> */}
     </div>
   );
 };

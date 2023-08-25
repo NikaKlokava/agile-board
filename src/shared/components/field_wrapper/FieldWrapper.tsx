@@ -5,7 +5,7 @@ import cl from "./field_wrapper.module.css";
 type Props = {
   children: ReactNode;
   fieldName: string;
-  clName?: string;
+  clName?: "style_container";
 };
 
 export const FieldWrapper = ({ fieldName, children, clName }: Props) => {

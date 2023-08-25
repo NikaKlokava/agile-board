@@ -1,13 +1,13 @@
-import { ModalWrapper } from "../../../shared/components/modal_wrapper";
-import { Button } from "../../../shared/components/button";
-import { Input } from "../../../shared/components/input";
-import { FieldWrapper } from "../../../shared/components/field_wrapper";
-import cl from "./styles/new_task.module.css";
+import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
+import { Button } from "../../../../shared/components/button";
+import { Input } from "../../../../shared/components/input";
+import { FieldWrapper } from "../../../../shared/components/field_wrapper";
+import cl from "./modal_styles.module.css";
 
 export const NewTaskModal = () => {
   return (
     <ModalWrapper>
-      <h2 className={cl.add_task_title}>Add New Task</h2>
+      <h2 className={cl.modal_title}>Add New Task</h2>
       <FieldWrapper fieldName={"Task name"}>
         <Input withDelete={false} />
       </FieldWrapper>

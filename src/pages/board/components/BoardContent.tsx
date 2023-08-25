@@ -1,5 +1,4 @@
-import { EditBoardModal } from "./EditBoardModal";
-import { NewTaskModal } from "./NewTaskModal";
+import { EditBoardModal, NewBoardModal, NewTaskModal } from "./modals";
 import cl from "./styles/board_content.module.css";
 
 export const BoardContent = () => {
@@ -33,7 +32,8 @@ export const BoardContent = () => {
         <p className={cl.add_column_title}>{"+ New Column"}</p>
       </div>
       {/* <NewTaskModal /> */}
-      <EditBoardModal />
+      {/* <EditBoardModal /> */}
+      <NewBoardModal />
     </div>
   );
 };
