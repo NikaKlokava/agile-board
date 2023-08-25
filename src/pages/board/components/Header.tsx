@@ -12,7 +12,7 @@ export const Header = () => {
         <div className={cl.navbar}></div>
       </div>
       <div className={cl.options}>
-        <Button text={"Add New Task"} />
+        <Button text={"Add New Task"} withIcon={true} />
         <div className={cl.options_icon}></div>
       </div>
       <OptionsModal />

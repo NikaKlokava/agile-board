@@ -2,11 +2,11 @@
   display: flex;
   column-gap: 10px;
   align-items: center;
+  justify-content: center;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 25px;
   border: 1px solid #7c52de;
-  box-shadow: 1px 2px 7px #452e7b;
   background: #7c52de;
   cursor: pointer;
   transition: 0.3s ease-in-out;
@@ -28,6 +28,10 @@
   font-family: 'Philosopher', sans-serif;
   line-height: 40px;
   color: #f0f8ff;
+}
+
+.center {
+  align-self: center;
 }
 
 @media screen and (max-width: 600px) {

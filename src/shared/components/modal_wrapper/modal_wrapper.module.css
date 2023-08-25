@@ -13,16 +13,21 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  row-gap: 25px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px;
-  height: 400px;
-  min-width: 250px;
-  width: fit-content;
-  background-color: beige;
-  border-radius: 30px;
+  padding: 30px;
+  max-height: 600px;
+  min-height: 400px;
+  min-width: 350px;
+  background: url("../../../assets/modal_img.png");
+  border-radius: 15px;
   z-index: 7;
+  overflow-y: scroll;
+}
+
+.modal_container::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }

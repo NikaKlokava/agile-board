@@ -15,8 +15,33 @@ html {
 }
 
 h1,
+h2,
 p {
   font-family: 'Philosopher', sans-serif;
   /* font-family: 'Dancing Script', cursive; */
   margin: 0px;
+}
+
+input,
+textarea,
+select {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.7px;
+  min-height: 33px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: transparent;
+  border-radius: 5px;
+  border: 0.5px solid black;
+  outline: none;
+  color: rgb(43, 43, 43);
+  transition: 0.2s ease-in-out;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 0.5px solid #7c52de;
+  /* box-shadow: 0px 2px 5px #7c52de85; */
 }
