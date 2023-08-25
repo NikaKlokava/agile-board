@@ -1,4 +1,9 @@
-import { EditBoardModal, NewBoardModal, NewTaskModal } from "./modals";
+import {
+  EditBoardModal,
+  NewBoardModal,
+  NewTaskModal,
+  TaskModal,
+} from "./modals";
 import cl from "./styles/board_content.module.css";
 
 export const BoardContent = () => {
@@ -33,7 +38,8 @@ export const BoardContent = () => {
       </div>
       {/* <NewTaskModal /> */}
       {/* <EditBoardModal /> */}
-      <NewBoardModal />
+      {/* <NewBoardModal /> */}
+      <TaskModal />
     </div>
   );
 };

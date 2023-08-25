@@ -3,6 +3,7 @@ import { Button } from "../../../../shared/components/button";
 import { Input } from "../../../../shared/components/input";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import cl from "./modal_styles.module.css";
+import { Select } from "../../../../shared/components/select";
 
 export const NewTaskModal = () => {
   return (
@@ -24,11 +25,7 @@ export const NewTaskModal = () => {
         <Button text="Add New Subtask" withIcon={true} />
       </FieldWrapper>
       <FieldWrapper fieldName="Current Status">
-        <select className={cl.select_container}>
-          <option>Todo</option>
-          <option>Doing</option>
-          <option>Done</option>
-        </select>
+        <Select />
       </FieldWrapper>
       <Button text="Create Task" withIcon={false} newClass="center" />
     </ModalWrapper>

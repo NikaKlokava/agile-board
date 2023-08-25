@@ -19,7 +19,7 @@
   transform: translate(-50%, -50%);
   padding: 30px;
   max-height: 600px;
-  min-height: 400px;
+  min-height: 300px;
   min-width: 350px;
   background: url("../../../assets/modal_img.png");
   border-radius: 15px;

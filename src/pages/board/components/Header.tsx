@@ -13,7 +13,7 @@ export const Header = () => {
       </div>
       <div className={cl.options}>
         <Button text={"Add New Task"} withIcon={true} />
-        <div className={cl.options_icon}></div>
+        <div className={cl.options_icon} />
       </div>
       {/* <OptionsModal /> */}
     </div>
