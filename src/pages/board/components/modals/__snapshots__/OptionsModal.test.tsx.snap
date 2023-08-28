@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the OptionsModal component The OptionsModal renders correctly 1`] = `
+<div
+  className="options_modal_wrapper"
+>
+  <p
+    className="option_text edit"
+  >
+    Edit Boards
+  </p>
+  <p
+    className="option_text delete"
+  >
+    Delete Boards
+  </p>
+</div>
+`;

@@ -1,0 +1,308 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the BoardContent component The BoardContent renders correctly 1`] = `
+Array [
+  <div
+    className="sidebar_wrapper"
+  >
+    <div
+      className="sidebar_title"
+    >
+      ALL BOARDS (3)
+    </div>
+    <div
+      className="board_title_items"
+    >
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon"
+        />
+        <p
+          className="title"
+        >
+          Platform Launch
+        </p>
+      </div>
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon"
+        />
+        <p
+          className="title"
+        >
+          Marketing Plan
+        </p>
+      </div>
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon"
+        />
+        <p
+          className="title"
+        >
+          Roadmap
+        </p>
+      </div>
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon_new_board"
+        />
+        <p
+          className="title new_board"
+        >
+          New board
+        </p>
+      </div>
+    </div>
+    <div
+      className="hide_sidebar"
+    >
+      <div
+        className="hide_icon"
+      />
+      <div
+        className="hide_text"
+      >
+        Hide sidebar
+      </div>
+    </div>
+  </div>,
+  <div
+    className="board_content_wrapper"
+  >
+    <div
+      className="content_column"
+    >
+      <div
+        className="title_container"
+      >
+        <div
+          className="column_circle"
+        />
+        <div
+          className="column_title"
+        >
+          Todo
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+    </div>
+    <div
+      className="content_column"
+    >
+      <div
+        className="title_container"
+      >
+        <div
+          className="column_circle"
+        />
+        <div
+          className="column_title"
+        >
+          Doing
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+    </div>
+    <div
+      className="content_column"
+    >
+      <div
+        className="title_container"
+      >
+        <div
+          className="column_circle"
+        />
+        <div
+          className="column_title"
+        >
+          Done
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+    </div>
+    <div
+      className="add_column"
+    >
+      <p
+        className="add_column_title"
+      >
+        + New Column
+      </p>
+    </div>
+  </div>,
+]
+`;

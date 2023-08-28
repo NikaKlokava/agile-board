@@ -8,9 +8,9 @@ export const Sidebar = () => {
     <div className={cl.sidebar_wrapper}>
       <div className={cl.sidebar_title}>{`ALL BOARDS (${data.length})`}</div>
       <div className={cl.board_title_items}>
-        {data.map((board) => {
+        {data.map((board, index) => {
           return (
-            <div className={cl.title_item}>
+            <div className={cl.title_item} key={index}>
               <div className={cl.icon} />
               <p className={cl.title}>{board.name}</p>
             </div>

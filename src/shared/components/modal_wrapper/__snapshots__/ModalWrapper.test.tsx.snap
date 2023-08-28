@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Input component The Input renders correctly 1`] = `
+<div
+  className="modal_wrapper"
+>
+  <div
+    className="modal_container"
+  >
+     
+  </div>
+</div>
+`;
+
+exports[`Test the ModalWrapper component The ModalWrapper renders correctly 1`] = `
+<div
+  className="modal_wrapper"
+>
+  <div
+    className="modal_container"
+  >
+     
+  </div>
+</div>
+`;
