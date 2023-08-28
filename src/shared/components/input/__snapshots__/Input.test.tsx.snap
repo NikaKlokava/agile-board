@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Input component The Input renders correctly 1`] = `
+<div
+  className="input_container"
+>
+  <input
+    className="input_style"
+    placeholder="e.g Take coffee break"
+    spellCheck={false}
+    type="text"
+  />
+  <div
+    className="delete_icon"
+  />
+</div>
+`;

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the TaskModal component The TaskModal renders correctly 1`] = `
+<div
+  className="modal_wrapper"
+>
+  <div
+    className="modal_container"
+  >
+     
+    <div
+      className="task_title"
+    >
+      <h2
+        className="modal_task_title"
+      >
+        Task name
+      </h2>
+      <div
+        className="options_icon"
+      />
+    </div>
+    <p
+      className="task_description"
+    >
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut porro placeat voluptatum eius!
+    </p>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Subtasks (0 of 2)
+      </p>
+      <div
+        className="subtasks_checkbox"
+      >
+        <input
+          className="checkbox"
+          id="first"
+          type="checkbox"
+        />
+        <p>
+          Something doing...
+        </p>
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Current Status
+      </p>
+      <select>
+        <option>
+          Todo
+        </option>
+        <option>
+          Doing
+        </option>
+        <option>
+          Done
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;

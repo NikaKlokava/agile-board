@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Sidebar component The Sidebar renders correctly 1`] = `
+<div
+  className="sidebar_wrapper"
+>
+  <div
+    className="sidebar_title"
+  >
+    ALL BOARDS (3)
+  </div>
+  <div
+    className="board_title_items"
+  >
+    <div
+      className="title_item"
+    >
+      <div
+        className="icon"
+      />
+      <p
+        className="title"
+      >
+        Platform Launch
+      </p>
+    </div>
+    <div
+      className="title_item"
+    >
+      <div
+        className="icon"
+      />
+      <p
+        className="title"
+      >
+        Marketing Plan
+      </p>
+    </div>
+    <div
+      className="title_item"
+    >
+      <div
+        className="icon"
+      />
+      <p
+        className="title"
+      >
+        Roadmap
+      </p>
+    </div>
+    <div
+      className="title_item"
+    >
+      <div
+        className="icon_new_board"
+      />
+      <p
+        className="title new_board"
+      >
+        New board
+      </p>
+    </div>
+  </div>
+  <div
+    className="hide_sidebar"
+  >
+    <div
+      className="hide_icon"
+    />
+    <div
+      className="hide_text"
+    >
+      Hide sidebar
+    </div>
+  </div>
+</div>
+`;

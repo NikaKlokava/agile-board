@@ -1,0 +1,392 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
+<div
+  className="board"
+>
+  <div
+    className="header_wrapper"
+  >
+    <div
+      className="app_title"
+    >
+      <div
+        className="app_logo"
+      />
+      <h1
+        className="title"
+      >
+        AGILE-BOARD
+      </h1>
+      <p
+        className="board_name"
+      >
+        Platform Launch
+      </p>
+      <div
+        className="navbar"
+      />
+    </div>
+    <div
+      className="options"
+    >
+      <div
+        className="button"
+      >
+        <div
+          className="button_icon"
+        />
+        <div
+          className="button_text"
+        >
+          Add New Task
+        </div>
+      </div>
+      <div
+        className="options_icon"
+      />
+    </div>
+  </div>
+  <div
+    className="sidebar_wrapper"
+  >
+    <div
+      className="sidebar_title"
+    >
+      ALL BOARDS (3)
+    </div>
+    <div
+      className="board_title_items"
+    >
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon"
+        />
+        <p
+          className="title"
+        >
+          Platform Launch
+        </p>
+      </div>
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon"
+        />
+        <p
+          className="title"
+        >
+          Marketing Plan
+        </p>
+      </div>
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon"
+        />
+        <p
+          className="title"
+        >
+          Roadmap
+        </p>
+      </div>
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon_new_board"
+        />
+        <p
+          className="title new_board"
+        >
+          New board
+        </p>
+      </div>
+    </div>
+    <div
+      className="hide_sidebar"
+    >
+      <div
+        className="hide_icon"
+      />
+      <div
+        className="hide_text"
+      >
+        Hide sidebar
+      </div>
+    </div>
+  </div>
+  <div
+    className="board_content_wrapper"
+  >
+    <div
+      className="content_column"
+    >
+      <div
+        className="title_container"
+      >
+        <div
+          className="column_circle"
+        />
+        <div
+          className="column_title"
+        >
+          Todo
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+    </div>
+    <div
+      className="content_column"
+    >
+      <div
+        className="title_container"
+      >
+        <div
+          className="column_circle"
+        />
+        <div
+          className="column_title"
+        >
+          Doing
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+    </div>
+    <div
+      className="content_column"
+    >
+      <div
+        className="title_container"
+      >
+        <div
+          className="column_circle"
+        />
+        <div
+          className="column_title"
+        >
+          Done
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+    </div>
+    <div
+      className="add_column"
+    >
+      <p
+        className="add_column_title"
+      >
+        + New Column
+      </p>
+    </div>
+  </div>
+  <div
+    className="footer_wrapper"
+  >
+    <p
+      className="footer_text"
+    >
+      Veranika Klokava
+    </p>
+    <p
+      className="footer_text"
+    >
+      2023
+    </p>
+    <div
+      className="footer_links"
+    >
+      <a
+        href="https://instagram.com/nika_klokava?igshid=MmIzYWVlNDQ5Yg=="
+      >
+        <div
+          className="instagram"
+        />
+      </a>
+      <a
+        href="https://linkedin.com/in/veranika-klokava-858b5b287"
+      >
+        <div
+          className="linkedin"
+        />
+      </a>
+      <a
+        href="https://github.com/NikaKlokava"
+      >
+        <div
+          className="github"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+`;

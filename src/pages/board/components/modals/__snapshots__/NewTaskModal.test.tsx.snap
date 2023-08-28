@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the NewTaskModal component The NewTaskModal renders correctly 1`] = `
+<div
+  className="modal_wrapper"
+>
+  <div
+    className="modal_container"
+  >
+     
+    <h2
+      className="modal_title"
+    >
+      Add New Task
+    </h2>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Task name
+      </p>
+      <div
+        className="input_container"
+      >
+        <input
+          className="input_style"
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Description
+      </p>
+      <textarea
+        className="textarea"
+        placeholder="e.g. It's always good to take a break..."
+        spellCheck={false}
+      />
+    </div>
+    <div
+      className="container style_container"
+    >
+      <p
+        className="title"
+      >
+        Subtasks
+      </p>
+      <div
+        className="input_container"
+      >
+        <input
+          className="input_style"
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+        <div
+          className="delete_icon"
+        />
+      </div>
+      <div
+        className="input_container"
+      >
+        <input
+          className="input_style"
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+        <div
+          className="delete_icon"
+        />
+      </div>
+      <div
+        className="button"
+      >
+        <div
+          className="button_icon"
+        />
+        <div
+          className="button_text"
+        >
+          Add New Subtask
+        </div>
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Current Status
+      </p>
+      <select>
+        <option>
+          Todo
+        </option>
+        <option>
+          Doing
+        </option>
+        <option>
+          Done
+        </option>
+      </select>
+    </div>
+    <div
+      className="button center"
+    >
+      <div
+        className="button_text"
+      >
+        Create Task
+      </div>
+    </div>
+  </div>
+</div>
+`;

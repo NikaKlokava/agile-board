@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the NewBoardModal component The NewBoardModal renders correctly 1`] = `
+<div
+  className="modal_wrapper"
+>
+  <div
+    className="modal_container"
+  >
+     
+    <h2
+      className="modal_title"
+    >
+      Add New Board
+    </h2>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Board Name
+      </p>
+      <div
+        className="input_container"
+      >
+        <input
+          className="input_style"
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+      </div>
+    </div>
+    <div
+      className="container style_container"
+    >
+      <p
+        className="title"
+      >
+        Board Columns
+      </p>
+      <div
+        className="input_container"
+      >
+        <input
+          className="input_style"
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+        <div
+          className="delete_icon"
+        />
+      </div>
+      <div
+        className="input_container"
+      >
+        <input
+          className="input_style"
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+        <div
+          className="delete_icon"
+        />
+      </div>
+    </div>
+    <div
+      className="button"
+    >
+      <div
+        className="button_icon"
+      />
+      <div
+        className="button_text"
+      >
+        Add New Column
+      </div>
+    </div>
+    <div
+      className="button center"
+    >
+      <div
+        className="button_text"
+      >
+        Create New Board
+      </div>
+    </div>
+  </div>
+</div>
+`;
