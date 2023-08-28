@@ -48,7 +48,6 @@
   letter-spacing: 4px;
 }
 
-
 .tasks_container {
   display: flex;
   flex-direction: column;
@@ -68,9 +67,9 @@
   color: #7c52de;
 }
 
-
 .task_title {
   font-size: 18px;
+  color: #2b2b2b;
 }
 
 .task_success {

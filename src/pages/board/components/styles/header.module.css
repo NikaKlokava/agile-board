@@ -19,7 +19,7 @@
 .app_logo {
   width: 50px;
   height: 50px;
-  background: url("../../../assets/board.svg");
+  background: url("../../../../assets/board.svg");
   background-repeat: no-repeat;
   background-size: 50px 50px;
 }
@@ -47,7 +47,7 @@
 .options_icon {
   width: 30px;
   height: 30px;
-  background: url("../../../assets/options.svg");
+  background: url("../../../../assets/options.svg");
   background-size: 30px 30px;
   cursor: pointer;
 }
@@ -85,7 +85,7 @@
     display: block;
     width: 15px;
     height: 15px;
-    background: url("../../../assets/down.svg");
+    background: url("../../../../assets/down.svg");
     cursor: pointer;
   }
 }

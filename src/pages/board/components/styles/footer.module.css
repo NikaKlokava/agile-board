@@ -25,15 +25,15 @@
 }
 
 .instagram {
-  background: url("../../../assets/instagram.svg");
+  background: url("../../../../assets/instagram.svg");
 }
 
 .linkedin {
-  background: url("../../../assets/linkedin.svg");
+  background: url("../../../../assets/linkedin.svg");
 }
 
 .github {
-  background: url("../../../assets/github.svg");
+  background: url("../../../../assets/github.svg");
 }
 
 @media screen and (max-width: 1200px) {
