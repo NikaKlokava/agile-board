@@ -3,18 +3,7 @@
 exports[`Test the Button component The Button renders correctly 1`] = `
 <div
   className="button"
->
-  <div
-    className="button_text"
-  >
-    Test Btn
-  </div>
-</div>
-`;
-
-exports[`Test the Input component The Input renders correctly 1`] = `
-<div
-  className="button"
+  data-testid="test"
 >
   <div
     className="button_text"

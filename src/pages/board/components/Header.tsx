@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { MockBoards } from "../../../mocks/BoardMocks";
 import { Button } from "../../../shared/components/button";
-// import { OptionsModal } from "./modals/OptionsModal";
+import { NewTaskModal } from "./modals";
+import { OptionsModal } from "./modals/OptionsModal";
 import cl from "./styles/header.module.css";
 
 export const Header = () => {
+  const [newTaskVisible, setNewTaskVisible] = useState<boolean>(false);
+  const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
+
   const data = MockBoards;
   return (
     <div className={cl.header_wrapper}>
@@ -14,10 +19,18 @@ export const Header = () => {
         <div className={cl.navbar}></div>
       </div>
       <div className={cl.options}>
-        <Button text={"Add New Task"} withIcon={true} />
-        <div className={cl.options_icon} />
+        <Button
+          text={"Add New Task"}
+          withIcon={true}
+          onClick={() => setNewTaskVisible(true)} testid={"add-new-task-btn"}        />
+        <div
+          className={cl.options_icon}
+          data-testid="options-icon"
+          onClick={() => setOptionsVisible((prev) => !prev)}
+        />
       </div>
-      {/* <OptionsModal /> */}
+      {newTaskVisible && <NewTaskModal />}
+      {optionsVisible && <OptionsModal />}
     </div>
   );
 };

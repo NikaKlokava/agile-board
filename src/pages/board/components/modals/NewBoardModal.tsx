@@ -15,8 +15,17 @@ export const NewBoardModal = () => {
         <Input withDelete={true} />
         <Input withDelete={true} />
       </FieldWrapper>
-      <Button text={"Add New Column"} withIcon={true} />
-      <Button text={"Create New Board"} withIcon={false} newClass="center" />
+      <Button
+        text={"Add New Column"}
+        withIcon={true}
+        testid={"add-new-column-btn"}
+      />
+      <Button
+        text={"Create New Board"}
+        withIcon={false}
+        newClass="center"
+        testid="create-new-board-btn"
+      />
     </ModalWrapper>
   );
 };

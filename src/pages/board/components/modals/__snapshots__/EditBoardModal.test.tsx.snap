@@ -82,6 +82,7 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
     </div>
     <div
       className="button"
+      data-testid="add-new-column-btn"
     >
       <div
         className="button_icon"
@@ -94,6 +95,7 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
     </div>
     <div
       className="button center"
+      data-testid="save-changes-btn"
     >
       <div
         className="button_text"

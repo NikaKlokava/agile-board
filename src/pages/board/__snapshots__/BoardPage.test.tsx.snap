@@ -32,6 +32,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
     >
       <div
         className="button"
+        data-testid="add-new-task-btn"
+        onClick={[Function]}
       >
         <div
           className="button_icon"
@@ -44,6 +46,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="options_icon"
+        data-testid="options-icon"
+        onClick={[Function]}
       />
     </div>
   </div>

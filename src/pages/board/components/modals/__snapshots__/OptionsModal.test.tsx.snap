@@ -3,6 +3,7 @@
 exports[`Test the OptionsModal component The OptionsModal renders correctly 1`] = `
 <div
   className="options_modal_wrapper"
+  data-testid="options-modal"
 >
   <p
     className="option_text edit"

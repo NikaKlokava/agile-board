@@ -69,6 +69,7 @@ exports[`Test the NewBoardModal component The NewBoardModal renders correctly 1`
     </div>
     <div
       className="button"
+      data-testid="add-new-column-btn"
     >
       <div
         className="button_icon"
@@ -81,6 +82,7 @@ exports[`Test the NewBoardModal component The NewBoardModal renders correctly 1`
     </div>
     <div
       className="button center"
+      data-testid="create-new-board-btn"
     >
       <div
         className="button_text"

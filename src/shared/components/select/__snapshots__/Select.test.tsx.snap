@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test the Input component The Input renders correctly 1`] = `
-<select>
-  <option>
-    Todo
-  </option>
-  <option>
-    Doing
-  </option>
-  <option>
-    Done
-  </option>
-</select>
-`;
-
 exports[`Test the Select component The Select renders correctly 1`] = `
 <select>
   <option>

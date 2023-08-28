@@ -16,8 +16,17 @@ export const EditBoardModal = () => {
         <Input withDelete={true} />
         <Input withDelete={true} />
       </FieldWrapper>
-      <Button text={"Add New Column"} withIcon={true} />
-      <Button text={"Save Changes"} withIcon={false} newClass="center" />
+      <Button
+        text={"Add New Column"}
+        withIcon={true}
+        testid={"add-new-column-btn"}
+      />
+      <Button
+        text={"Save Changes"}
+        withIcon={false}
+        newClass="center"
+        testid={"save-changes-btn"}
+      />
     </ModalWrapper>
   );
 };
