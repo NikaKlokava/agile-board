@@ -7,7 +7,9 @@ import cl from "./modal_styles.module.css";
 export const NewBoardModal = () => {
   return (
     <ModalWrapper>
-      <h2 className={cl.modal_title}>Add New Board</h2>
+      <h2 className={cl.modal_title} data-testid="new-board-modal">
+        Add New Board
+      </h2>
       <FieldWrapper fieldName={"Board Name"}>
         <Input withDelete={false} />
       </FieldWrapper>

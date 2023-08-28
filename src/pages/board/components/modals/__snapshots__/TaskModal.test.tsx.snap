@@ -10,6 +10,7 @@ exports[`Test the TaskModal component The TaskModal renders correctly 1`] = `
      
     <div
       className="task_title"
+      data-testid="task-modal"
     >
       <h2
         className="modal_task_title"

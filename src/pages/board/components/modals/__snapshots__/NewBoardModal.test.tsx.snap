@@ -10,6 +10,7 @@ exports[`Test the NewBoardModal component The NewBoardModal renders correctly 1`
      
     <h2
       className="modal_title"
+      data-testid="new-board-modal"
     >
       Add New Board
     </h2>

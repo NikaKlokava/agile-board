@@ -20,13 +20,34 @@ describe("Test the New Column element", () => {
       </MemoryRouter>
     );
     const newColumnEl = screen.getByTestId("add_column");
-    
+
     act(() => {
       newColumnEl.click();
     });
-    
+
     const editBoardModal = screen.queryByTestId("edit-board-modal");
 
     expect(editBoardModal).toBeInTheDocument();
+  });
+});
+
+describe("Test the Task element", () => {
+  test("The TaskModal should be visible on click", () => {
+    render(
+      <MemoryRouter initialEntries={["/agile-board"]}>
+        <App />
+      </MemoryRouter>
+    );
+    const taskContainerEl = screen.getAllByTestId("task-container");
+
+    act(() => {
+      taskContainerEl.forEach((task) => {
+        task.click();
+      });
+    });
+
+    const taskModal = screen.queryByTestId("task-modal");
+
+    expect(taskModal).toBeInTheDocument();
   });
 });

@@ -50,6 +50,8 @@ exports[`Test the Sidebar component The Sidebar renders correctly 1`] = `
     </div>
     <div
       className="title_item"
+      data-testid="new-board"
+      onClick={[Function]}
     >
       <div
         className="icon_new_board"

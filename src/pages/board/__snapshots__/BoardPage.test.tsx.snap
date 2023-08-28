@@ -100,6 +100,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="title_item"
+        data-testid="new-board"
+        onClick={[Function]}
       >
         <div
           className="icon_new_board"
@@ -144,6 +146,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -158,6 +162,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -172,6 +178,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -186,6 +194,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -216,6 +226,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -230,6 +242,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -244,6 +258,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -258,6 +274,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -272,6 +290,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -286,6 +306,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -316,6 +338,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -330,6 +354,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"

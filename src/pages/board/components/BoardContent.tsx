@@ -1,10 +1,4 @@
-// import { MockBoards } from "../../../mocks/BoardMocks";
-import {
-  EditBoardModal,
-  // NewBoardModal,
-  // NewTaskModal,
-  // TaskModal,
-} from "./modals";
+import { EditBoardModal, TaskModal } from "./modals";
 import { useState } from "react";
 import { MockBoards } from "../../../mocks/BoardMocks";
 import { Sidebar } from "./Sidebar";
@@ -12,6 +6,7 @@ import cl from "./styles/board_content.module.css";
 
 export const BoardContent = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
+  const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const data = MockBoards;
   return (
     <>
@@ -26,7 +21,12 @@ export const BoardContent = () => {
               </div>
               {column.tasks.map((task, index) => {
                 return (
-                  <div className={cl.tasks_container} key={index}>
+                  <div
+                    className={cl.tasks_container}
+                    key={index}
+                    data-testid="task-container"
+                    onClick={() => setTaskModalVisile(true)}
+                  >
                     <div className={cl.task_title}>{task.name}</div>
                     <div
                       className={cl.task_success}
@@ -44,10 +44,8 @@ export const BoardContent = () => {
         >
           <p className={cl.add_column_title}>{"+ New Column"}</p>
         </div>
-        {/* <NewTaskModal /> */}
         {editBoardVisible && <EditBoardModal />}
-        {/* <NewBoardModal /> */}
-        {/* <TaskModal /> */}
+        {taskModalVisile && <TaskModal />}
       </div>
     </>
   );

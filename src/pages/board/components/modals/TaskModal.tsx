@@ -2,12 +2,11 @@ import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import cl from "./modal_styles.module.css";
-// import { OptionsModal } from "./OptionsModal";
 
 export const TaskModal = () => {
   return (
     <ModalWrapper>
-      <div className={cl.task_title}>
+      <div className={cl.task_title} data-testid="task-modal">
         <h2 className={cl.modal_task_title}>Task name</h2>
         <div className={cl.options_icon} />
       </div>
