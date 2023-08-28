@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the DeleteBoardModal component The DeleteBoardModal renders correctly 1`] = `
+<div
+  className="modal_wrapper"
+>
+  <div
+    className="modal_container"
+  >
+     
+    <h2
+      className="title"
+      data-testid="delete-board"
+    >
+      Delete this board?
+    </h2>
+    <p
+      className="description"
+    >
+      Are you sure you want to delete the "Platform Launch" board? This action will remove all columns and tasks and cannot be reversed.
+    </p>
+    <div
+      className="btns_container"
+    >
+      <div
+        className="button delete"
+        data-testid="delete-btn"
+      >
+        <div
+          className="button_text"
+        >
+          Delete
+        </div>
+      </div>
+      <div
+        className="button cancel"
+        data-testid="delete-btn"
+      >
+        <div
+          className="button_text"
+        >
+          Cancel
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

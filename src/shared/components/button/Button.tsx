@@ -6,7 +6,7 @@ type Props = {
   withIcon: boolean;
   testid: string;
   onClick?: () => void;
-  newClass?: "center";
+  newClass?: "center" | "delete" | "cancel";
 };
 
 export const Button = ({ text, withIcon, newClass, onClick, testid }: Props) => {

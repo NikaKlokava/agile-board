@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { MockBoards } from "../../../mocks/BoardMocks";
 import { Button } from "../../../shared/components/button";
-import { NewTaskModal } from "./modals";
+import { EditBoardModal, NewTaskModal } from "./modals";
+import { DeleteBoardModal } from "./modals/DeleteBoardModal";
 import { OptionsModal } from "./modals/OptionsModal";
 import cl from "./styles/header.module.css";
 
 export const Header = () => {
   const [newTaskVisible, setNewTaskVisible] = useState<boolean>(false);
   const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
+  const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
+  const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
 
   const data = MockBoards;
   return (
@@ -22,7 +25,9 @@ export const Header = () => {
         <Button
           text={"Add New Task"}
           withIcon={true}
-          onClick={() => setNewTaskVisible(true)} testid={"add-new-task-btn"}        />
+          onClick={() => setNewTaskVisible(true)}
+          testid={"add-new-task-btn"}
+        />
         <div
           className={cl.options_icon}
           data-testid="options-icon"
@@ -30,7 +35,14 @@ export const Header = () => {
         />
       </div>
       {newTaskVisible && <NewTaskModal />}
-      {optionsVisible && <OptionsModal />}
+      {optionsVisible && !editBoardVisible && (
+        <OptionsModal
+          onEditClick={() => setEditBoardVisible(true)}
+          onDeleteClick={() => setDeleteBoardVisible(true)}
+        />
+      )}
+      {editBoardVisible && <EditBoardModal />}
+      {deleteBoardVisible && <DeleteBoardModal />}
     </div>
   );
 };

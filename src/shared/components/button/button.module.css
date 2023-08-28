@@ -34,6 +34,23 @@
   align-self: center;
 }
 
+.cancel,
+.delete {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.delete {
+
+  border: 1px solid #c41e1e;
+  background: #c41e1e;
+}
+
+.delete:hover {
+  background: #ea4141;
+  border: 1px solid #ea4141;
+}
+
 @media screen and (max-width: 600px) {
   .button_text {
     display: none;

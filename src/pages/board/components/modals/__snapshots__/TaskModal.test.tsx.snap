@@ -19,10 +19,12 @@ exports[`Test the TaskModal component The TaskModal renders correctly 1`] = `
       </h2>
       <div
         className="options_icon"
+        data-testid="task-options-icon"
+        onClick={[Function]}
       />
     </div>
     <p
-      className="task_description"
+      className="description"
     >
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut porro placeat voluptatum eius!
     </p>
