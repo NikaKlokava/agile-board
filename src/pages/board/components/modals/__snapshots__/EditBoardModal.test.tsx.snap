@@ -10,6 +10,7 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
      
     <h2
       className="modal_title"
+      data-testid="edit-board-modal"
     >
       Edit Board
     </h2>

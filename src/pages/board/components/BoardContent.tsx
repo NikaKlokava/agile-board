@@ -1,15 +1,17 @@
 // import { MockBoards } from "../../../mocks/BoardMocks";
-// import {
-//   EditBoardModal,
-//   NewBoardModal,
-//   NewTaskModal,
-//   TaskModal,
-// } from "./modals";
+import {
+  EditBoardModal,
+  // NewBoardModal,
+  // NewTaskModal,
+  // TaskModal,
+} from "./modals";
+import { useState } from "react";
 import { MockBoards } from "../../../mocks/BoardMocks";
 import { Sidebar } from "./Sidebar";
 import cl from "./styles/board_content.module.css";
 
 export const BoardContent = () => {
+  const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const data = MockBoards;
   return (
     <>
@@ -35,11 +37,15 @@ export const BoardContent = () => {
             </div>
           );
         })}
-        <div className={cl.add_column}>
+        <div
+          className={cl.add_column}
+          onClick={() => setEditBoardVisible(true)}
+          data-testid="add_column"
+        >
           <p className={cl.add_column_title}>{"+ New Column"}</p>
         </div>
         {/* <NewTaskModal /> */}
-        {/* <EditBoardModal /> */}
+        {editBoardVisible && <EditBoardModal />}
         {/* <NewBoardModal /> */}
         {/* <TaskModal /> */}
       </div>

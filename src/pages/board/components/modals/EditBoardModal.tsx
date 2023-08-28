@@ -7,7 +7,9 @@ import cl from "./modal_styles.module.css";
 export const EditBoardModal = () => {
   return (
     <ModalWrapper>
-      <h2 className={cl.modal_title}>Edit Board</h2>
+      <h2 className={cl.modal_title} data-testid="edit-board-modal">
+        Edit Board
+      </h2>
       <FieldWrapper fieldName="Board Name">
         <Input withDelete={false} />
       </FieldWrapper>

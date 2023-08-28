@@ -296,6 +296,8 @@ Array [
     </div>
     <div
       className="add_column"
+      data-testid="add_column"
+      onClick={[Function]}
     >
       <p
         className="add_column_title"
