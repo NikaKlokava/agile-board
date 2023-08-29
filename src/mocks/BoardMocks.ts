@@ -23,7 +23,7 @@ export const MockBoards = [
     name: "Platform Launch",
     board_column: [
       { title: "Todo", tasks: Array.from({ length: 4 }, () => MockTask) },
-      { title: "Doing", tasks: Array.from({ length: 6 }, () => MockTask) },
+      { title: "Doing", tasks: Array.from({ length: 10 }, () => MockTask) },
       { title: "Done", tasks: Array.from({ length: 2 }, () => MockTask) },
     ],
   },

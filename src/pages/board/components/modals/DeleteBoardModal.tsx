@@ -28,6 +28,7 @@ export const DeleteBoardModal = ({ onWrapperClick }: Props) => {
           withIcon={false}
           testid={"delete-btn"}
           newClass="cancel"
+          onClick={onWrapperClick}
         />
       </div>
     </ModalWrapper>

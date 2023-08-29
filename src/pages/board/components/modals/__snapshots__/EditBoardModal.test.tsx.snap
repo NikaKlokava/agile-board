@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test the EditBoardModal component The EditBoardModal renders correctly 1`] = `
-<div
-  className="modal_wrapper"
->
+Array [
+  <div
+    className="modal_wrapper"
+  />,
   <div
     className="modal_container"
   >
@@ -30,6 +31,7 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
+          value="Platform Launch"
         />
       </div>
     </div>
@@ -49,6 +51,7 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
+          value="Todo"
         />
         <div
           className="delete_icon"
@@ -62,6 +65,7 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
+          value="Doing"
         />
         <div
           className="delete_icon"
@@ -75,6 +79,7 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
+          value="Done"
         />
         <div
           className="delete_icon"
@@ -104,6 +109,6 @@ exports[`Test the EditBoardModal component The EditBoardModal renders correctly 
         Save Changes
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;

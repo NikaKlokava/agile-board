@@ -271,6 +271,70 @@ Array [
           0 of 5 completed tasks
         </div>
       </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
     </div>
     <div
       className="content_column"

@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test the NewTaskModal component The NewTaskModal renders correctly 1`] = `
-<div
-  className="modal_wrapper"
->
+Array [
+  <div
+    className="modal_wrapper"
+  />,
   <div
     className="modal_container"
   >
@@ -125,6 +126,6 @@ exports[`Test the NewTaskModal component The NewTaskModal renders correctly 1`] 
         Create Task
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;

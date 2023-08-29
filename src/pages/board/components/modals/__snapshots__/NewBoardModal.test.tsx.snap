@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test the NewBoardModal component The NewBoardModal renders correctly 1`] = `
-<div
-  className="modal_wrapper"
->
+Array [
+  <div
+    className="modal_wrapper"
+  />,
   <div
     className="modal_container"
   >
@@ -91,6 +92,6 @@ exports[`Test the NewBoardModal component The NewBoardModal renders correctly 1`
         Create New Board
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;
