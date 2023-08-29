@@ -34,15 +34,31 @@ export const Header = () => {
           onClick={() => setOptionsVisible((prev) => !prev)}
         />
       </div>
-      {newTaskVisible && <NewTaskModal />}
-      {optionsVisible && !editBoardVisible && (
+      {newTaskVisible && (
+        <NewTaskModal onWrapperClick={() => setNewTaskVisible(false)} />
+      )}
+      {optionsVisible && !editBoardVisible && !deleteBoardVisible && (
         <OptionsModal
           onEditClick={() => setEditBoardVisible(true)}
           onDeleteClick={() => setDeleteBoardVisible(true)}
         />
       )}
-      {editBoardVisible && <EditBoardModal />}
-      {deleteBoardVisible && <DeleteBoardModal />}
+      {editBoardVisible && (
+        <EditBoardModal
+          onWrapperClick={() => {
+            setEditBoardVisible(false);
+            setOptionsVisible(false);
+          }}
+        />
+      )}
+      {deleteBoardVisible && (
+        <DeleteBoardModal
+          onWrapperClick={() => {
+            setDeleteBoardVisible(false);
+            setOptionsVisible(false);
+          }}
+        />
+      )}
     </div>
   );
 };

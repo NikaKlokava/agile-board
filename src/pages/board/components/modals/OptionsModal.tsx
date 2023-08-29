@@ -6,7 +6,7 @@ type Props = {
   onDeleteClick?: () => void;
 };
 
-export const OptionsModal = ({ onEditClick , onDeleteClick}: Props) => {
+export const OptionsModal = ({ onEditClick, onDeleteClick }: Props) => {
   return (
     <div className={cl.options_modal_wrapper} data-testid="options-modal">
       <p

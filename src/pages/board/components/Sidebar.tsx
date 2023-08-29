@@ -32,7 +32,9 @@ export const Sidebar = () => {
         <div className={cl.hide_icon} />
         <div className={cl.hide_text}>Hide sidebar</div>
       </div>
-      {newBoardVisible && <NewBoardModal />}
+      {newBoardVisible && (
+        <NewBoardModal onWrapperClick={() => setNewBoardVisible(false)} />
+      )}
     </div>
   );
 };

@@ -2,9 +2,13 @@ import { Button } from "../../../../shared/components/button";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
 
-export const DeleteBoardModal = () => {
+type Props = {
+  onWrapperClick?: () => void;
+};
+
+export const DeleteBoardModal = ({ onWrapperClick }: Props) => {
   return (
-    <ModalWrapper>
+    <ModalWrapper onWrapperClick={onWrapperClick}>
       <h2 className={cl.title} data-testid="delete-board">
         Delete this board?
       </h2>

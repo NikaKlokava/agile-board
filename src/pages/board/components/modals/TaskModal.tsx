@@ -5,11 +5,15 @@ import { Select } from "../../../../shared/components/select";
 import cl from "./modal_styles.module.css";
 import { OptionsModal } from "./OptionsModal";
 
-export const TaskModal = () => {
+type Props = {
+  onWrapperClick?: () => void;
+};
+
+export const TaskModal = ({ onWrapperClick }: Props) => {
   const [optionsModalVisible, setOptionsModalVisible] =
     useState<boolean>(false);
   return (
-    <ModalWrapper>
+    <ModalWrapper onWrapperClick={onWrapperClick}>
       <div className={cl.task_title} data-testid="task-modal">
         <h2 className={cl.modal_task_title}>Task name</h2>
         <div

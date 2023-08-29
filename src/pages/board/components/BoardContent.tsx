@@ -44,8 +44,12 @@ export const BoardContent = () => {
         >
           <p className={cl.add_column_title}>{"+ New Column"}</p>
         </div>
-        {editBoardVisible && <EditBoardModal />}
-        {taskModalVisile && <TaskModal />}
+        {editBoardVisible && (
+          <EditBoardModal onWrapperClick={() => setEditBoardVisible(false)} />
+        )}
+        {taskModalVisile && (
+          <TaskModal onWrapperClick={() => setTaskModalVisile(false)} />
+        )}
       </div>
     </>
   );

@@ -4,9 +4,13 @@ import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
 
-export const EditBoardModal = () => {
+type Props = {
+  onWrapperClick?: () => void;
+};
+
+export const EditBoardModal = ({ onWrapperClick }: Props) => {
   return (
-    <ModalWrapper>
+    <ModalWrapper onWrapperClick={onWrapperClick}>
       <h2 className={cl.modal_title} data-testid="edit-board-modal">
         Edit Board
       </h2>

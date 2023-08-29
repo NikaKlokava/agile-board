@@ -4,9 +4,13 @@ import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
 
-export const NewBoardModal = () => {
+type Props = {
+  onWrapperClick?: () => void;
+};
+
+export const NewBoardModal = ({ onWrapperClick }: Props) => {
   return (
-    <ModalWrapper>
+    <ModalWrapper onWrapperClick={onWrapperClick}>
       <h2 className={cl.modal_title} data-testid="new-board-modal">
         Add New Board
       </h2>

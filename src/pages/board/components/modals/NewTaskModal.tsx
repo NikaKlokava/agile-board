@@ -5,9 +5,13 @@ import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import cl from "./modal_styles.module.css";
 import { Select } from "../../../../shared/components/select";
 
-export const NewTaskModal = () => {
+type Props = {
+  onWrapperClick?: () => void;
+};
+
+export const NewTaskModal = ({ onWrapperClick }: Props) => {
   return (
-    <ModalWrapper>
+    <ModalWrapper onWrapperClick={onWrapperClick}>
       <h2 className={cl.modal_title} data-testid="new-task-modal">
         Add New Task
       </h2>
