@@ -4,10 +4,16 @@ import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
 
-export const NewBoardModal = () => {
+type Props = {
+  onWrapperClick?: () => void;
+};
+
+export const NewBoardModal = ({ onWrapperClick }: Props) => {
   return (
-    <ModalWrapper>
-      <h2 className={cl.modal_title}>Add New Board</h2>
+    <ModalWrapper onWrapperClick={onWrapperClick}>
+      <h2 className={cl.modal_title} data-testid="new-board-modal">
+        Add New Board
+      </h2>
       <FieldWrapper fieldName={"Board Name"}>
         <Input withDelete={false} />
       </FieldWrapper>
@@ -15,8 +21,17 @@ export const NewBoardModal = () => {
         <Input withDelete={true} />
         <Input withDelete={true} />
       </FieldWrapper>
-      <Button text={"Add New Column"} withIcon={true} />
-      <Button text={"Create New Board"} withIcon={false} newClass="center" />
+      <Button
+        text={"Add New Column"}
+        withIcon={true}
+        testid={"add-new-column-btn"}
+      />
+      <Button
+        text={"Create New Board"}
+        withIcon={false}
+        newClass="center"
+        testid="create-new-board-btn"
+      />
     </ModalWrapper>
   );
 };

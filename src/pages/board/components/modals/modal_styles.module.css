@@ -62,7 +62,7 @@
   cursor: pointer;
 }
 
-.task_description {
+.description {
   font-size: 12px;
   font-family: 'Philosopher', sans-serif;
   color: #2b2b2baf;
@@ -91,4 +91,9 @@
 
 input[type=checkbox] {
   accent-color: #7c52de;
+}
+
+.btns_container {
+  display: flex;
+  justify-content: space-around;
 }

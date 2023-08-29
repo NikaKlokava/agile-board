@@ -51,6 +51,8 @@ Array [
       </div>
       <div
         className="title_item"
+        data-testid="new-board"
+        onClick={[Function]}
       >
         <div
           className="icon_new_board"
@@ -95,6 +97,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -109,6 +113,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -123,6 +129,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -137,6 +145,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -167,6 +177,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -181,6 +193,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -195,6 +209,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -209,6 +225,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -223,6 +241,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -237,6 +257,72 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -267,6 +353,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -281,6 +369,8 @@ Array [
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -296,6 +386,8 @@ Array [
     </div>
     <div
       className="add_column"
+      data-testid="add_column"
+      onClick={[Function]}
     >
       <p
         className="add_column_title"

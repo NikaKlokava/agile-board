@@ -32,6 +32,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
     >
       <div
         className="button"
+        data-testid="add-new-task-btn"
+        onClick={[Function]}
       >
         <div
           className="button_icon"
@@ -44,6 +46,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="options_icon"
+        data-testid="options-icon"
+        onClick={[Function]}
       />
     </div>
   </div>
@@ -96,6 +100,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="title_item"
+        data-testid="new-board"
+        onClick={[Function]}
       >
         <div
           className="icon_new_board"
@@ -140,6 +146,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -154,6 +162,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -168,6 +178,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -182,6 +194,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -212,6 +226,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -226,6 +242,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -240,6 +258,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -254,6 +274,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -268,6 +290,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -282,6 +306,72 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
+      >
+        <div
+          className="task_title"
+        >
+          Create something
+        </div>
+        <div
+          className="task_success"
+        >
+          0 of 5 completed tasks
+        </div>
+      </div>
+      <div
+        className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -312,6 +402,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -326,6 +418,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </div>
       <div
         className="tasks_container"
+        data-testid="task-container"
+        onClick={[Function]}
       >
         <div
           className="task_title"
@@ -341,6 +435,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
     </div>
     <div
       className="add_column"
+      data-testid="add_column"
+      onClick={[Function]}
     >
       <p
         className="add_column_title"

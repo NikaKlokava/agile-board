@@ -1,27 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test the TaskModal component The TaskModal renders correctly 1`] = `
-<div
-  className="modal_wrapper"
->
+Array [
+  <div
+    className="modal_wrapper"
+  />,
   <div
     className="modal_container"
   >
      
-    <div
-      className="task_title"
+    <h2
+      className="modal_task_title"
+      data-testid="task-modal"
     >
-      <h2
-        className="modal_task_title"
-      >
-        Task name
-      </h2>
-      <div
-        className="options_icon"
-      />
-    </div>
+      Task name
+    </h2>
     <p
-      className="task_description"
+      className="description"
     >
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut porro placeat voluptatum eius!
     </p>
@@ -66,6 +61,6 @@ exports[`Test the TaskModal component The TaskModal renders correctly 1`] = `
         </option>
       </select>
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;

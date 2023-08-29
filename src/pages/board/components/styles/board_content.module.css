@@ -6,7 +6,6 @@
   padding-top: 20px;
   padding-left: 40px;
   padding-right: 20px;
-  padding-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.802);
 }
 
@@ -59,12 +58,11 @@
   border-radius: 10px;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.251);
   cursor: pointer;
-  color: #2b2b2b;
   transition: 0.3s ease-in-out;
 }
 
 .tasks_container:hover {
-  color: #7c52de;
+  box-shadow: 1px 2px 10px #7c52de8f;
 }
 
 .task_title {

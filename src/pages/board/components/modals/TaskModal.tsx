@@ -2,16 +2,18 @@ import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import cl from "./modal_styles.module.css";
-// import { OptionsModal } from "./OptionsModal";
 
-export const TaskModal = () => {
+type Props = {
+  onWrapperClick?: () => void;
+};
+
+export const TaskModal = ({ onWrapperClick }: Props) => {
   return (
-    <ModalWrapper>
-      <div className={cl.task_title}>
-        <h2 className={cl.modal_task_title}>Task name</h2>
-        <div className={cl.options_icon} />
-      </div>
-      <p className={cl.task_description}>
+    <ModalWrapper onWrapperClick={onWrapperClick}>
+      <h2 className={cl.modal_task_title} data-testid="task-modal">
+        Task name
+      </h2>
+      <p className={cl.description}>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut porro
         placeat voluptatum eius!
       </p>
@@ -24,7 +26,6 @@ export const TaskModal = () => {
       <FieldWrapper fieldName={"Current Status"}>
         <Select />
       </FieldWrapper>
-      {/* <OptionsModal /> */}
     </ModalWrapper>
   );
 };

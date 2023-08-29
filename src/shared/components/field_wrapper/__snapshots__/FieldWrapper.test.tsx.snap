@@ -11,15 +11,3 @@ exports[`Test the FieldWrapper component The FieldWrapper renders correctly 1`] 
   </p>
 </div>
 `;
-
-exports[`Test the Input component The Input renders correctly 1`] = `
-<div
-  className="container"
->
-  <p
-    className="title"
-  >
-    TestName
-  </p>
-</div>
-`;
