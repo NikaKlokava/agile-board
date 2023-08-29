@@ -27,6 +27,7 @@ export const Header = () => {
           withIcon={true}
           onClick={() => setNewTaskVisible(true)}
           testid={"add-new-task-btn"}
+          newClass={"add-new-task"}
         />
         <div
           className={cl.options_icon}
