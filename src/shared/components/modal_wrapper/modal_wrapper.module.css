@@ -36,3 +36,13 @@
   width: 0px;
   height: 0px;
 }
+
+@media screen and (max-width:600px) {
+  .modal_container {
+    row-gap: 20px;
+    padding: 20px;
+    min-width: 80%;
+    max-width: 80%;
+    border-radius: 10px;
+  }
+}

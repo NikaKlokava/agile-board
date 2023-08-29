@@ -13,7 +13,7 @@ export const Input = ({ withDelete, value }: Props) => {
         placeholder="e.g Take coffee break"
         spellCheck={false}
         className={cl.input_style}
-        value={value}
+        defaultValue={value}
       />
       {withDelete && <div className={cl.delete_icon} />}
     </div>

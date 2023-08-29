@@ -51,16 +51,23 @@
   border: 1px solid #ea4141;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .button_text {
+    font-size: 16px;
+  }
+
+  .add-new-task .button_text {
     display: none;
+  }
+
+  .add-new-task {
+    padding: 10px;
   }
 
   .button {
     display: flex;
     column-gap: 10px;
     align-items: center;
-    padding: 10px;
     border-radius: 20px;
     box-shadow: none;
   }

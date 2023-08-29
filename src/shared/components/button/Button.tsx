@@ -6,7 +6,7 @@ type Props = {
   withIcon: boolean;
   testid: string;
   onClick?: () => void;
-  newClass?: "center" | "delete" | "cancel";
+  newClass?: "center" | "delete" | "cancel" | "add-new-task";
 };
 
 export const Button = ({ text, withIcon, newClass, onClick, testid }: Props) => {

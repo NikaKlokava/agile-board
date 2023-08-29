@@ -28,10 +28,10 @@ Array [
       >
         <input
           className="input_style"
+          defaultValue="Platform Launch"
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
-          value="Platform Launch"
         />
       </div>
     </div>
@@ -48,10 +48,10 @@ Array [
       >
         <input
           className="input_style"
+          defaultValue="Todo"
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
-          value="Todo"
         />
         <div
           className="delete_icon"
@@ -62,10 +62,10 @@ Array [
       >
         <input
           className="input_style"
+          defaultValue="Doing"
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
-          value="Doing"
         />
         <div
           className="delete_icon"
@@ -76,10 +76,10 @@ Array [
       >
         <input
           className="input_style"
+          defaultValue="Done"
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
-          value="Done"
         />
         <div
           className="delete_icon"

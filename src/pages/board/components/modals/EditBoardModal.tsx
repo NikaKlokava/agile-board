@@ -20,8 +20,8 @@ export const EditBoardModal = ({ onWrapperClick }: Props) => {
         <Input withDelete={false} value={data[0].name} />
       </FieldWrapper>
       <FieldWrapper fieldName="Board Columns" clName="style_container">
-        {data[0].board_column.map((column) => {
-          return <Input withDelete={true} value={column.title} />;
+        {data[0].board_column.map((column, index) => {
+          return <Input withDelete={true} value={column.title} key={index} />;
         })}
       </FieldWrapper>
       <Button
