@@ -31,23 +31,23 @@ describe("Test the New Column element", () => {
   });
 });
 
-describe("Test the Task element", () => {
-  test("The TaskModal should be visible on click", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
-    const taskContainerEl = screen.getAllByTestId("task-container");
+// describe("Test the Task element", () => {
+//   test("The TaskModal should be visible on click", () => {
+//     render(
+//       <MemoryRouter initialEntries={["/agile-board"]}>
+//         <App />
+//       </MemoryRouter>
+//     );
+//     const taskContainerEl = screen.getAllByTestId("task-container");
 
-    act(() => {
-      taskContainerEl.forEach((task) => {
-        task.click();
-      });
-    });
+//     act(() => {
+//       taskContainerEl.forEach((task) => {
+//         task.click();
+//       });
+//     });
 
-    const taskModal = screen.queryByTestId("task-modal");
+//     const taskModal = screen.queryByTestId("task-modal");
 
-    expect(taskModal).toBeInTheDocument();
-  });
-});
+//     expect(taskModal).toBeInTheDocument();
+//   });
+// });

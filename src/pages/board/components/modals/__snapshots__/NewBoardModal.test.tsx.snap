@@ -23,16 +23,15 @@ Array [
       >
         Board Name
       </p>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-      </div>
+      <input
+        autoComplete="off"
+        className="input_style"
+        name="name"
+        onChange={[Function]}
+        placeholder="e.g Take coffee break"
+        spellCheck={false}
+        type="text"
+      />
     </div>
     <div
       className="container style_container"
@@ -47,12 +46,15 @@ Array [
       >
         <input
           className="input_style"
+          name="board_columns[0]"
+          onChange={[Function]}
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
         />
         <div
           className="delete_icon"
+          onClick={[Function]}
         />
       </div>
       <div
@@ -60,18 +62,22 @@ Array [
       >
         <input
           className="input_style"
+          name="board_columns[1]"
+          onChange={[Function]}
           placeholder="e.g Take coffee break"
           spellCheck={false}
           type="text"
         />
         <div
           className="delete_icon"
+          onClick={[Function]}
         />
       </div>
     </div>
     <div
       className="button"
       data-testid="add-new-column-btn"
+      onClick={[Function]}
     >
       <div
         className="button_icon"
@@ -85,6 +91,7 @@ Array [
     <div
       className="button center"
       data-testid="create-new-board-btn"
+      onClick={[Function]}
     >
       <div
         className="button_text"

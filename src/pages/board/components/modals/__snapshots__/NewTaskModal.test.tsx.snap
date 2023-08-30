@@ -23,16 +23,6 @@ Array [
       >
         Task name
       </p>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-      </div>
     </div>
     <div
       className="container"
@@ -56,32 +46,6 @@ Array [
       >
         Subtasks
       </p>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-        <div
-          className="delete_icon"
-        />
-      </div>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-        <div
-          className="delete_icon"
-        />
-      </div>
       <div
         className="button"
         data-testid="add-new-subtask-btn"

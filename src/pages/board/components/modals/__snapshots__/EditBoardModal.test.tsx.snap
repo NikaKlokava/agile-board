@@ -23,17 +23,6 @@ Array [
       >
         Board Name
       </p>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          defaultValue="Platform Launch"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-      </div>
     </div>
     <div
       className="container style_container"
@@ -43,48 +32,6 @@ Array [
       >
         Board Columns
       </p>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          defaultValue="Todo"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-        <div
-          className="delete_icon"
-        />
-      </div>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          defaultValue="Doing"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-        <div
-          className="delete_icon"
-        />
-      </div>
-      <div
-        className="input_container"
-      >
-        <input
-          className="input_style"
-          defaultValue="Done"
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-        <div
-          className="delete_icon"
-        />
-      </div>
     </div>
     <div
       className="button"

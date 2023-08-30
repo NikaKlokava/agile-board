@@ -1,11 +1,18 @@
+import { useFormikContext } from "formik";
 import cl from "./input.module.css";
 
 type Props = {
-  withDelete: boolean;
-  value?: string;
+  index: number;
 };
 
-export const Input = ({ withDelete, value }: Props) => {
+export const Input = ({ index }: Props) => {
+  const { handleChange } = useFormikContext();
+
+  const handleDeleteCLick = (elem: any) => {
+    elem.parentElement.remove();
+    console.log(elem.parentElement);
+  };
+
   return (
     <div className={cl.input_container}>
       <input
@@ -13,9 +20,13 @@ export const Input = ({ withDelete, value }: Props) => {
         placeholder="e.g Take coffee break"
         spellCheck={false}
         className={cl.input_style}
-        defaultValue={value}
+        onChange={handleChange}
+        name={`board_columns[${index}]`}
       />
-      {withDelete && <div className={cl.delete_icon} />}
+      <div
+        className={cl.delete_icon}
+        onClick={(e) => handleDeleteCLick(e.target)}
+      />
     </div>
   );
 };

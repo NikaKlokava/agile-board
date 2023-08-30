@@ -7,47 +7,11 @@ exports[`Test the Sidebar component The Sidebar renders correctly 1`] = `
   <div
     className="sidebar_title"
   >
-    ALL BOARDS (3)
+    ALL BOARDS (0)
   </div>
   <div
     className="board_title_items"
   >
-    <div
-      className="title_item"
-    >
-      <div
-        className="icon"
-      />
-      <p
-        className="title"
-      >
-        Platform Launch
-      </p>
-    </div>
-    <div
-      className="title_item"
-    >
-      <div
-        className="icon"
-      />
-      <p
-        className="title"
-      >
-        Marketing Plan
-      </p>
-    </div>
-    <div
-      className="title_item"
-    >
-      <div
-        className="icon"
-      />
-      <p
-        className="title"
-      >
-        Roadmap
-      </p>
-    </div>
     <div
       className="title_item"
       data-testid="new-board"

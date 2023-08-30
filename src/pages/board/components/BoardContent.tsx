@@ -1,18 +1,17 @@
 import { EditBoardModal, TaskModal } from "./modals";
 import { useState } from "react";
-import { MockBoards } from "../../../mocks/BoardMocks";
 import { Sidebar } from "./Sidebar";
 import cl from "./styles/board_content.module.css";
 
 export const BoardContent = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
-  const data = MockBoards;
+
   return (
     <>
       <Sidebar />
       <div className={cl.board_content_wrapper}>
-        {data[0].board_column.map((column, index) => {
+        {/* {data[0].board_column.map((column, index) => {
           return (
             <div className={cl.content_column} key={index}>
               <div className={cl.title_container}>
@@ -36,7 +35,7 @@ export const BoardContent = () => {
               })}
             </div>
           );
-        })}
+        })} */}
         <div
           className={cl.add_column}
           onClick={() => setEditBoardVisible(true)}
