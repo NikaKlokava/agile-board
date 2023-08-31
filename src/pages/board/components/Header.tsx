@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MockBoards } from "../../../mocks/BoardMocks";
+import store from "../../../redux/store/store";
 import { Button } from "../../../shared/components/button";
 import { EditBoardModal, NewTaskModal } from "./modals";
 import { DeleteBoardModal } from "./modals/DeleteBoardModal";
@@ -12,13 +12,14 @@ export const Header = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
 
-  const data = MockBoards;
+  const storeData = store.getState();
+
   return (
     <div className={cl.header_wrapper}>
       <div className={cl.app_title}>
         <div className={cl.app_logo}></div>
         <h1 className={cl.title}>AGILE-BOARD</h1>
-        <p className={cl.board_name}>{data[0].name}</p>
+        <p className={cl.board_name}>{storeData.boards[0].name}</p>
         <div className={cl.navbar}></div>
       </div>
       <div className={cl.options}>

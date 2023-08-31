@@ -1,6 +1,6 @@
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Button } from "../../../../shared/components/button";
-import { Input } from "../../../../shared/components/input";
+// import { Input } from "../../../../shared/components/input";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import cl from "./modal_styles.module.css";
 import { Select } from "../../../../shared/components/select";
@@ -16,7 +16,7 @@ export const NewTaskModal = ({ onWrapperClick }: Props) => {
         Add New Task
       </h2>
       <FieldWrapper fieldName={"Task name"}>
-        <Input withDelete={false} />
+        {/* <Input withDelete={false} /> */}
       </FieldWrapper>
       <FieldWrapper fieldName={"Description"}>
         <textarea
@@ -26,8 +26,8 @@ export const NewTaskModal = ({ onWrapperClick }: Props) => {
         />
       </FieldWrapper>
       <FieldWrapper fieldName={"Subtasks"} clName="style_container">
-        <Input withDelete={true} />
-        <Input withDelete={true} />
+        {/* <Input  />
+        <Input /> */}
         <Button
           text="Add New Subtask"
           withIcon={true}
