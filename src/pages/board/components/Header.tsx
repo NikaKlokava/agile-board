@@ -1,5 +1,6 @@
 import { useState } from "react";
-import store from "../../../redux/store/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/store";
 import { Button } from "../../../shared/components/button";
 import { EditBoardModal, NewTaskModal } from "./modals";
 import { DeleteBoardModal } from "./modals/DeleteBoardModal";
@@ -12,14 +13,16 @@ export const Header = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
 
-  const storeData = store.getState();
+  const storeData = useSelector<RootState, RootState>((state) => state);
+
+  const selectedBoard = storeData.boards.find((elem) => elem.selected === true);
 
   return (
     <div className={cl.header_wrapper}>
       <div className={cl.app_title}>
         <div className={cl.app_logo}></div>
         <h1 className={cl.title}>AGILE-BOARD</h1>
-        <p className={cl.board_name}>{storeData.boards[0].name}</p>
+        <p className={cl.board_name}>{selectedBoard?.name}</p>
         <div className={cl.navbar}></div>
       </div>
       <div className={cl.options}>
@@ -37,7 +40,7 @@ export const Header = () => {
         />
       </div>
       {newTaskVisible && (
-        <NewTaskModal onWrapperClick={() => setNewTaskVisible(false)} />
+        <NewTaskModal onClose={() => setNewTaskVisible(false)} />
       )}
       {optionsVisible && !editBoardVisible && !deleteBoardVisible && (
         <OptionsModal

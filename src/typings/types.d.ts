@@ -19,3 +19,19 @@ type BoardsType = {
     }
   ];
 };
+
+// type BoardsType = {
+//   boards: [
+//     {
+//       name: string | null;
+//       board_columns: [
+//         {
+//           title: string;
+//           tasks: [
+//             { taskName: string; description: string; subtasks: string[] }
+//           ];
+//         }
+//       ];
+//     }
+//   ];
+// };

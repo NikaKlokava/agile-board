@@ -2,15 +2,12 @@ import { Button } from "../../../../shared/components/button";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Formik } from "formik";
-import cl from "./modal_styles.module.css";
-import store from "../../../../redux/store/store";
-import {
-  addBoard,
-  // addBoardName,
-  // addColumns,
-} from "../../../../redux/actionCreators/newBoardCreator";
+import { addBoard } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
 import { useState } from "react";
+import { initialData } from "../../../../utils/utils";
+import { useDispatch } from "react-redux";
+import cl from "./modal_styles.module.css";
 
 type Props = {
   onClose: () => void;
@@ -18,18 +15,17 @@ type Props = {
 
 export const NewBoardModal = ({ onClose }: Props) => {
   const [columns, setColumns] = useState<number>(2);
-
-  const data = { name: undefined, board_columns: [] };
-
+  const dispatch = useDispatch();
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
-        initialValues={data}
+        initialValues={initialData}
         onSubmit={(values) => {
-          store.dispatch(
+          dispatch(
             addBoard({
               name: values.name!,
               board_columns: values.board_columns,
+              selected: false,
             })
           );
           onClose();

@@ -1,12 +1,20 @@
 import classes from "classnames";
 import { useState } from "react";
-import store from "../../../redux/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBoard } from "../../../redux/actionCreators/newBoardCreator";
 import { NewBoardModal } from "./modals";
 import cl from "./styles/sidebar.module.css";
+import { RootState } from "../../../redux/store/store";
 
 export const Sidebar = () => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
-  const storeData = store.getState();
+  // const storeData = store.getState();
+  const dispatch = useDispatch();
+  const storeData = useSelector<RootState, RootState>((state) => state);
+
+  const handleBoardClick = (e: any) => {
+    dispatch(selectBoard(e.target.innerText));
+  };
 
   return (
     <div className={cl.sidebar_wrapper}>
@@ -16,7 +24,11 @@ export const Sidebar = () => {
       <div className={cl.board_title_items}>
         {storeData.boards.map((board, index) => {
           return (
-            <div className={cl.title_item} key={index}>
+            <div
+              className={cl.title_item}
+              key={index}
+              onClick={(e) => handleBoardClick(e)}
+            >
               <div className={cl.icon} />
               <p className={cl.title}>{board.name}</p>
             </div>

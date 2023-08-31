@@ -1,19 +1,16 @@
-import {
-  addBoardAction,
-  // addBoardNameAction,
-  // addColumnsAction,
-} from "../actions/actions";
+import { addBoardAction, selectBoardAction } from "../actions/actions";
 
 const initialState = {
   boards: [
     {
       name: "Example board",
       board_columns: [],
+      selected: true,
     },
   ],
 };
 
-export const boardReducer = (state = initialState, action: any) => {
+export const boardsReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case addBoardAction:
       if (state.boards[0].name === "Example board") {
@@ -23,6 +20,7 @@ export const boardReducer = (state = initialState, action: any) => {
             {
               name: action.payload.name,
               board_columns: action.payload.board_columns,
+              selected: true,
             },
           ],
         };
@@ -33,30 +31,24 @@ export const boardReducer = (state = initialState, action: any) => {
         boards: [...state.boards, action.payload],
       };
 
-    // case addBoardNameAction:
-    //   return {
-    //     ...state,
-    //     boards: [
-    //       ...state.boards.map((board) => {
-    //         return {
-    //           ...board,
-    //           name: action.payload.name,
-    //         };
-    //       }),
-    //     ],
-    //   };
-    // case addColumnsAction:
-    //   return {
-    //     ...state,
-    //     boards: [
-    //       ...state.boards.map((board) => {
-    //         return {
-    //           ...board,
-    //           board_columns: action.payload.board_columns,
-    //         };
-    //       }),
-    //     ],
-    //   };
+    case selectBoardAction:
+      return {
+        ...state,
+        boards: [
+          ...state.boards.map((board) => {
+            if (board.name === action.payload.boardName) {
+              return {
+                ...board,
+                selected: true,
+              };
+            }
+            return {
+              ...board,
+              selected: false,
+            };
+          }),
+        ],
+      };
 
     default:
       return state;
