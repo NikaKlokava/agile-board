@@ -15,3 +15,12 @@ export const addColumns = ({ board_columns }: ColumnsType) => {
     },
   };
 };
+
+export const addBoard = ({ name,board_columns  }: any) => {
+  return {
+    type: "board/addBoard",
+    payload: {
+      name, board_columns
+    },
+  };
+};

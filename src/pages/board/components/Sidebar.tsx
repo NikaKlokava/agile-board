@@ -1,24 +1,27 @@
 import classes from "classnames";
 import { useState } from "react";
-// import { MockBoards } from "../../../mocks/BoardMocks";
+import store from "../../../redux/store/store";
 import { NewBoardModal } from "./modals";
 import cl from "./styles/sidebar.module.css";
 
 export const Sidebar = () => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
-  const data = [];
+  const storeData = store.getState();
+
   return (
     <div className={cl.sidebar_wrapper}>
-      <div className={cl.sidebar_title}>{`ALL BOARDS (${data.length})`}</div>
+      <div
+        className={cl.sidebar_title}
+      >{`ALL BOARDS (${storeData.boards.length})`}</div>
       <div className={cl.board_title_items}>
-        {/* {data.map((board, index) => {
+        {storeData.boards.map((board, index) => {
           return (
             <div className={cl.title_item} key={index}>
               <div className={cl.icon} />
               <p className={cl.title}>{board.name}</p>
             </div>
           );
-        })} */}
+        })}
         <div
           className={cl.title_item}
           data-testid="new-board"

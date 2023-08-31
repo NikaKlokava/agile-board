@@ -4,6 +4,7 @@ exports[`Test the NewBoardModal component The NewBoardModal renders correctly 1`
 Array [
   <div
     className="modal_wrapper"
+    onClick={[Function]}
   />,
   <div
     className="modal_container"
@@ -45,6 +46,7 @@ Array [
         className="input_container"
       >
         <input
+          autoComplete="off"
           className="input_style"
           name="board_columns[0]"
           onChange={[Function]}
@@ -61,6 +63,7 @@ Array [
         className="input_container"
       >
         <input
+          autoComplete="off"
           className="input_style"
           name="board_columns[1]"
           onChange={[Function]}

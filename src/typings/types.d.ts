@@ -10,3 +10,12 @@ type BoardNameType = {
 type ColumnsType = {
   board_columns: string[];
 };
+
+type BoardsType = {
+  boards: [
+    {
+      name: string | null;
+      board_columns: string[];
+    }
+  ];
+};

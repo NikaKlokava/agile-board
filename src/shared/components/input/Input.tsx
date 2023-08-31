@@ -10,7 +10,6 @@ export const Input = ({ index }: Props) => {
 
   const handleDeleteCLick = (elem: any) => {
     elem.parentElement.remove();
-    console.log(elem.parentElement);
   };
 
   return (
@@ -20,6 +19,7 @@ export const Input = ({ index }: Props) => {
         placeholder="e.g Take coffee break"
         spellCheck={false}
         className={cl.input_style}
+        autoComplete="off"
         onChange={handleChange}
         name={`board_columns[${index}]`}
       />

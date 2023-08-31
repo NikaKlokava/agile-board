@@ -6,7 +6,6 @@ import cl from "./styles/board_content.module.css";
 export const BoardContent = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
-
   return (
     <>
       <Sidebar />

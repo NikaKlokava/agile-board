@@ -8,11 +8,23 @@ Array [
     <div
       className="sidebar_title"
     >
-      ALL BOARDS (0)
+      ALL BOARDS (1)
     </div>
     <div
       className="board_title_items"
     >
+      <div
+        className="title_item"
+      >
+        <div
+          className="icon"
+        />
+        <p
+          className="title"
+        >
+          Example board
+        </p>
+      </div>
       <div
         className="title_item"
         data-testid="new-board"

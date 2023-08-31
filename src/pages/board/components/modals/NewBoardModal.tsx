@@ -5,14 +5,15 @@ import { Formik } from "formik";
 import cl from "./modal_styles.module.css";
 import store from "../../../../redux/store/store";
 import {
-  addBoardName,
-  addColumns,
+  addBoard,
+  // addBoardName,
+  // addColumns,
 } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
 import { useState } from "react";
 
 type Props = {
-  onClose?: () => void
+  onClose: () => void;
 };
 
 export const NewBoardModal = ({ onClose }: Props) => {
@@ -25,8 +26,13 @@ export const NewBoardModal = ({ onClose }: Props) => {
       <Formik
         initialValues={data}
         onSubmit={(values) => {
-          store.dispatch(addBoardName({ name: values.name! }));
-          store.dispatch(addColumns({ board_columns: values.board_columns }));
+          store.dispatch(
+            addBoard({
+              name: values.name!,
+              board_columns: values.board_columns,
+            })
+          );
+          onClose();
         }}
       >
         {(props) => (
@@ -63,7 +69,6 @@ export const NewBoardModal = ({ onClose }: Props) => {
               testid="create-new-board-btn"
               onClick={() => {
                 props.handleSubmit();
-                onClose!();
               }}
             />
           </>
