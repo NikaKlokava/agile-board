@@ -13,9 +13,9 @@ export const Header = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
 
-  const storeData = useSelector<RootState, RootState>((state) => state);
+  const storeData = useSelector<RootState, Boards>((state) => state.boards);
 
-  const selectedBoard = storeData.boards.find((elem) => elem.selected === true);
+  const selectedBoard = storeData.find((elem) => elem.selected === true);
 
   return (
     <div className={cl.header_wrapper}>

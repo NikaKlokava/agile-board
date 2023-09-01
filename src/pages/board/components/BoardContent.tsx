@@ -9,17 +9,19 @@ export const BoardContent = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
 
-  const storeData = useSelector<RootState, RootState>((state) => state);
+  const storeData = useSelector<RootState, Boards>((state) => state.boards);
+  const activeBoard = storeData.find((elem) => elem.selected === true);
+
   return (
     <>
       <Sidebar />
       <div className={cl.board_content_wrapper}>
-        {storeData.boards[0].board_columns.map((column, index) => {
+        {activeBoard?.board_columns.map((column, index) => {
           return (
             <div className={cl.content_column} key={index}>
               <div className={cl.title_container}>
                 <div className={cl.column_circle} />
-                <div className={cl.column_title}>{column}</div>
+                <div className={cl.column_title}>{column.title}</div>
               </div>
               {/* {column.tasks.map((task, index) => {
                 return (

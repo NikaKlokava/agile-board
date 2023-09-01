@@ -4,7 +4,7 @@ export const addBoard = ({ name, board_columns, selected }: any) => {
     payload: {
       name,
       board_columns,
-      selected
+      selected,
     },
   };
 };
@@ -18,6 +18,24 @@ export const selectBoard = (boardName: string) => {
   };
 };
 
+export const addNewTask = (
+  boardName: string,
+  column: string,
+  taskName: string,
+  description: string,
+  subtasks: string[]
+) => {
+  return {
+    type: "task/addNewTask",
+    payload: {
+      boardName,
+      column,
+      taskName,
+      description,
+      subtasks,
+    },
+  };
+};
 export const addBoardName = ({ name }: BoardNameType) => {
   return {
     type: "board/addBoardName",

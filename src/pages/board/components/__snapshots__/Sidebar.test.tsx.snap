@@ -13,7 +13,8 @@ exports[`Test the Sidebar component The Sidebar renders correctly 1`] = `
     className="board_title_items"
   >
     <div
-      className="title_item"
+      className="title_item active_board"
+      onClick={[Function]}
     >
       <div
         className="icon"

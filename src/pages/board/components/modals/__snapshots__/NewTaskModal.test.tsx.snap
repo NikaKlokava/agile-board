@@ -23,6 +23,15 @@ Array [
       >
         Task name
       </p>
+      <input
+        autoComplete="off"
+        className="input_style"
+        name="taskName"
+        onChange={[Function]}
+        placeholder="e.g Take coffee break"
+        spellCheck={false}
+        type="text"
+      />
     </div>
     <div
       className="container"
@@ -34,6 +43,8 @@ Array [
       </p>
       <textarea
         className="textarea"
+        name="description"
+        onChange={[Function]}
         placeholder="e.g. It's always good to take a break..."
         spellCheck={false}
       />
@@ -47,8 +58,43 @@ Array [
         Subtasks
       </p>
       <div
+        className="input_container"
+      >
+        <input
+          autoComplete="off"
+          className="input_style"
+          name="subtasks[0]"
+          onChange={[Function]}
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+        <div
+          className="delete_icon"
+          onClick={[Function]}
+        />
+      </div>
+      <div
+        className="input_container"
+      >
+        <input
+          autoComplete="off"
+          className="input_style"
+          name="subtasks[1]"
+          onChange={[Function]}
+          placeholder="e.g Take coffee break"
+          spellCheck={false}
+          type="text"
+        />
+        <div
+          className="delete_icon"
+          onClick={[Function]}
+        />
+      </div>
+      <div
         className="button"
         data-testid="add-new-subtask-btn"
+        onClick={[Function]}
       >
         <div
           className="button_icon"
@@ -68,21 +114,21 @@ Array [
       >
         Current Status
       </p>
-      <select>
+      <select
+        name="column"
+        onBlur={[Function]}
+        onChange={[Function]}
+        value="Todo"
+      >
         <option>
           Todo
-        </option>
-        <option>
-          Doing
-        </option>
-        <option>
-          Done
         </option>
       </select>
     </div>
     <div
       className="button center"
       data-testid="create-tas-btn"
+      onClick={[Function]}
     >
       <div
         className="button_text"
