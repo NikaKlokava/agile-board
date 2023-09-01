@@ -5,7 +5,7 @@ const store = legacy_createStore(boardsReducer);
 
 export default store;
 
-export type RootState = ReturnType<typeof store.getState>
+// export type RootState = ReturnType<typeof store.getState>
 
 // export interface RootState {
 //     user: UserState;

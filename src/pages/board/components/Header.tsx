@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store/store";
 import { Button } from "../../../shared/components/button";
 import { EditBoardModal, NewTaskModal } from "./modals";
 import { DeleteBoardModal } from "./modals/DeleteBoardModal";

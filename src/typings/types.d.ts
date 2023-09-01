@@ -37,12 +37,19 @@ declare type BoardsType = {
 declare type Boards = {
   name: string;
   board_columns: {
-      title: string;
-      tasks: {
-          taskName: string;
-          description: string;
-          subtasks: never[];
-      }[];
+    title: string;
+    tasks: {
+      taskName: string;
+      description: string;
+      subtasks: never[];
+    }[];
   }[];
   selected: boolean;
 }[];
+declare type RootState = ReturnType<typeof store.getState>;
+
+declare type TaskType =  {
+  taskName: string;
+  description: string;
+  subtasks: never[];
+}

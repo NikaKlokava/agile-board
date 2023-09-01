@@ -3,7 +3,6 @@ import { Button } from "../../../../shared/components/button";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store/store";
 import { addNewTask } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
 import { useState } from "react";

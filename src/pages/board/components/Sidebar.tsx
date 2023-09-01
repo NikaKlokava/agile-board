@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBoard } from "../../../redux/actionCreators/newBoardCreator";
 import { NewBoardModal } from "./modals";
-import { RootState } from "../../../redux/store/store";
 import classes from "classnames";
 import cl from "./styles/sidebar.module.css";
 
