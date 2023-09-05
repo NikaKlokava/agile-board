@@ -1,14 +1,6 @@
 import { legacy_createStore } from "redux";
-import { boardsReducer } from "../reducers/boardReducer";
+import { rootReducer } from "../reducers";
 
-const store = legacy_createStore(boardsReducer);
+const store = legacy_createStore(rootReducer);
 
 export default store;
-
-// export type RootState = ReturnType<typeof store.getState>
-
-// export interface RootState {
-//     user: UserState;
-//     loader: LoaderState;
-//   }
-// export type AppDispatch = typeof store.dispatch

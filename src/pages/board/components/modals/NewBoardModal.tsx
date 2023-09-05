@@ -4,9 +4,9 @@ import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Formik } from "formik";
 import { addBoard } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
-import { useState } from "react";
 import { initialBoardData } from "../../../../utils/utils";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import cl from "./modal_styles.module.css";
 
 type Props = {
@@ -16,6 +16,7 @@ type Props = {
 export const NewBoardModal = ({ onClose }: Props) => {
   const [columns, setColumns] = useState<number>(2);
   const dispatch = useDispatch();
+
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
@@ -23,9 +24,8 @@ export const NewBoardModal = ({ onClose }: Props) => {
         onSubmit={(values) => {
           dispatch(
             addBoard({
-              name: values.name!,
-              board_columns: values.board_columns,
-              selected: false,
+              name: values.name,
+              columns: values.columns,
             })
           );
           onClose();
@@ -49,7 +49,11 @@ export const NewBoardModal = ({ onClose }: Props) => {
             </FieldWrapper>
             <FieldWrapper fieldName={"Board Columns"} clName="style_container">
               {Array.from({ length: columns }, (_, index) => (
-                <Input index={index} key={index} formikName={`board_columns[${index}].title`} />
+                <Input
+                  index={index}
+                  key={index}
+                  formikName={`columns[${index}].title`}
+                />
               ))}
             </FieldWrapper>
             <Button

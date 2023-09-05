@@ -76,3 +76,31 @@ input[type=checkbox] {
   display: flex;
   justify-content: space-around;
 }
+
+/*///////////////////////////*/
+
+.subtasks_checkbox {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: rgba(137, 137, 137, 0.218);
+  transition: 0.2s ease-in-out;
+}
+
+.subtasks_checkbox:hover {
+  background-color: #ad91ec48;
+}
+
+
+.checkbox {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #7c52de9f;
+}

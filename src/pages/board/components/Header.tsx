@@ -12,16 +12,15 @@ export const Header = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
 
-  const storeData = useSelector<RootState, Boards>((state) => state.boards);
-
-  const selectedBoard = storeData.find((elem) => elem.selected === true);
-
+  const activeBoard = useSelector<RootState, BoardType>(
+    (state) => state.activeBoard
+  );
   return (
     <div className={cl.header_wrapper}>
       <div className={cl.app_title}>
         <div className={cl.app_logo}></div>
         <h1 className={cl.title}>AGILE-BOARD</h1>
-        <p className={cl.board_name}>{selectedBoard?.name}</p>
+        <p className={cl.board_name}>{activeBoard.name}</p>
         <div className={cl.navbar}></div>
       </div>
       <div className={cl.options}>
@@ -49,7 +48,7 @@ export const Header = () => {
       )}
       {editBoardVisible && (
         <EditBoardModal
-          onWrapperClick={() => {
+          onClose={() => {
             setEditBoardVisible(false);
             setOptionsVisible(false);
           }}

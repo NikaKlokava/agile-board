@@ -1,12 +1,11 @@
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Button } from "../../../../shared/components/button";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
-import { Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewTask } from "../../../../redux/actionCreators/newBoardCreator";
+import { Field, Formik } from "formik";
+// import { useDispatch, useSelector } from "react-redux";
+// import { addNewTask } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
 import { useState } from "react";
-import { Field } from "formik";
 import cl from "./modal_styles.module.css";
 
 type Props = {
@@ -15,33 +14,22 @@ type Props = {
 
 export const NewTaskModal = ({ onClose }: Props) => {
   const [subtasks, setSubtasks] = useState<number>(2);
-  const storeData = useSelector<RootState, Boards>((state) => state.boards);
-
-  const selectedBoard = storeData.find((elem) => elem.selected === true);
-
-  const dispatch = useDispatch();
-
-  const initialTaskData = {
-    column: selectedBoard?.board_columns[0].title,
-    taskName: "",
-    description: "",
-    subtasks: [],
-  };
-
+  // const storeData = useSelector<RootState, Boards>((state) => state.tasks);
+  const initialTaskData = {};
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={initialTaskData}
         onSubmit={(values) => {
-          dispatch(
-            addNewTask(
-              selectedBoard!.name,
-              values.column!,
-              values.taskName,
-              values.description,
-              values.subtasks
-            )
-          );
+          // dispatch(
+          //   addNewTask(
+          //     selectedBoard!.name!,
+          //     values.column!,
+          //     values.taskName,
+          //     values.description,
+          //     values.subtasks
+          //   )
+          // );
           onClose!();
         }}
       >
@@ -75,7 +63,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
                 <Input
                   index={index}
                   key={index}
-                  formikName={`subtasks[${index}]`}
+                  formikName={`subtasks[${index}].text`}
                 />
               ))}
               <Button
@@ -94,9 +82,9 @@ export const NewTaskModal = ({ onClose }: Props) => {
                 // onBlur={props.handleBlur}
               >
                 {/* <option selected disabled hidden value=""></option> */}
-                {selectedBoard?.board_columns.map((column, i) => (
+                {/* {selectedBoard?.board_columns.map((column, i) => (
                   <option key={i}>{column.title}</option>
-                ))}
+                ))} */}
               </Field>
             </FieldWrapper>
             <Button

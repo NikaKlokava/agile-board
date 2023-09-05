@@ -1,104 +1,36 @@
-import {
-  addBoardAction,
-  addNewTaskAction,
-  selectBoardAction,
-} from "../actions/actions";
+import { v4 as uuidv4 } from "uuid";
+import { ADD_BOARD_ACTION } from "../actions/actions";
 
 const initialState = {
   boards: [
     {
-      name: "Example board",
-      board_columns: [
-        {
-          title: "Todo",
-          tasks: [{ taskName: "", description: "", subtasks: [] }],
-        },
-      ],
-      selected: true,
+      uuid: uuidv4(),
+      name: "Example",
+      columns: [{ uuid: uuidv4(), title: "example" }],
     },
   ],
 };
 
-export const boardsReducer = (state = initialState, action: any) => {
+export const boardsReducer = (
+  state = initialState,
+  action: AddBoardActionType
+) => {
   switch (action.type) {
-    case addBoardAction:
-      if (state.boards[0].name === "Example board") {
-        return {
-          ...state,
-          boards: [
-            {
-              name: action.payload.name,
-              board_columns: action.payload.board_columns,
-              selected: true,
-            },
-          ],
-        };
-      }
-
-      return {
-        ...state,
-        boards: [...state.boards, action.payload],
-      };
-
-    case selectBoardAction:
+    case ADD_BOARD_ACTION:
       return {
         ...state,
         boards: [
-          ...state.boards.map((board) => {
-            if (board.name === action.payload.boardName) {
+          ...state.boards,
+          {
+            uuid: uuidv4(),
+            ...action.payload,
+            columns: action.payload.columns.map((column) => {
               return {
-                ...board,
-                selected: true,
+                ...column,
+                uuid: uuidv4(),
               };
-            }
-            return {
-              ...board,
-              selected: false,
-            };
-          }),
-        ],
-      };
-
-    case addNewTaskAction:
-      return {
-        ...state,
-        boards: [
-          ...state.boards.map((board) => {
-            if (board.name === action.payload.boardName)
-              return {
-                ...board,
-                board_columns: [
-                  ...board.board_columns.map((column) => {
-                    if (column.title === action.payload.column)
-                      if (!column.tasks) {
-                        return {
-                          ...column,
-                          tasks: [
-                            {
-                              taskName: action.payload.taskName,
-                              description: action.payload.description,
-                              subtasks: action.payload.subtasks,
-                            },
-                          ],
-                        };
-                      } else
-                        return {
-                          ...column,
-                          tasks: [
-                            ...column.tasks,
-                            {
-                              taskName: action.payload.taskName,
-                              description: action.payload.description,
-                              subtasks: action.payload.subtasks,
-                            },
-                          ],
-                        };
-                    return column;
-                  }),
-                ],
-              };
-            return board;
-          }),
+            }),
+          },
         ],
       };
 

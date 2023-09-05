@@ -1,55 +1,56 @@
-declare type BoardType = {
-  name?: string;
-  board_columns?: { title: string }[];
-};
-
-declare type BoardNameType = {
-  name: string;
-};
-
-declare type ColumnsType = {
-  board_columns: string[];
-};
-
-declare type TaskType = {
-  taskName: string;
-  description: string;
-  subtasks: string[];
-};
-
-declare type BoardsType = {
-  boards: [
-    {
-      name: string | null;
-      board_columns: [
-        {
-          title: string;
-          tasks: [
-            { taskName: string; description: string; subtasks: string[] }
-          ];
-        }
-      ];
-      selected: boolean;
-    }
-  ];
-};
-
-declare type Boards = {
-  name: string;
-  board_columns: {
-    title: string;
-    tasks: {
-      taskName: string;
-      description: string;
-      subtasks: never[];
-    }[];
-  }[];
-  selected: boolean;
-}[];
 declare type RootState = ReturnType<typeof store.getState>;
 
-declare type TaskType =  {
-  taskName: string;
+declare type SubtaskType = {
+  text: string;
+  checked: boolean;
+};
+declare type SubtasksType = SubtaskType[];
+
+declare type TaskType = {
+  uuid: string;
+  boardUuid: string;
+  columnUuid: string;
+  title: string;
   description: string;
-  subtasks: never[];
-}
+  subtasks: SubtasksType;
+};
+declare type TasksType = TaskType[];
+
+declare type ColumnType = {
+  uuid: string;
+  title: string;
+};
+declare type ColumnsType = ColumnType[];
+
+declare type BoardType = {
+  uuid: string;
+  name: string;
+  columns: ColumnsType;
+};
+
+declare type Boards = BoardType[];
+
+declare type BoardsType = {
+  boards: Boards;
+};
+
+declare type Store = {
+  boards: Boards;
+  tasks: TasksType;
+  selectedBoard?: any;
+};
+
+declare type AddBoardPayloadType = {
+  name: string | undefined;
+  columns: { title: string }[];
+};
+
+declare type AddBoardActionType = {
+  type: string;
+  payload: AddBoardPayloadType;
+};
+
+declare type SelectBoardActionType = {
+  type: string;
+  payload: { board: BoardType };
+};

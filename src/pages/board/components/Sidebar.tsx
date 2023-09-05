@@ -1,34 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectBoard } from "../../../redux/actionCreators/newBoardCreator";
 import { NewBoardModal } from "./modals";
+import { selectBoard } from "../../../redux/actionCreators/newBoardCreator";
+import { isEqual } from "lodash";
 import classes from "classnames";
 import cl from "./styles/sidebar.module.css";
 
 export const Sidebar = () => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
-  // const [active, setActive] = useState<boolean>(false)
 
+  const boards = useSelector<RootState, Boards>((state) => state.boards.boards);
   const dispatch = useDispatch();
-  const storeData = useSelector<RootState, Boards>((state) => state.boards);
 
-  const handleBoardClick = (e: any) => {
-    dispatch(selectBoard(e.target.innerText));
-    // setActive(e.target)
-  };
+  useEffect(() => {
+    dispatch(selectBoard(boards[0]));
+  }, [dispatch, boards]);
+
+  const activeBoard = useSelector<RootState, BoardType>(
+    (state) => state.activeBoard
+  );
 
   return (
     <div className={cl.sidebar_wrapper}>
-      <div
-        className={cl.sidebar_title}
-      >{`ALL BOARDS (${storeData.length})`}</div>
+      <div className={cl.sidebar_title}>{`ALL BOARDS (${boards.length})`}</div>
       <div className={cl.board_title_items}>
-        {storeData.map((board, index) => {
+        {boards.map((board, index) => {
           return (
             <div
-              className={classes(cl.title_item,board.selected && cl.active_board )}
+              className={classes(
+                cl.title_item,
+                isEqual(board, activeBoard) && cl.active_board
+              )}
               key={index}
-              onClick={(e) => handleBoardClick(e)}
+              onClick={() => dispatch(selectBoard(board))}
             >
               <div className={cl.icon} />
               <p className={cl.title}>{board.name}</p>

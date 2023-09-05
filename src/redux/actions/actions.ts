@@ -1,9 +1,7 @@
-export const addBoardAction = "board/addBoard";
+export const ADD_BOARD_ACTION = "ADD_BOARD_ACTION";
 
-export const selectBoardAction = "board/selectBoard";
+export const SELECT_BOARD_ACTION = "SELECT_BOARD_ACTION";
 
-export const addNewTaskAction = "task/addNewTask";
+export const ADD_NEW_TASK_ACTION = "ADD_NEW_TASK_ACTION";
 
-export const addBoardNameAction = "board/addBoardName";
-
-export const addColumnsAction = "board/addColumns";
+export const CHECK_SUBTASK_ACTION = "CHECK_SUBTASK_ACTION";
