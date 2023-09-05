@@ -2,13 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { ADD_BOARD_ACTION } from "../actions/actions";
 
 const initialState = {
-  boards: [
-    {
-      uuid: uuidv4(),
-      name: "Example",
-      columns: [{ uuid: uuidv4(), title: "example" }],
-    },
-  ],
+  boards: [],
 };
 
 export const boardsReducer = (

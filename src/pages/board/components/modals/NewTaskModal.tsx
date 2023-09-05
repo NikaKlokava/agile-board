@@ -1,12 +1,14 @@
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Button } from "../../../../shared/components/button";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
-import { Field, Formik } from "formik";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addNewTask } from "../../../../redux/actionCreators/newBoardCreator";
+import { Formik } from "formik";
 import { Input } from "../../../../shared/components/input";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { initialTaskData } from "../../../../utils/utils";
+import { addNewTask } from "../../../../redux/actionCreators/newBoardCreator";
 import cl from "./modal_styles.module.css";
+import { useState } from "react";
+import { Select } from "../../../../shared/components/select";
 
 type Props = {
   onClose?: () => void;
@@ -14,22 +16,38 @@ type Props = {
 
 export const NewTaskModal = ({ onClose }: Props) => {
   const [subtasks, setSubtasks] = useState<number>(2);
-  // const storeData = useSelector<RootState, Boards>((state) => state.tasks);
-  const initialTaskData = {};
+
+  const activeBoard = useSelector<RootState, BoardType>(
+    (state) => state.activeBoard
+  );
+  const dispatch = useDispatch();
+
+  const initialTaskData = {
+    boardUuid: "init",
+    columnTitle: activeBoard.columns[0].title,
+    title: "init",
+    description: "init",
+    subtasks: [{ uuid: "", text: "init", checked: false }],
+  };
+
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={initialTaskData}
         onSubmit={(values) => {
-          // dispatch(
-          //   addNewTask(
-          //     selectedBoard!.name!,
-          //     values.column!,
-          //     values.taskName,
-          //     values.description,
-          //     values.subtasks
-          //   )
-          // );
+          const columnUuid = activeBoard.columns.find(
+            (column) => column.title === values.columnTitle
+          )?.uuid;
+
+          dispatch(
+            addNewTask({
+              boardUuid: activeBoard.uuid,
+              columnUuid: columnUuid!,
+              title: values.title,
+              description: values.description,
+              subtasks: values.subtasks,
+            })
+          );
           onClose!();
         }}
       >
@@ -46,7 +64,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
                 className={cl.input_style}
                 autoComplete="off"
                 onChange={props.handleChange}
-                name={"taskName"}
+                name={"title"}
               />
             </FieldWrapper>
             <FieldWrapper fieldName={"Description"}>
@@ -74,18 +92,14 @@ export const NewTaskModal = ({ onClose }: Props) => {
               />
             </FieldWrapper>
             <FieldWrapper fieldName="Current Status">
-              {/* <Select /> */}
-              <Field
-                as="select"
-                name="column"
-                onChange={props.handleChange}
-                // onBlur={props.handleBlur}
-              >
-                {/* <option selected disabled hidden value=""></option> */}
-                {/* {selectedBoard?.board_columns.map((column, i) => (
-                  <option key={i}>{column.title}</option>
-                ))} */}
-              </Field>
+              <Select />
+              {/* <select onChange={props.handleChange} name="columnTitle">
+                {activeBoard.columns.map((column, i) => (
+                  <option key={i} value={column.title}>
+                    {column.title}
+                  </option>
+                ))}
+              </select> */}
             </FieldWrapper>
             <Button
               text="Create Task"

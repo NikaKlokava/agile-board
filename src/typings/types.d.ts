@@ -1,6 +1,7 @@
 declare type RootState = ReturnType<typeof store.getState>;
 
 declare type SubtaskType = {
+  uuid: string;
   text: string;
   checked: boolean;
 };
@@ -53,4 +54,18 @@ declare type AddBoardActionType = {
 declare type SelectBoardActionType = {
   type: string;
   payload: { board: BoardType };
+};
+
+declare type AddTaskPayloadType = {
+  boardUuid: string;
+  columnUuid: string;
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+  subtaskUuid?: string;
+};
+
+declare type AddTaskActionType = {
+  type: string;
+  payload: AddTaskPayloadType;
 };

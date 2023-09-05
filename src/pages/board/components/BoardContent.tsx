@@ -1,4 +1,4 @@
-import { EditBoardModal } from "./modals";
+import { EditBoardModal, TaskModal } from "./modals";
 import { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import cl from "./styles/board_content.module.css";
@@ -6,14 +6,14 @@ import { useSelector } from "react-redux";
 
 export const BoardContent = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
-  // const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
-  // const [currentColumn, setCurrentColumn] = useState<ColumnType>();
-  // const [currentTask, setCurrentTask] = useState<TaskType>();
+  const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
+  const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
 
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
-
+  const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
+  // console.log(tasks);
   return (
     <>
       <Sidebar />
@@ -26,26 +26,27 @@ export const BoardContent = () => {
                   <div className={cl.column_circle} />
                   <div className={cl.column_title}>{column.title}</div>
                 </div>
-                {/* {column.tasks &&
-                  column.tasks.map((task, index) => {
-                    return (
-                      <div
-                        className={cl.tasks_container}
-                        key={index}
-                        data-testid="task-container"
-                        onClick={() => {
-                          setCurrentColumn(column);
-                          setCurrentTask(task);
-                          setTaskModalVisile(true);
-                        }}
-                      >
-                        <div className={cl.task_title}>{task.taskName}</div>
+                {tasks &&
+                  tasks.map((task, index) => {
+                    if (task.columnUuid === column.uuid)
+                      return (
                         <div
-                          className={cl.task_success}
-                        >{`0 of ${task.subtasks.length} completed tasks`}</div>
-                      </div>
-                    );
-                  })} */}
+                          className={cl.tasks_container}
+                          key={index}
+                          data-testid="task-container"
+                          onClick={() => {
+                            setTaskModalVisile(true);
+                            setCurrentTaskUuid(task.uuid);
+                          }}
+                        >
+                          <div className={cl.task_title}>{task.title}</div>
+                          <div
+                            className={cl.task_success}
+                          >{`0 of ${task.subtasks.length} completed tasks`}</div>
+                        </div>
+                      );
+                    return null;
+                  })}
               </div>
             );
           })}
@@ -59,13 +60,12 @@ export const BoardContent = () => {
         {editBoardVisible && (
           <EditBoardModal onClose={() => setEditBoardVisible(false)} />
         )}
-        {/* {taskModalVisile && (
+        {taskModalVisile && (
           <TaskModal
+            taskUuid={currentTaskUuid!}
             onClose={() => setTaskModalVisile(false)}
-            task={currentTask!}
-            column={currentColumn!}
           />
-        )} */}
+        )}
       </div>
     </>
   );

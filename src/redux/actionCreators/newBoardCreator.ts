@@ -17,38 +17,30 @@ export const selectBoard = (board: BoardType) => {
   };
 };
 
-export const addNewTask = (
-  boardName: string,
-  column: string,
-  taskName: string,
-  description: string,
-  subtasks: SubtasksType
-) => {
+export const addNewTask = ({
+  boardUuid,
+  columnUuid,
+  title,
+  description,
+  subtasks,
+}: AddTaskPayloadType) => {
   return {
-    type: "task/addNewTask",
+    type: "ADD_NEW_TASK_ACTION",
     payload: {
-      boardName,
-      column,
-      taskName,
+      boardUuid,
+      columnUuid,
+      title,
       description,
       subtasks,
     },
   };
 };
 
-export const checkSubtask = (
-  boardName: string,
-  column: string,
-  taskName: string,
-  subtask: string
-) => {
+export const checkSubtask = (subtaskUuid: string) => {
   return {
-    type: "subtask/CheckSubtask",
+    type: "CHECK_SUBTASK_ACTION",
     payload: {
-      boardName,
-      column,
-      taskName,
-      subtask,
+      subtaskUuid
     },
   };
 };
