@@ -39,13 +39,17 @@ export const NewTaskModal = ({ onClose }: Props) => {
             (column) => column.title === values.columnTitle
           )?.uuid;
 
+          const subtasks = values.subtasks.filter(
+            (subtask) => subtask.text !== undefined
+          );
+
           dispatch(
             addNewTask({
               boardUuid: activeBoard.uuid,
               columnUuid: columnUuid!,
               title: values.title,
               description: values.description,
-              subtasks: values.subtasks,
+              subtasks: subtasks,
             })
           );
           onClose!();
@@ -78,11 +82,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
             </FieldWrapper>
             <FieldWrapper fieldName={"Subtasks"} clName="style_container">
               {Array.from({ length: subtasks }, (_, index) => (
-                <Input
-                  index={index}
-                  key={index}
-                  formikName={`subtasks[${index}].text`}
-                />
+                <Input key={index} formikName={`subtasks[${index}].text`} />
               ))}
               <Button
                 text="Add New Subtask"

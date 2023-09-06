@@ -40,7 +40,7 @@ export const checkSubtask = (subtaskUuid: string) => {
   return {
     type: "CHECK_SUBTASK_ACTION",
     payload: {
-      subtaskUuid
+      subtaskUuid,
     },
   };
 };

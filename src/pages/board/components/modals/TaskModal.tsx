@@ -16,12 +16,11 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
 
   const task = tasks.find((task) => task.uuid === taskUuid);
-  // console.log(task)
+
   const checkedSubtasks = task?.subtasks.reduce((accum: boolean[], current) => {
     if (current.checked === true) return [...accum, current.checked];
     return accum;
   }, []);
-  console.log(checkedSubtasks);
   const dispatch = useDispatch();
 
   return (
