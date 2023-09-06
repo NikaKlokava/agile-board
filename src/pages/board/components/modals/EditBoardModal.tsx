@@ -27,6 +27,7 @@ export const EditBoardModal = ({ onClose }: Props) => {
         onSubmit={(values) => {
           const columns = values.columns.filter((column) => column.title);
           dispatch(addNewColumn(values.uuid, values.name, columns));
+          onClose!();
         }}
       >
         {(props) => (
