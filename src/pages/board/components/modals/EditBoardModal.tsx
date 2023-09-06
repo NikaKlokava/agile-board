@@ -6,13 +6,13 @@ import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
 
 type Props = {
-  onWrapperClick?: () => void;
+  onClose?: () => void;
 };
 
-export const EditBoardModal = ({ onWrapperClick }: Props) => {
+export const EditBoardModal = ({ onClose }: Props) => {
   // const data = MockBoards;
   return (
-    <ModalWrapper onWrapperClick={onWrapperClick}>
+    <ModalWrapper onWrapperClick={onClose}>
       <h2 className={cl.modal_title} data-testid="edit-board-modal">
         Edit Board
       </h2>

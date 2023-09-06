@@ -2,15 +2,12 @@ import { Button } from "../../../../shared/components/button";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Formik } from "formik";
-import cl from "./modal_styles.module.css";
-import store from "../../../../redux/store/store";
-import {
-  addBoard,
-  // addBoardName,
-  // addColumns,
-} from "../../../../redux/actionCreators/newBoardCreator";
+import { addBoard } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
+import { initialBoardData } from "../../../../utils/utils";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import cl from "./modal_styles.module.css";
 
 type Props = {
   onClose: () => void;
@@ -18,18 +15,20 @@ type Props = {
 
 export const NewBoardModal = ({ onClose }: Props) => {
   const [columns, setColumns] = useState<number>(2);
-
-  const data = { name: undefined, board_columns: [] };
+  const dispatch = useDispatch();
 
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
-        initialValues={data}
+        initialValues={initialBoardData}
         onSubmit={(values) => {
-          store.dispatch(
+          const columns = values.columns.filter(
+            (column) => column.title !== undefined
+          );
+          dispatch(
             addBoard({
-              name: values.name!,
-              board_columns: values.board_columns,
+              name: values.name,
+              columns: columns,
             })
           );
           onClose();
@@ -53,7 +52,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
             </FieldWrapper>
             <FieldWrapper fieldName={"Board Columns"} clName="style_container">
               {Array.from({ length: columns }, (_, index) => (
-                <Input index={index} key={index} />
+                <Input key={index} formikName={`columns[${index}].title`} />
               ))}
             </FieldWrapper>
             <Button

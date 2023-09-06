@@ -1,21 +1,71 @@
-type BoardType = {
-  name?: string;
-  board_columns?: { title: string }[];
-};
+declare type RootState = ReturnType<typeof store.getState>;
 
-type BoardNameType = {
+declare type SubtaskType = {
+  uuid: string;
+  text: string;
+  checked: boolean;
+};
+declare type SubtasksType = SubtaskType[];
+
+declare type TaskType = {
+  uuid: string;
+  boardUuid: string;
+  columnUuid: string;
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+};
+declare type TasksType = TaskType[];
+
+declare type ColumnType = {
+  uuid: string;
+  title: string;
+};
+declare type ColumnsType = ColumnType[];
+
+declare type BoardType = {
+  uuid: string;
   name: string;
+  columns: ColumnsType;
 };
 
-type ColumnsType = {
-  board_columns: string[];
+declare type Boards = BoardType[];
+
+declare type BoardsType = {
+  boards: Boards;
 };
 
-type BoardsType = {
-  boards: [
-    {
-      name: string | null;
-      board_columns: string[];
-    }
-  ];
+declare type Store = {
+  boards: Boards;
+  tasks: TasksType;
+  selectedBoard?: any;
+};
+
+declare type AddBoardPayloadType = {
+  name: string | undefined;
+  columns: { title: string }[];
+};
+
+declare type AddBoardActionType = {
+  type: string;
+  payload: AddBoardPayloadType;
+};
+
+declare type SelectBoardActionType = {
+  type: string;
+  payload: { board: BoardType };
+};
+
+declare type AddTaskPayloadType = {
+  boardUuid: string;
+  columnUuid: string;
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+  subtaskUuid?: string;
+};
+
+declare type AddTaskActionType = {
+  type: string;
+  payload: AddTaskPayloadType;
 };

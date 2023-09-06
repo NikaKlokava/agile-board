@@ -4,10 +4,14 @@ import { act } from "react-dom/test-utils";
 import renderer from "react-test-renderer";
 import App from "../../../App";
 import { BoardContent } from "./BoardContent";
+import { Provider } from "react-redux";
+import store from "../../../redux/store/store";
 
 describe("Test the BoardContent component", () => {
   test("The BoardContent renders correctly", () => {
-    const boardContentSnap = renderer.create(<BoardContent />).toJSON();
+    const boardContentSnap = renderer.create(
+    <Provider store={store}>
+    <BoardContent /></Provider>).toJSON();
     expect(boardContentSnap).toMatchSnapshot();
   });
 });

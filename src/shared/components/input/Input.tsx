@@ -2,14 +2,15 @@ import { useFormikContext } from "formik";
 import cl from "./input.module.css";
 
 type Props = {
-  index: number;
+  formikName: string;
 };
 
-export const Input = ({ index }: Props) => {
-  const { handleChange } = useFormikContext();
+export const Input = ({ formikName }: Props) => {
+  const { handleChange, setFieldValue } = useFormikContext();
 
   const handleDeleteCLick = (elem: any) => {
     elem.parentElement.remove();
+    setFieldValue(formikName, undefined);
   };
 
   return (
@@ -21,7 +22,7 @@ export const Input = ({ index }: Props) => {
         className={cl.input_style}
         autoComplete="off"
         onChange={handleChange}
-        name={`board_columns[${index}]`}
+        name={formikName}
       />
       <div
         className={cl.delete_icon}

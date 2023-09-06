@@ -18,7 +18,7 @@ exports[`Test the Header component The Header renders correctly 1`] = `
     <p
       className="board_name"
     >
-      Platform Launch
+      Example board
     </p>
     <div
       className="navbar"

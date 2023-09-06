@@ -1,26 +1,46 @@
-export const addBoardName = ({ name }: BoardNameType) => {
+export const addBoard = ({ name, columns }: AddBoardPayloadType) => {
   return {
-    type: "board/addBoardName",
+    type: "ADD_BOARD_ACTION",
     payload: {
       name,
+      columns,
     },
   };
 };
 
-export const addColumns = ({ board_columns }: ColumnsType) => {
+export const selectBoard = (board: BoardType) => {
   return {
-    type: "board/addColumns",
+    type: "SELECT_BOARD_ACTION",
     payload: {
-      board_columns: board_columns,
+      board,
     },
   };
 };
 
-export const addBoard = ({ name,board_columns  }: any) => {
+export const addNewTask = ({
+  boardUuid,
+  columnUuid,
+  title,
+  description,
+  subtasks,
+}: AddTaskPayloadType) => {
   return {
-    type: "board/addBoard",
+    type: "ADD_NEW_TASK_ACTION",
     payload: {
-      name, board_columns
+      boardUuid,
+      columnUuid,
+      title,
+      description,
+      subtasks,
+    },
+  };
+};
+
+export const checkSubtask = (subtaskUuid: string) => {
+  return {
+    type: "CHECK_SUBTASK_ACTION",
+    payload: {
+      subtaskUuid,
     },
   };
 };

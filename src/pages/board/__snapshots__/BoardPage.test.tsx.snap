@@ -21,7 +21,7 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       <p
         className="board_name"
       >
-        Platform Launch
+        Example board
       </p>
       <div
         className="navbar"
@@ -63,7 +63,8 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       className="board_title_items"
     >
       <div
-        className="title_item"
+        className="title_item active_board"
+        onClick={[Function]}
       >
         <div
           className="icon"
@@ -105,6 +106,22 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
   <div
     className="board_content_wrapper"
   >
+    <div
+      className="content_column"
+    >
+      <div
+        className="title_container"
+      >
+        <div
+          className="column_circle"
+        />
+        <div
+          className="column_title"
+        >
+          Todo
+        </div>
+      </div>
+    </div>
     <div
       className="add_column"
       data-testid="add_column"

@@ -68,6 +68,17 @@
   color: #2b2b2baf;
 }
 
+input[type=checkbox] {
+  accent-color: #7c52de;
+}
+
+.btns_container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*///////////////////////////*/
+
 .subtasks_checkbox {
   display: flex;
   column-gap: 10px;
@@ -83,17 +94,13 @@
   background-color: #ad91ec48;
 }
 
+
 .checkbox {
   width: 15px;
   height: 15px;
   cursor: pointer;
 }
 
-input[type=checkbox] {
-  accent-color: #7c52de;
-}
-
-.btns_container {
-  display: flex;
-  justify-content: space-around;
+.active {
+  background-color: #7c52de9f;
 }

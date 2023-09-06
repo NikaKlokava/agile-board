@@ -4,10 +4,18 @@ import { act } from "react-dom/test-utils";
 import renderer from "react-test-renderer";
 import App from "../../../App";
 import { Sidebar } from "./Sidebar";
+import { Provider } from "react-redux";
+import store from "../../../redux/store/store";
 
 describe("Test the Sidebar component", () => {
   test("The Sidebar renders correctly", () => {
-    const sidebarSnap = renderer.create(<Sidebar />).toJSON();
+    const sidebarSnap = renderer
+      .create(
+        <Provider store={store}>
+          <Sidebar />
+        </Provider>
+      )
+      .toJSON();
     expect(sidebarSnap).toMatchSnapshot();
   });
 });

@@ -1,6 +1,6 @@
 import { legacy_createStore } from "redux";
-import { boardReducer } from "../reducers/boardReducer";
+import { rootReducer } from "../reducers";
 
-const store = legacy_createStore(boardReducer);
+const store = legacy_createStore(rootReducer);
 
 export default store;

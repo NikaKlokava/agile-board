@@ -4,10 +4,18 @@ import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import { Header } from "./Header";
 import App from "../../../App";
+import { Provider } from "react-redux";
+import store from "../../../redux/store/store";
 
 describe("Test the Header component", () => {
   test("The Header renders correctly", () => {
-    const headerSnap = renderer.create(<Header />).toJSON();
+    const headerSnap = renderer
+      .create(
+        <Provider store={store}>
+          <Header />
+        </Provider>
+      )
+      .toJSON();
     expect(headerSnap).toMatchSnapshot();
   });
 });

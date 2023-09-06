@@ -1,31 +1,68 @@
+import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { checkSubtask } from "../../../../redux/actionCreators/newBoardCreator";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
+import { checkedStatus } from "../../../../utils/utils";
+import classes from "classnames";
 import cl from "./modal_styles.module.css";
 
 type Props = {
-  onWrapperClick?: () => void;
+  taskUuid: string;
+  onClose: () => void;
 };
 
-export const TaskModal = ({ onWrapperClick }: Props) => {
+export const TaskModal = ({ taskUuid, onClose }: Props) => {
+  const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
+
+  const task = tasks.find((task) => task.uuid === taskUuid);
+
+  const checkedSubtasks = checkedStatus(task!);
+
+  const dispatch = useDispatch();
+
   return (
-    <ModalWrapper onWrapperClick={onWrapperClick}>
-      <h2 className={cl.modal_task_title} data-testid="task-modal">
-        Task name
-      </h2>
-      <p className={cl.description}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut porro
-        placeat voluptatum eius!
-      </p>
-      <FieldWrapper fieldName={"Subtasks (0 of 2)"}>
-        <div className={cl.subtasks_checkbox}>
-          <input type={"checkbox"} className={cl.checkbox} id="first" />
-          <p>Something doing...</p>
-        </div>
-      </FieldWrapper>
-      <FieldWrapper fieldName={"Current Status"}>
-        <Select />
-      </FieldWrapper>
+    <ModalWrapper onWrapperClick={onClose}>
+      <Formik initialValues={{ init: "undefined" }} onSubmit={() => {}}>
+        {(props) => (
+          <>
+            <h2 className={cl.modal_task_title} data-testid="task-modal">
+              {task?.title}
+            </h2>
+            <p className={cl.description}>{task?.description}</p>
+            <FieldWrapper
+              fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
+            >
+              {task &&
+                task.subtasks.map((subtask, i) => {
+                  return (
+                    <div
+                      className={classes(
+                        cl.subtasks_checkbox,
+                        subtask.checked && cl.active
+                      )}
+                      key={i}
+                    >
+                      <input
+                        type={"checkbox"}
+                        className={cl.checkbox}
+                        defaultChecked={subtask.checked}
+                        onClick={() => {
+                          dispatch(checkSubtask(subtask.uuid));
+                        }}
+                      />
+                      <p>{subtask.text}</p>
+                    </div>
+                  );
+                })}
+            </FieldWrapper>
+            <FieldWrapper fieldName={"Current Status"}>
+              <Select />
+            </FieldWrapper>
+          </>
+        )}
+      </Formik>
     </ModalWrapper>
   );
 };
