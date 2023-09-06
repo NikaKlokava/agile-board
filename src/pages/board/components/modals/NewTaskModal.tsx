@@ -93,13 +93,6 @@ export const NewTaskModal = ({ onClose }: Props) => {
             </FieldWrapper>
             <FieldWrapper fieldName="Current Status">
               <Select />
-              {/* <select onChange={props.handleChange} name="columnTitle">
-                {activeBoard.columns.map((column, i) => (
-                  <option key={i} value={column.title}>
-                    {column.title}
-                  </option>
-                ))}
-              </select> */}
             </FieldWrapper>
             <Button
               text="Create Task"

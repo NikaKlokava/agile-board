@@ -3,9 +3,10 @@ import cl from "./input.module.css";
 
 type Props = {
   formikName: string;
+  defaultVal?: string;
 };
 
-export const Input = ({ formikName }: Props) => {
+export const Input = ({ formikName, defaultVal }: Props) => {
   const { handleChange, setFieldValue } = useFormikContext();
 
   const handleDeleteCLick = (elem: any) => {
@@ -23,6 +24,7 @@ export const Input = ({ formikName }: Props) => {
         autoComplete="off"
         onChange={handleChange}
         name={formikName}
+        defaultValue={defaultVal}
       />
       <div
         className={cl.delete_icon}

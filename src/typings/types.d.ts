@@ -42,8 +42,11 @@ declare type Store = {
 };
 
 declare type AddBoardPayloadType = {
+  uuid?: string;
+  columnUuid?: string;
+  title?: string;
   name: string | undefined;
-  columns: { title: string }[];
+  columns: { title: string; uuid?: string }[];
 };
 
 declare type AddBoardActionType = {
