@@ -44,3 +44,18 @@ export const checkSubtask = (subtaskUuid: string) => {
     },
   };
 };
+
+export const addNewColumn = (
+  uuid: string,
+  name: string,
+  columns: ColumnsType
+) => {
+  return {
+    type: "ADD_NEW_COLUMN_ACTION",
+    payload: {
+      uuid,
+      name,
+      columns,
+    },
+  };
+};
