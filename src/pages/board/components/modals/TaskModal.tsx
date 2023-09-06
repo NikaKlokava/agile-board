@@ -4,6 +4,7 @@ import { checkSubtask } from "../../../../redux/actionCreators/newBoardCreator";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
+import { checkedStatus } from "../../../../utils/utils";
 import classes from "classnames";
 import cl from "./modal_styles.module.css";
 
@@ -17,10 +18,8 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
 
   const task = tasks.find((task) => task.uuid === taskUuid);
 
-  const checkedSubtasks = task?.subtasks.reduce((accum: boolean[], current) => {
-    if (current.checked === true) return [...accum, current.checked];
-    return accum;
-  }, []);
+  const checkedSubtasks = checkedStatus(task!);
+
   const dispatch = useDispatch();
 
   return (
@@ -33,7 +32,7 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
             </h2>
             <p className={cl.description}>{task?.description}</p>
             <FieldWrapper
-              fieldName={`Subtasks (${checkedSubtasks?.length} of ${task?.subtasks.length})`}
+              fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
             >
               {task &&
                 task.subtasks.map((subtask, i) => {

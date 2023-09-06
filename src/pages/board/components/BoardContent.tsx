@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import cl from "./styles/board_content.module.css";
 import { useSelector } from "react-redux";
+import { checkedStatus } from "../../../utils/utils";
 
 export const BoardContent = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
@@ -13,7 +14,6 @@ export const BoardContent = () => {
     (state) => state.activeBoard
   );
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
-  // console.log(tasks);
   return (
     <>
       <Sidebar />
@@ -28,7 +28,7 @@ export const BoardContent = () => {
                 </div>
                 {tasks &&
                   tasks.map((task, index) => {
-                    if (task.columnUuid === column.uuid)
+                    if (task.columnUuid === column.uuid) {
                       return (
                         <div
                           className={cl.tasks_container}
@@ -40,11 +40,12 @@ export const BoardContent = () => {
                           }}
                         >
                           <div className={cl.task_title}>{task.title}</div>
-                          <div
-                            className={cl.task_success}
-                          >{`0 of ${task.subtasks.length} completed tasks`}</div>
+                          <div className={cl.task_success}>{`${checkedStatus(
+                            task!
+                          )} of ${task.subtasks.length} completed tasks`}</div>
                         </div>
                       );
+                    }
                     return null;
                   })}
               </div>
