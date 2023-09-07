@@ -1,4 +1,8 @@
-import { ADD_NEW_TASK_ACTION, CHECK_SUBTASK_ACTION } from "../actions/actions";
+import {
+  ADD_NEW_TASK_ACTION,
+  CHECK_SUBTASK_ACTION,
+  MOVE_TASK_ACTION,
+} from "../actions/actions";
 import { v4 as uuidv4 } from "uuid";
 
 const initialTasksState = {
@@ -51,6 +55,21 @@ export const tasksReducer = (
           }),
         ],
       };
+    case MOVE_TASK_ACTION:
+      return {
+        ...state,
+        tasks: [
+          ...state.tasks.map((task: TaskType) => {
+            if (task.uuid === action.payload.taskUuid)
+              return {
+                ...task,
+                columnUuid: action.payload.columnUuid,
+              };
+            return task;
+          }),
+        ],
+      };
+
     default:
       return state;
   }
