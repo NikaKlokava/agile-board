@@ -1,4 +1,7 @@
-import { SELECT_BOARD_ACTION } from "../actions/actions";
+import {
+  DELETE_ACTIVE_BOARD_ACTION,
+  SELECT_BOARD_ACTION,
+} from "../actions/actions";
 
 const initialState = { uuid: "", name: "", columns: [] };
 
@@ -12,7 +15,8 @@ export const activeBoardReducer = (
         ...state,
         ...action.payload.board,
       };
-
+    case DELETE_ACTIVE_BOARD_ACTION:
+      return { ...state, ...initialState };
     default:
       return state;
   }

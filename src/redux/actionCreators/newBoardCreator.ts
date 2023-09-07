@@ -59,3 +59,18 @@ export const addNewColumn = (
     },
   };
 };
+
+export const deleteBoard = (uuid: string) => {
+  return {
+    type: "DELETE_BOARD_ACTION",
+    payload: {
+      uuid,
+    },
+  };
+};
+
+export const deleteACtiveBoard = () => {
+  return {
+    type: "DELETE_ACTIVE_BOARD_ACTION",
+  };
+};

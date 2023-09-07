@@ -1,5 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
-import { ADD_BOARD_ACTION, ADD_NEW_COLUMN_ACTION } from "../actions/actions";
+import {
+  ADD_BOARD_ACTION,
+  ADD_NEW_COLUMN_ACTION,
+  DELETE_BOARD_ACTION,
+} from "../actions/actions";
 
 const initialState = {
   boards: [],
@@ -48,6 +52,15 @@ export const boardsReducer = (
               };
             return board;
           }),
+        ],
+      };
+    case DELETE_BOARD_ACTION:
+      return {
+        ...state,
+        boards: [
+          ...state.boards.filter(
+            (board: BoardType) => board.uuid !== action.payload.uuid
+          ),
         ],
       };
     default:

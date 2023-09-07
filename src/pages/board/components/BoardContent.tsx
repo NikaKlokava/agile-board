@@ -13,12 +13,14 @@ export const BoardContent = () => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
+  const isBoardExist = activeBoard.name !== "";
+
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
   return (
     <>
       <Sidebar />
       <div className={cl.board_content_wrapper}>
-        {activeBoard &&
+        {isBoardExist &&
           activeBoard.columns.map((column, index) => {
             return (
               <div className={cl.content_column} key={index}>
@@ -51,17 +53,19 @@ export const BoardContent = () => {
               </div>
             );
           })}
-        <div
-          className={cl.add_column}
-          onClick={() => setEditBoardVisible(true)}
-          data-testid="add_column"
-        >
-          <p className={cl.add_column_title}>{"+ New Column"}</p>
-        </div>
-        {editBoardVisible && (
+        {isBoardExist && (
+          <div
+            className={cl.add_column}
+            onClick={() => setEditBoardVisible(true)}
+            data-testid="add_column"
+          >
+            <p className={cl.add_column_title}>{"+ New Column"}</p>
+          </div>
+        )}
+        {isBoardExist && editBoardVisible && (
           <EditBoardModal onClose={() => setEditBoardVisible(false)} />
         )}
-        {taskModalVisile && (
+        {isBoardExist && taskModalVisile && (
           <TaskModal
             taskUuid={currentTaskUuid!}
             onClose={() => setTaskModalVisile(false)}
