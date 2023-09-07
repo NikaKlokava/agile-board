@@ -1,14 +1,24 @@
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteACtiveBoard,
+  deleteBoard,
+} from "../../../../redux/actionCreators/newBoardCreator";
 import { Button } from "../../../../shared/components/button";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
 
 type Props = {
-  onWrapperClick?: () => void;
+  onClose?: () => void;
 };
 
-export const DeleteBoardModal = ({ onWrapperClick }: Props) => {
+export const DeleteBoardModal = ({ onClose }: Props) => {
+  const activeBoard = useSelector<RootState, BoardType>(
+    (state) => state.activeBoard
+  );
+
+  const dispatch = useDispatch();
   return (
-    <ModalWrapper onWrapperClick={onWrapperClick}>
+    <ModalWrapper onWrapperClick={onClose}>
       <h2 className={cl.title} data-testid="delete-board">
         Delete this board?
       </h2>
@@ -22,13 +32,18 @@ export const DeleteBoardModal = ({ onWrapperClick }: Props) => {
           withIcon={false}
           testid={"delete-btn"}
           newClass="delete"
+          onClick={() => {
+            onClose!();
+            dispatch(deleteBoard(activeBoard.uuid));
+            dispatch(deleteACtiveBoard());
+          }}
         />
         <Button
           text={"Cancel"}
           withIcon={false}
           testid={"delete-btn"}
           newClass="cancel"
-          onClick={onWrapperClick}
+          onClick={onClose}
         />
       </div>
     </ModalWrapper>
