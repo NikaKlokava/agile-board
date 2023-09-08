@@ -26,7 +26,7 @@ Array [
       <input
         autoComplete="off"
         className="input_style"
-        name="taskName"
+        name="title"
         onChange={[Function]}
         placeholder="e.g Take coffee break"
         spellCheck={false}
@@ -63,7 +63,7 @@ Array [
         <input
           autoComplete="off"
           className="input_style"
-          name="subtasks[0]"
+          name="subtasks[0].text"
           onChange={[Function]}
           placeholder="e.g Take coffee break"
           spellCheck={false}
@@ -80,7 +80,7 @@ Array [
         <input
           autoComplete="off"
           className="input_style"
-          name="subtasks[1]"
+          name="subtasks[1].text"
           onChange={[Function]}
           placeholder="e.g Take coffee break"
           spellCheck={false}
@@ -115,19 +115,13 @@ Array [
         Current Status
       </p>
       <select
-        name="column"
-        onBlur={[Function]}
+        name="columnTitle"
         onChange={[Function]}
-        value="Todo"
-      >
-        <option>
-          Todo
-        </option>
-      </select>
+      />
     </div>
     <div
       className="button center"
-      data-testid="create-tas-btn"
+      data-testid="create-task-btn"
       onClick={[Function]}
     >
       <div

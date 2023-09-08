@@ -5,7 +5,7 @@ import {
   DELETE_BOARD_ACTION,
 } from "../actions/actions";
 
-const initialState = {
+const initialState: BoardsType | never[] = {
   boards: [],
 };
 

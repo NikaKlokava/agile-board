@@ -24,7 +24,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
 
   const initialTaskData = {
     boardUuid: "init",
-    columnTitle: activeBoard.columns[0].title,
+    columnTitle: activeBoard.columns[0]?.title,
     title: "init",
     description: "init",
     subtasks: [{ uuid: "", text: "init", checked: false }],
@@ -98,7 +98,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
               text="Create Task"
               withIcon={false}
               newClass="center"
-              testid={"create-tas-btn"}
+              testid={"create-task-btn"}
               onClick={props.handleSubmit}
             />
           </>

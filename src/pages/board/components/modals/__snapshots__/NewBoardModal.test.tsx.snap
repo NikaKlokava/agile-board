@@ -48,7 +48,7 @@ Array [
         <input
           autoComplete="off"
           className="input_style"
-          name="board_columns[0].title"
+          name="columns[0].title"
           onChange={[Function]}
           placeholder="e.g Take coffee break"
           spellCheck={false}
@@ -65,7 +65,7 @@ Array [
         <input
           autoComplete="off"
           className="input_style"
-          name="board_columns[1].title"
+          name="columns[1].title"
           onChange={[Function]}
           placeholder="e.g Take coffee break"
           spellCheck={false}

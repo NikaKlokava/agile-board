@@ -74,3 +74,10 @@ export const deleteACtiveBoard = () => {
     type: "DELETE_ACTIVE_BOARD_ACTION",
   };
 };
+
+export const moveTask = (taskUuid: string, columnUuid: string) => {
+  return {
+    type: "MOVE_TASK_ACTION",
+    payload: { taskUuid, columnUuid },
+  };
+};

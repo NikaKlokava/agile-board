@@ -6,52 +6,62 @@ import App from "../../../App";
 import { BoardContent } from "./BoardContent";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
+import { addBoard } from "../../../redux/actionCreators/newBoardCreator";
+import { MockTestAddBoard } from "../../../mocks/TestMocks";
 
 describe("Test the BoardContent component", () => {
   test("The BoardContent renders correctly", () => {
-    const boardContentSnap = renderer.create(
-    <Provider store={store}>
-    <BoardContent /></Provider>).toJSON();
+    const boardContentSnap = renderer
+      .create(
+        <Provider store={store}>
+          <BoardContent />
+        </Provider>
+      )
+      .toJSON();
     expect(boardContentSnap).toMatchSnapshot();
   });
 });
 
 describe("Test the New Column element", () => {
-  test("The EditBoardModal should be visible on click", () => {
+  test("The New Column element should not be visible if we have no active board", () => {
     render(
       <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
       </MemoryRouter>
     );
-    const newColumnEl = screen.getByTestId("add_column");
+    const newColumnEl = screen.queryByTestId("add_column");
+
+    expect(newColumnEl).not.toBeInTheDocument();
+  });
+
+  test("The New Column element should be visible if we have active board", () => {
+    render(
+      <MemoryRouter initialEntries={["/agile-board"]}>
+        <App />
+      </MemoryRouter>
+    );
 
     act(() => {
-      newColumnEl.click();
+      store.dispatch(addBoard(MockTestAddBoard));
     });
 
-    const editBoardModal = screen.queryByTestId("edit-board-modal");
+    const newColumnEl = screen.queryByTestId("add_column");
 
-    expect(editBoardModal).toBeInTheDocument();
+    expect(newColumnEl).toBeInTheDocument();
   });
 });
 
-// describe("Test the Task element", () => {
-//   test("The TaskModal should be visible on click", () => {
-//     render(
-//       <MemoryRouter initialEntries={["/agile-board"]}>
-//         <App />
-//       </MemoryRouter>
-//     );
-//     const taskContainerEl = screen.getAllByTestId("task-container");
+describe("Test the Task Container", () => {
+  test("The task container should not be visible if there are no tasks", () => {
+    render(
+      <MemoryRouter initialEntries={["/agile-board"]}>
+        <App />
+      </MemoryRouter>
+    );
+    const taskContainerElements = screen.queryAllByTestId("task-container");
 
-//     act(() => {
-//       taskContainerEl.forEach((task) => {
-//         task.click();
-//       });
-//     });
-
-//     const taskModal = screen.queryByTestId("task-modal");
-
-//     expect(taskModal).toBeInTheDocument();
-//   });
-// });
+    taskContainerElements.forEach((taskElement) => {
+      expect(taskElement).not.toBeInTheDocument();
+    });
+  });
+});

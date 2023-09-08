@@ -66,6 +66,7 @@ declare type AddTaskPayloadType = {
   description: string;
   subtasks: SubtasksType;
   subtaskUuid?: string;
+  taskUuid?: string;
 };
 
 declare type AddTaskActionType = {

@@ -20,9 +20,7 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       </h1>
       <p
         className="board_name"
-      >
-        Example board
-      </p>
+      />
       <div
         className="navbar"
       />
@@ -30,20 +28,6 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
     <div
       className="options"
     >
-      <div
-        className="button add-new-task"
-        data-testid="add-new-task-btn"
-        onClick={[Function]}
-      >
-        <div
-          className="button_icon"
-        />
-        <div
-          className="button_text"
-        >
-          Add New Task
-        </div>
-      </div>
       <div
         className="options_icon"
         data-testid="options-icon"
@@ -57,24 +41,11 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
     <div
       className="sidebar_title"
     >
-      ALL BOARDS (1)
+      ALL BOARDS (0)
     </div>
     <div
       className="board_title_items"
     >
-      <div
-        className="title_item active_board"
-        onClick={[Function]}
-      >
-        <div
-          className="icon"
-        />
-        <p
-          className="title"
-        >
-          Example board
-        </p>
-      </div>
       <div
         className="title_item"
         data-testid="new-board"
@@ -105,35 +76,7 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
   </div>
   <div
     className="board_content_wrapper"
-  >
-    <div
-      className="content_column"
-    >
-      <div
-        className="title_container"
-      >
-        <div
-          className="column_circle"
-        />
-        <div
-          className="column_title"
-        >
-          Todo
-        </div>
-      </div>
-    </div>
-    <div
-      className="add_column"
-      data-testid="add_column"
-      onClick={[Function]}
-    >
-      <p
-        className="add_column_title"
-      >
-        + New Column
-      </p>
-    </div>
-  </div>
+  />
   <div
     className="footer_wrapper"
   >
