@@ -27,13 +27,7 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
     </div>
     <div
       className="options"
-    >
-      <div
-        className="options_icon"
-        data-testid="options-icon"
-        onClick={[Function]}
-      />
-    </div>
+    />
   </div>
   <div
     className="sidebar_wrapper"

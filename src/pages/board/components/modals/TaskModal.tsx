@@ -54,32 +54,34 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
               {task?.title}
             </h2>
             <p className={cl.description}>{task?.description}</p>
-            <FieldWrapper
-              fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
-            >
-              {task &&
-                task.subtasks.map((subtask, i) => {
-                  return (
-                    <div
-                      className={classes(
-                        cl.subtasks_checkbox,
-                        subtask.checked && cl.active
-                      )}
-                      key={i}
-                    >
-                      <input
-                        type={"checkbox"}
-                        className={cl.checkbox}
-                        defaultChecked={subtask.checked}
-                        onClick={() => {
-                          dispatch(checkSubtask(subtask.uuid));
-                        }}
-                      />
-                      <p>{subtask.text}</p>
-                    </div>
-                  );
-                })}
-            </FieldWrapper>
+            {task?.subtasks.length !== 0 && (
+              <FieldWrapper
+                fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
+              >
+                {task &&
+                  task.subtasks.map((subtask, i) => {
+                    return (
+                      <div
+                        className={classes(
+                          cl.subtasks_checkbox,
+                          subtask.checked && cl.active
+                        )}
+                        key={i}
+                      >
+                        <input
+                          type={"checkbox"}
+                          className={cl.checkbox}
+                          defaultChecked={subtask.checked}
+                          onClick={() => {
+                            dispatch(checkSubtask(subtask.uuid));
+                          }}
+                        />
+                        <p>{subtask.text}</p>
+                      </div>
+                    );
+                  })}
+              </FieldWrapper>
+            )}
             <FieldWrapper fieldName={"Current Status"}>
               <Select colUuid={task?.columnUuid} />
             </FieldWrapper>

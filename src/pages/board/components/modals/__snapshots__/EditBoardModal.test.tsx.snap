@@ -23,6 +23,16 @@ Array [
       >
         Board Name
       </p>
+      <input
+        autoComplete="off"
+        className="input_style"
+        defaultValue=""
+        name="name"
+        onChange={[Function]}
+        placeholder="e.g Take coffee break"
+        spellCheck={false}
+        type="text"
+      />
     </div>
     <div
       className="container style_container"
@@ -36,6 +46,7 @@ Array [
     <div
       className="button"
       data-testid="add-new-column-btn"
+      onClick={[Function]}
     >
       <div
         className="button_icon"
@@ -49,6 +60,7 @@ Array [
     <div
       className="button center"
       data-testid="save-changes-btn"
+      onClick={[Function]}
     >
       <div
         className="button_text"

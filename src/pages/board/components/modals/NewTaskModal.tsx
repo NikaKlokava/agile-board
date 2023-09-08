@@ -4,11 +4,11 @@ import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { Formik } from "formik";
 import { Input } from "../../../../shared/components/input";
 import { useDispatch, useSelector } from "react-redux";
-// import { initialTaskData } from "../../../../utils/utils";
 import { addNewTask } from "../../../../redux/actionCreators/newBoardCreator";
 import cl from "./modal_styles.module.css";
 import { useState } from "react";
 import { Select } from "../../../../shared/components/select";
+import { TaskSchema } from "../../../../utils/utils";
 
 type Props = {
   onClose?: () => void;
@@ -23,26 +23,25 @@ export const NewTaskModal = ({ onClose }: Props) => {
   const dispatch = useDispatch();
 
   const initialTaskData = {
-    boardUuid: "init",
+    boardUuid: "",
     columnTitle: activeBoard.columns[0]?.title,
-    title: "init",
-    description: "init",
-    subtasks: [{ uuid: "", text: "init", checked: false }],
+    title: "",
+    description: "",
+    subtasks: [{ uuid: "", text: "", checked: false }],
   };
 
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={initialTaskData}
+        validationSchema={TaskSchema}
         onSubmit={(values) => {
           const columnUuid = activeBoard.columns.find(
-            (column) => column.title === values.columnTitle
+            (column) => column?.title === values.columnTitle
           )?.uuid;
-
           const subtasks = values.subtasks.filter(
-            (subtask) => subtask.text !== undefined
+            (subtask) => subtask?.text !== undefined && subtask?.text !== ""
           );
-
           dispatch(
             addNewTask({
               boardUuid: activeBoard.uuid,
@@ -70,6 +69,9 @@ export const NewTaskModal = ({ onClose }: Props) => {
                 onChange={props.handleChange}
                 name={"title"}
               />
+              {props.errors.title && props.touched.title && (
+                <p style={{ color: "red" }}>{props.errors.title}</p>
+              )}
             </FieldWrapper>
             <FieldWrapper fieldName={"Description"}>
               <textarea

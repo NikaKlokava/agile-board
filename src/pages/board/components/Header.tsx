@@ -35,11 +35,13 @@ export const Header = () => {
             newClass={"add-new-task"}
           />
         )}
-        <div
-          className={cl.options_icon}
-          data-testid="options-icon"
-          onClick={() => setOptionsVisible((prev) => !prev)}
-        />
+        {isBoardExist && (
+          <div
+            className={cl.options_icon}
+            data-testid="options-icon"
+            onClick={() => setOptionsVisible((prev) => !prev)}
+          />
+        )}
       </div>
       {newTaskVisible && isBoardExist && (
         <NewTaskModal onClose={() => setNewTaskVisible(false)} />

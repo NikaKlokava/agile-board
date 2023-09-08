@@ -6,6 +6,7 @@ import { Button } from "../../../../shared/components/button";
 import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
+import { EditSchema } from "../../../../utils/utils";
 import cl from "./modal_styles.module.css";
 
 type Props = {
@@ -24,8 +25,9 @@ export const EditBoardModal = ({ onClose }: Props) => {
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={activeBoard}
+        validationSchema={EditSchema}
         onSubmit={(values) => {
-          const columns = values.columns.filter((column) => column.title);
+          const columns = values.columns.filter((column) => column?.title);
           dispatch(addNewColumn(values.uuid, values.name, columns));
           onClose!();
         }}
@@ -46,6 +48,9 @@ export const EditBoardModal = ({ onClose }: Props) => {
                 defaultValue={activeBoard.name}
                 onChange={props.handleChange}
               />
+              {props.errors.name && props.touched.name && (
+                <p style={{ color: "red" }}>{props.errors.name}</p>
+              )}
             </FieldWrapper>
             <FieldWrapper fieldName="Board Columns" clName="style_container">
               {Array.from({ length: columnLength }, (_, i) => {
