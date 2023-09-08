@@ -1,13 +1,28 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import App from "../../../../App";
+import { MockTestAddBoard } from "../../../../mocks/TestMocks";
+import { addBoard } from "../../../../redux/actionCreators/newBoardCreator";
+import store from "../../../../redux/store/store";
 import { OptionsModal } from "./OptionsModal";
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 describe("Test the OptionsModal component", () => {
   test("The OptionsModal renders correctly", () => {
-    const optionsModalSnap = renderer.create(<OptionsModal />).toJSON();
+    jest.mock("./OptionsModal.tsx");
+    const optionsModalSnap = renderer
+      .create(
+        <Provider store={store}>
+          <OptionsModal />
+        </Provider>
+      )
+      .toJSON();
     expect(optionsModalSnap).toMatchSnapshot();
   });
 
@@ -27,9 +42,11 @@ describe("Test the OptionsModal component", () => {
 
     act(() => {
       editBoardEl.click();
+      store.dispatch(addBoard(MockTestAddBoard));
     });
 
-    const editBoardModal = screen.queryByTestId("edit-board-modal");
+    const editBoardModal = screen.getByTestId("edit-board-modal");
+
     expect(editBoardModal).toBeInTheDocument();
   });
 

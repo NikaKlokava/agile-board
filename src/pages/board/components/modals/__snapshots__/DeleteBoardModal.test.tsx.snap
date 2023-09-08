@@ -26,6 +26,7 @@ Array [
       <div
         className="button delete"
         data-testid="delete-btn"
+        onClick={[Function]}
       >
         <div
           className="button_text"

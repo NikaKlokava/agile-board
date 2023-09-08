@@ -8,24 +8,11 @@ Array [
     <div
       className="sidebar_title"
     >
-      ALL BOARDS (1)
+      ALL BOARDS (0)
     </div>
     <div
       className="board_title_items"
     >
-      <div
-        className="title_item active_board"
-        onClick={[Function]}
-      >
-        <div
-          className="icon"
-        />
-        <p
-          className="title"
-        >
-          Example board
-        </p>
-      </div>
       <div
         className="title_item"
         data-testid="new-board"
@@ -56,34 +43,6 @@ Array [
   </div>,
   <div
     className="board_content_wrapper"
-  >
-    <div
-      className="content_column"
-    >
-      <div
-        className="title_container"
-      >
-        <div
-          className="column_circle"
-        />
-        <div
-          className="column_title"
-        >
-          Todo
-        </div>
-      </div>
-    </div>
-    <div
-      className="add_column"
-      data-testid="add_column"
-      onClick={[Function]}
-    >
-      <p
-        className="add_column_title"
-      >
-        + New Column
-      </p>
-    </div>
-  </div>,
+  />,
 ]
 `;

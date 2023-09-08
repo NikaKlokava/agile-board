@@ -4,6 +4,7 @@ exports[`Test the TaskModal component The TaskModal renders correctly 1`] = `
 Array [
   <div
     className="modal_wrapper"
+    onClick={[Function]}
   />,
   <div
     className="modal_container"
@@ -12,34 +13,18 @@ Array [
     <h2
       className="modal_task_title"
       data-testid="task-modal"
-    >
-      Task name
-    </h2>
+    />
     <p
       className="description"
-    >
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut porro placeat voluptatum eius!
-    </p>
+    />
     <div
       className="container"
     >
       <p
         className="title"
       >
-        Subtasks (0 of 2)
+        Subtasks (undefined of undefined)
       </p>
-      <div
-        className="subtasks_checkbox"
-      >
-        <input
-          className="checkbox"
-          id="first"
-          type="checkbox"
-        />
-        <p>
-          Something doing...
-        </p>
-      </div>
     </div>
     <div
       className="container"
@@ -49,17 +34,21 @@ Array [
       >
         Current Status
       </p>
-      <select>
-        <option>
-          Todo
-        </option>
-        <option>
-          Doing
-        </option>
-        <option>
-          Done
-        </option>
-      </select>
+      <select
+        name="columnTitle"
+        onChange={[Function]}
+      />
+    </div>
+    <div
+      className="button"
+      data-testid="save-task"
+      onClick={[Function]}
+    >
+      <div
+        className="button_text"
+      >
+        Save
+      </div>
     </div>
   </div>,
 ]

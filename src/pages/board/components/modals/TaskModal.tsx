@@ -36,12 +36,15 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
-        initialValues={{ taskUuid: task!.uuid, columnTitle: columnTitle }}
+        initialValues={{
+          taskUuid: task && task.uuid,
+          columnTitle: columnTitle,
+        }}
         onSubmit={(values) => {
           const columnUuid = activeBoard.columns.find(
             (column) => column.title === values.columnTitle
           )!.uuid;
-          dispatch(moveTask(values.taskUuid, columnUuid));
+          dispatch(moveTask(values.taskUuid!, columnUuid));
           onClose();
         }}
       >

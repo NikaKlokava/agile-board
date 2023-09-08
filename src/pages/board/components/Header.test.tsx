@@ -6,6 +6,8 @@ import { Header } from "./Header";
 import App from "../../../App";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
+import { addBoard } from "../../../redux/actionCreators/newBoardCreator";
+import { MockTestAddBoard } from "../../../mocks/TestMocks";
 
 describe("Test the Header component", () => {
   test("The Header renders correctly", () => {
@@ -19,9 +21,35 @@ describe("Test the Header component", () => {
     expect(headerSnap).toMatchSnapshot();
   });
 });
-
 describe("Test the button Add New Task", () => {
-  test("The NewTaskModal should be visible on click", () => {
+  test("The button Add New Task should not be visible if there are no boards", () => {
+    render(
+      <MemoryRouter initialEntries={["/agile-board"]}>
+        <App />
+      </MemoryRouter>
+    );
+    const addNewTaskBtn = screen.queryByTestId("add-new-task-btn");
+
+    expect(addNewTaskBtn).not.toBeInTheDocument();
+  });
+
+  test("The button Add New Task should be visible if there is one board or more", () => {
+    render(
+      <MemoryRouter initialEntries={["/agile-board"]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    act(() => {
+      store.dispatch(addBoard(MockTestAddBoard));
+    });
+
+    const addNewTaskBtn = screen.queryByTestId("add-new-task-btn");
+
+    expect(addNewTaskBtn).toBeInTheDocument();
+  });
+
+  test("The NewTaskModal should be visible on button Add New Task click", () => {
     render(
       <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
@@ -32,6 +60,7 @@ describe("Test the button Add New Task", () => {
     act(() => {
       addNewTaskBtn.click();
     });
+
     const newTaskModal = screen.queryByTestId("new-task-modal");
 
     expect(newTaskModal).toBeInTheDocument();

@@ -12,7 +12,7 @@ export const Select = ({ colUuid }: Props) => {
   const currentColumn = activeBoard.columns.find(
     (column) => column.uuid === colUuid
   )?.title;
-  
+
   return (
     <select
       onChange={handleChange}
