@@ -32,6 +32,11 @@ describe("Test the OptionsModal component", () => {
         <App />
       </MemoryRouter>
     );
+
+    act(() => {
+      store.dispatch(addBoard(MockTestAddBoard));
+    });
+
     const optionsIcon = screen.getByTestId("options-icon");
 
     act(() => {
@@ -56,6 +61,10 @@ describe("Test the OptionsModal component", () => {
         <App />
       </MemoryRouter>
     );
+    act(() => {
+      store.dispatch(addBoard(MockTestAddBoard));
+    });
+    
     const optionsIcon = screen.getByTestId("options-icon");
 
     act(() => {

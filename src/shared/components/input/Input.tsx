@@ -25,6 +25,7 @@ export const Input = ({ formikName, defaultVal }: Props) => {
         onChange={handleChange}
         name={formikName}
         defaultValue={defaultVal}
+        maxLength={14}
       />
       <div
         className={cl.delete_icon}

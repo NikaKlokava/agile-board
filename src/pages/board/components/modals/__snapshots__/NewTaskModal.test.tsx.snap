@@ -63,6 +63,7 @@ Array [
         <input
           autoComplete="off"
           className="input_style"
+          maxLength={14}
           name="subtasks[0].text"
           onChange={[Function]}
           placeholder="e.g Take coffee break"
@@ -80,6 +81,7 @@ Array [
         <input
           autoComplete="off"
           className="input_style"
+          maxLength={14}
           name="subtasks[1].text"
           onChange={[Function]}
           placeholder="e.g Take coffee break"

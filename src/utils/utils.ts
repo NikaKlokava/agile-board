@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 export const initialBoardData = {
   name: undefined,
   columns: [{ title: "" }],
@@ -9,3 +11,36 @@ export const checkedStatus = (task: TaskType) => {
     return accum;
   }, []).length;
 };
+
+export const BoardSchema = Yup.object().shape({
+  name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
+  columns: Yup.array().of(
+    Yup.object().shape({
+      title: Yup.string().min(3, "Too Short!").max(14, "Too Long!"),
+    })
+  ),
+});
+
+export const TaskSchema = Yup.object().shape({
+  boardUuid: Yup.string(),
+  columnTitle: Yup.string(),
+  title: Yup.string().min(3, "Too Short!").max(45, "Too Long!").required(),
+  description: Yup.string(),
+  subtasks: Yup.array().of(
+    Yup.object().shape({
+      uuid: Yup.string(),
+      text: Yup.string().min(3, "Too Short!").max(14, "Too Long!"),
+      checked: Yup.boolean(),
+    })
+  ),
+});
+
+export const EditSchema = Yup.object().shape({
+  uuid: Yup.string(),
+  name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
+  columns: Yup.array().of(
+    Yup.object().shape({
+      title: Yup.string().min(3, "Too Short!").max(14, "Too Long!"),
+    })
+  ),
+});
