@@ -8,10 +8,12 @@ import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
 
 type Props = {
+  type: "board" | "task";
+  activeName: string;
   onClose?: () => void;
 };
 
-export const DeleteBoardModal = ({ onClose }: Props) => {
+export const DeleteBoardModal = ({ type, activeName, onClose }: Props) => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
@@ -20,11 +22,14 @@ export const DeleteBoardModal = ({ onClose }: Props) => {
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <h2 className={cl.title} data-testid="delete-board">
-        Delete this board?
+        {`Delete this ${type}?`}
       </h2>
       <p className={cl.description}>
-        Are you sure you want to delete the "Platform Launch" board? This action
-        will remove all columns and tasks and cannot be reversed.
+        {`Are you sure you want to delete the "${activeName}" ${type}? ${
+          type === "board"
+            ? "This action will remove all columns and tasks and cannot be reversed."
+            : "This action will remove task and cannot be reversed."
+        }`}
       </p>
       <div className={cl.btns_container}>
         <Button
@@ -33,9 +38,11 @@ export const DeleteBoardModal = ({ onClose }: Props) => {
           testid={"delete-btn"}
           newClass="delete"
           onClick={() => {
-            onClose!();
-            dispatch(deleteBoard(activeBoard.uuid));
-            dispatch(deleteACtiveBoard());
+            if (type === "board") {
+              onClose!();
+              dispatch(deleteBoard(activeBoard.uuid));
+              dispatch(deleteACtiveBoard());
+            }
           }}
         />
         <Button

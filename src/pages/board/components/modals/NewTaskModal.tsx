@@ -9,6 +9,8 @@ import cl from "./modal_styles.module.css";
 import { useState } from "react";
 import { Select } from "../../../../shared/components/select";
 import { TaskSchema } from "../../../../utils/utils";
+import { FieldName } from "../../../../shared/components/field_name";
+import { DescriptionField } from "../../../../shared/components/description/DescriptionField";
 
 type Props = {
   onClose?: () => void;
@@ -59,40 +61,19 @@ export const NewTaskModal = ({ onClose }: Props) => {
             <h2 className={cl.modal_title} data-testid="new-task-modal">
               Add New Task
             </h2>
-            <FieldWrapper fieldName={"Task name"}>
-              <input
-                type={"text"}
-                placeholder="e.g Take coffee break"
-                spellCheck={false}
-                className={cl.input_style}
-                autoComplete="off"
-                onChange={props.handleChange}
-                name={"title"}
-              />
-              {props.errors.title && props.touched.title && (
-                <p style={{ color: "red" }}>{props.errors.title}</p>
-              )}
-            </FieldWrapper>
-            <FieldWrapper fieldName={"Description"}>
-              <textarea
-                className={cl.textarea}
-                spellCheck={false}
-                placeholder="e.g. It's always good to take a break..."
-                onChange={props.handleChange}
-                name="description"
-              />
-            </FieldWrapper>
+            <FieldName formikName="title" />
+            <DescriptionField />
             <FieldWrapper fieldName={"Subtasks"} clName="style_container">
               {Array.from({ length: subtasks }, (_, index) => (
                 <Input key={index} formikName={`subtasks[${index}].text`} />
               ))}
-              <Button
-                text="Add New Subtask"
-                withIcon={true}
-                testid={"add-new-subtask-btn"}
-                onClick={() => setSubtasks((prev) => prev + 1)}
-              />
             </FieldWrapper>
+            <Button
+              text="Add New Subtask"
+              withIcon={true}
+              testid={"add-new-subtask-btn"}
+              onClick={() => setSubtasks((prev) => prev + 1)}
+            />
             <FieldWrapper fieldName="Current Status">
               <Select />
             </FieldWrapper>

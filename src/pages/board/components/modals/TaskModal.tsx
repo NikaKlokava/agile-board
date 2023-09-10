@@ -8,9 +8,14 @@ import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import { checkedStatus } from "../../../../utils/utils";
+import { Button } from "../../../../shared/components/button";
+import { OptionsIcon } from "../../../../shared/components/options_icon";
+import { useState } from "react";
+import { OptionsModal } from "./OptionsModal";
+import { DeleteBoardModal } from "./DeleteBoardModal";
 import classes from "classnames";
 import cl from "./modal_styles.module.css";
-import { Button } from "../../../../shared/components/button";
+import { EditTaskModal } from "./EditTaskModal";
 
 type Props = {
   taskUuid: string;
@@ -18,45 +23,58 @@ type Props = {
 };
 
 export const TaskModal = ({ taskUuid, onClose }: Props) => {
+  const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
+  const [deleteTaskVisible, setDeleteTaskVisible] = useState<boolean>(false);
+  const [editTaskVisible, setEditTaskVisible] = useState<boolean>(false);
+
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
 
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
-  const task = tasks.find((task) => task.uuid === taskUuid);
+  const task = tasks.find((task) => task.uuid === taskUuid)!;
 
   const columnTitle = activeBoard.columns.find(
-    (column) => column.uuid === task?.columnUuid
+    (column) => column.uuid === task.columnUuid
   )?.title;
 
-  const checkedSubtasks = checkedStatus(task!);
+  const checkedSubtasks = checkedStatus(task);
+
+  const isBoardExist = activeBoard.name !== "";
 
   const dispatch = useDispatch();
-
+  console.log(task.subtasks);
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={{
-          taskUuid: task && task.uuid,
+          taskUuid: task.uuid,
           columnTitle: columnTitle,
         }}
         onSubmit={(values) => {
           const columnUuid = activeBoard.columns.find(
             (column) => column.title === values.columnTitle
           )!.uuid;
-          dispatch(moveTask(values.taskUuid!, columnUuid));
+          dispatch(moveTask(values.taskUuid, columnUuid));
           onClose();
         }}
       >
         {(props) => (
           <>
-            <h2 className={cl.modal_task_title} data-testid="task-modal">
-              {task?.title}
-            </h2>
-            <p className={cl.description}>{task?.description}</p>
-            {task?.subtasks.length !== 0 && (
+            <div className={cl.modal_task_container}>
+              <h2 className={cl.modal_task_title} data-testid="task-modal">
+                {task.title}
+              </h2>
+              {isBoardExist && (
+                <OptionsIcon
+                  onOpen={() => setOptionsVisible((prev) => !prev)}
+                />
+              )}
+            </div>
+            <p className={cl.description}>{task.description}</p>
+            {task.subtasks.length !== 0 && (
               <FieldWrapper
-                fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
+                fieldName={`Subtasks (${checkedSubtasks} of ${task.subtasks.length})`}
               >
                 {task &&
                   task.subtasks.map((subtask, i) => {
@@ -83,7 +101,7 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
               </FieldWrapper>
             )}
             <FieldWrapper fieldName={"Current Status"}>
-              <Select colUuid={task?.columnUuid} />
+              <Select colUuid={task.columnUuid} />
             </FieldWrapper>
             <Button
               text={"Save"}
@@ -94,6 +112,30 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
           </>
         )}
       </Formik>
+      {optionsVisible && (
+        <OptionsModal
+          type={"Task"}
+          onEditClick={() => setEditTaskVisible(true)}
+          onDeleteClick={() => setDeleteTaskVisible(true)}
+        />
+      )}
+      {deleteTaskVisible && (
+        <DeleteBoardModal
+          activeName={""}
+          type={"task"}
+          onClose={() => setDeleteTaskVisible(false)}
+        />
+      )}
+
+      {editTaskVisible && (
+        <>
+          <EditTaskModal
+            taskUuid={task.uuid}
+            onClose={() => setEditTaskVisible(false)}
+            onTaskModalClose={() => onClose()}
+          />
+        </>
+      )}
     </ModalWrapper>
   );
 };
