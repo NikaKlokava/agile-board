@@ -1,87 +1,46 @@
 .sidebar_wrapper {
-  grid-row: 2/4;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 7fr 1fr;
-  padding-top: 20px;
-  padding-bottom: 30px;
-}
-
-.board_title_items {
+  width: 300px;
   display: flex;
   flex-direction: column;
+  row-gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  justify-content: flex-start;
 }
 
-.title_item {
-  display: flex;
-  column-gap: 5px;
-  align-items: center;
-  color: #2b2b2b;
-}
-
-.active_board {
-  background-color: #7c52de;
-  color: white;
-}
-
-
-.active_board:hover {
-  color: #7c52de;
-}
-
-.title {
-  font-size: 22px;
-  line-height: 60px;
-  font-family: 'Philosopher', sans-serif;
-}
-
-.new_board {
-  color: #7c52de;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  background: url("../../../../assets/board-item.svg");
-}
-
-.icon_new_board {
-  width: 20px;
-  height: 20px;
-  background: url("../../../../assets/new_board.svg");
-}
-
-.title_item,
 .hide_sidebar {
-  padding-left: 20px;
+  display: flex;
+  position: absolute;
+  min-height: 50px;
+  bottom: 85px;
+  padding-right: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  align-items: center;
+  color: #2b2b2baf;
+  column-gap: 10px;
+  z-index: 7;
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 
-.sidebar_title {
-  font-size: 17px;
-  font-family: 'Philosopher', sans-serif;
-  color: #2b2b2baf;
-  padding-left: 20px;
-}
-
-.hide_sidebar {
-  display: flex;
-  align-items: center;
-  color: #2b2b2baf;
-  column-gap: 10px;
-}
-
-.hide_sidebar:hover,
-.title_item:hover {
+.hide_sidebar:hover {
   background-color: #ad91ec48;
   color: #7c52de;
 }
 
 .hide_icon {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background: url("../../../../assets/hide.svg");
+  background-size: 30px 30px;
+}
+
+.eye_icon {
+  width: 30px;
+  height: 30px;
+  background: url("../../../../assets/eye.svg");
+  background-size: 30px 30px;
 }
 
 
@@ -90,8 +49,10 @@
   font-family: 'Philosopher', sans-serif;
 }
 
-@media screen and (max-width: 1200px) {
-  .sidebar_wrapper {
+@media screen and (max-width: 800px) {
+
+  .sidebar_wrapper,
+  .hide_sidebar {
     display: none;
   }
 }

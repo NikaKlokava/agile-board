@@ -1,15 +1,23 @@
 .board_content_wrapper {
   display: flex;
-  column-gap: 50px;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  padding-top: 20px;
-  padding-left: 40px;
-  padding-right: 20px;
-  background-color: rgba(255, 255, 255, 0.802);
+  max-width: 100vw;
+  max-height: calc(100vh - 60px*2);
 }
 
-.board_content_wrapper::-webkit-scrollbar {
+.board_data_wrapper {
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.802);
+  padding: 30px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.board_data {
+  display: flex;
+  column-gap: 50px;
+}
+
+.board_data_wrapper::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
@@ -77,6 +85,7 @@
 
 .add_column {
   display: flex;
+  min-height: 200px;
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -107,7 +116,11 @@
 @media screen and (max-width: 700px) {
   .board_content_wrapper {
     margin-left: 0px;
-    padding-left: 20px;
+    padding-left: 0px;
+  }
+
+  .board_data_wrapper {
+    padding: 15px;
   }
 
   .add_column_title {

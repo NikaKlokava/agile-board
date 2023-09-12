@@ -51,7 +51,7 @@
   border: 1px solid #ea4141;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 500px) {
   .button_text {
     font-size: 16px;
   }
