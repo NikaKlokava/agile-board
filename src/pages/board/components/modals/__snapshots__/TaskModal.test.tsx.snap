@@ -10,10 +10,14 @@ Array [
     className="modal_container"
   >
      
-    <h2
-      className="modal_task_title"
-      data-testid="task-modal"
-    />
+    <div
+      className="modal_task_container"
+    >
+      <h2
+        className="modal_task_title"
+        data-testid="task-modal"
+      />
+    </div>
     <p
       className="description"
     />

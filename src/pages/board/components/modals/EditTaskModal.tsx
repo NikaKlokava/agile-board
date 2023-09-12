@@ -11,8 +11,8 @@ import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import { FieldName } from "../../../../shared/components/field_name";
-import cl from "./modal_styles.module.css";
 import { useState } from "react";
+import cl from "./modal_styles.module.css";
 import { EditTaskSchema } from "../../../../utils/utils";
 
 type Props = {
@@ -33,9 +33,9 @@ export const EditTaskModal = ({
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
   const task = tasks.find((task) => task.uuid === taskUuid)!;
   const column = activeBoard.columns.find(
-    (column) => column.uuid === task.columnUuid
-  )!.title;
-  const [subtasks, setSubtasks] = useState(task.subtasks.length);
+    (column) => column.uuid === task?.columnUuid
+  )?.title!;
+  const [subtasks, setSubtasks] = useState(task?.subtasks.length);
 
   const dispatch = useDispatch();
 
@@ -43,9 +43,9 @@ export const EditTaskModal = ({
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={{
-          title: task.title,
-          description: task.description,
-          subtasks: task.subtasks,
+          title: task?.title,
+          description: task?.description,
+          subtasks: task?.subtasks,
           columnTitle: column,
         }}
         validationSchema={EditTaskSchema}
@@ -53,14 +53,11 @@ export const EditTaskModal = ({
           const columnUuid = activeBoard.columns.find(
             (column) => column.title === values.columnTitle
           )!.uuid;
+          const subtasks = values.subtasks?.filter((subtask) => subtask?.text);
+
           dispatch(moveTask(taskUuid, columnUuid));
           dispatch(
-            editTask(
-              taskUuid,
-              values.title,
-              values.description,
-              values.subtasks
-            )
+            editTask(taskUuid, values.title, values.description, subtasks)
           );
           onClose!();
           onTaskModalClose();
@@ -89,7 +86,7 @@ export const EditTaskModal = ({
               />
             </FieldWrapper>
             <FieldWrapper fieldName="Current Status">
-              <Select colUuid="" />
+              <Select colUuid={task?.columnUuid} />
             </FieldWrapper>
             <Button
               text="Save Edit"

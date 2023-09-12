@@ -1,6 +1,7 @@
 import {
   ADD_NEW_TASK_ACTION,
   CHECK_SUBTASK_ACTION,
+  DELETE_TASK_ACTION,
   EDIT_TASK_ACTION,
   MOVE_TASK_ACTION,
 } from "../actions/actions";
@@ -80,11 +81,26 @@ export const tasksReducer = (
                 ...task,
                 title: action.payload.title,
                 description: action.payload.description,
-                subtasks: action.payload.subtasks,
+                subtasks: action.payload.subtasks.map((subtask) => {
+                  return {
+                    ...subtask,
+                    uuid: uuidv4(),
+                    checked: false,
+                  };
+                }),
               };
             }
             return task;
           }),
+        ],
+      };
+    case DELETE_TASK_ACTION:
+      return {
+        ...state,
+        tasks: [
+          ...state.tasks.filter(
+            (task: TaskType) => task.uuid !== action.payload.taskUuid
+          ),
         ],
       };
     default:

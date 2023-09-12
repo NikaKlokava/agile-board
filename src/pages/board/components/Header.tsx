@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
 import { EditBoardModal, NewTaskModal } from "./modals";
-import { DeleteBoardModal } from "./modals/DeleteBoardModal";
+import { DeleteModal } from "./modals/DeleteModal";
 import { OptionsModal } from "./modals/OptionsModal";
 import cl from "./styles/header.module.css";
 
@@ -59,7 +59,7 @@ export const Header = () => {
         />
       )}
       {deleteBoardVisible && isBoardExist && (
-        <DeleteBoardModal
+        <DeleteModal
           type="board"
           activeName={activeBoard.name}
           onClose={() => {

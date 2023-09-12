@@ -46,7 +46,7 @@ export const EditBoardSchema = Yup.object().shape({
 });
 
 export const EditTaskSchema = Yup.object().shape({
-  taskName: Yup.string().min(3, "Too Short!").max(45, "Too Long!").required(),
+  title: Yup.string().min(3, "Too Short!").max(45, "Too Long!").required(),
   description: Yup.string(),
   subtasks: Yup.array().of(
     Yup.object().shape({

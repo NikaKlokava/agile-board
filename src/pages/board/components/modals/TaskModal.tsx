@@ -12,7 +12,7 @@ import { Button } from "../../../../shared/components/button";
 import { OptionsIcon } from "../../../../shared/components/options_icon";
 import { useState } from "react";
 import { OptionsModal } from "./OptionsModal";
-import { DeleteBoardModal } from "./DeleteBoardModal";
+import { DeleteModal } from "./DeleteModal";
 import classes from "classnames";
 import cl from "./modal_styles.module.css";
 import { EditTaskModal } from "./EditTaskModal";
@@ -35,7 +35,7 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
   const task = tasks.find((task) => task.uuid === taskUuid)!;
 
   const columnTitle = activeBoard.columns.find(
-    (column) => column.uuid === task.columnUuid
+    (column) => column.uuid === task?.columnUuid
   )?.title;
 
   const checkedSubtasks = checkedStatus(task);
@@ -43,12 +43,11 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
   const isBoardExist = activeBoard.name !== "";
 
   const dispatch = useDispatch();
-  console.log(task.subtasks);
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={{
-          taskUuid: task.uuid,
+          taskUuid: task?.uuid,
           columnTitle: columnTitle,
         }}
         onSubmit={(values) => {
@@ -63,7 +62,7 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
           <>
             <div className={cl.modal_task_container}>
               <h2 className={cl.modal_task_title} data-testid="task-modal">
-                {task.title}
+                {task?.title}
               </h2>
               {isBoardExist && (
                 <OptionsIcon
@@ -71,13 +70,13 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
                 />
               )}
             </div>
-            <p className={cl.description}>{task.description}</p>
-            {task.subtasks.length !== 0 && (
+            <p className={cl.description}>{task?.description}</p>
+            {task?.subtasks.length !== 0 && (
               <FieldWrapper
-                fieldName={`Subtasks (${checkedSubtasks} of ${task.subtasks.length})`}
+                fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
               >
                 {task &&
-                  task.subtasks.map((subtask, i) => {
+                  task?.subtasks.map((subtask, i) => {
                     return (
                       <div
                         className={classes(
@@ -101,7 +100,7 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
               </FieldWrapper>
             )}
             <FieldWrapper fieldName={"Current Status"}>
-              <Select colUuid={task.columnUuid} />
+              <Select colUuid={task?.columnUuid} />
             </FieldWrapper>
             <Button
               text={"Save"}
@@ -120,17 +119,21 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
         />
       )}
       {deleteTaskVisible && (
-        <DeleteBoardModal
-          activeName={""}
+        <DeleteModal
+          activeName={task?.title}
           type={"task"}
-          onClose={() => setDeleteTaskVisible(false)}
+          taskUuid={task?.uuid}
+          onClose={() => {
+            onClose();
+            setDeleteTaskVisible(false);
+          }}
         />
       )}
 
       {editTaskVisible && (
         <>
           <EditTaskModal
-            taskUuid={task.uuid}
+            taskUuid={task?.uuid}
             onClose={() => setEditTaskVisible(false)}
             onTaskModalClose={() => onClose()}
           />

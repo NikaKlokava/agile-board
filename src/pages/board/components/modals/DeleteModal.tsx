@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteACtiveBoard,
   deleteBoard,
+  deleteTask,
 } from "../../../../redux/actionCreators/newBoardCreator";
 import { Button } from "../../../../shared/components/button";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
@@ -10,10 +11,11 @@ import cl from "./modal_styles.module.css";
 type Props = {
   type: "board" | "task";
   activeName: string;
+  taskUuid?: string;
   onClose?: () => void;
 };
 
-export const DeleteBoardModal = ({ type, activeName, onClose }: Props) => {
+export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
@@ -39,10 +41,12 @@ export const DeleteBoardModal = ({ type, activeName, onClose }: Props) => {
           newClass="delete"
           onClick={() => {
             if (type === "board") {
-              onClose!();
               dispatch(deleteBoard(activeBoard.uuid));
               dispatch(deleteACtiveBoard());
+            } else {
+              dispatch(deleteTask(taskUuid!));
             }
+            onClose!();
           }}
         />
         <Button

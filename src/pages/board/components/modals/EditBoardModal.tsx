@@ -18,8 +18,10 @@ export const EditBoardModal = ({ onClose }: Props) => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
-  const initialLength = activeBoard.columns.length;
-  const [columnLength, setColumnLength] = useState<number>(initialLength);
+
+  const [columnLength, setColumnLength] = useState<number>(
+    activeBoard.columns.length
+  );
   const dispatch = useDispatch();
 
   return (

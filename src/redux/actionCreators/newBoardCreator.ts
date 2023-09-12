@@ -93,3 +93,10 @@ export const editTask = (
     payload: { taskUuid, title, description, subtasks },
   };
 };
+
+export const deleteTask = (taskUuid: string) => {
+  return {
+    type: "DELETE_TASK_ACTION",
+    payload: { taskUuid },
+  };
+};
