@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "../../../shared/components/button";
+import { OptionsIcon } from "../../../shared/components/options_icon";
 import { EditBoardModal, NewTaskModal } from "./modals";
-import { DeleteBoardModal } from "./modals/DeleteBoardModal";
+import { DeleteModal } from "./modals/DeleteModal";
 import { OptionsModal } from "./modals/OptionsModal";
 import cl from "./styles/header.module.css";
 
@@ -36,11 +37,7 @@ export const Header = () => {
           />
         )}
         {isBoardExist && (
-          <div
-            className={cl.options_icon}
-            data-testid="options-icon"
-            onClick={() => setOptionsVisible((prev) => !prev)}
-          />
+          <OptionsIcon onOpen={() => setOptionsVisible((prev) => !prev)} />
         )}
       </div>
       {newTaskVisible && isBoardExist && (
@@ -48,6 +45,7 @@ export const Header = () => {
       )}
       {optionsVisible && !editBoardVisible && !deleteBoardVisible && (
         <OptionsModal
+          type="Board"
           onEditClick={() => setEditBoardVisible(true)}
           onDeleteClick={() => setDeleteBoardVisible(true)}
         />
@@ -61,7 +59,9 @@ export const Header = () => {
         />
       )}
       {deleteBoardVisible && isBoardExist && (
-        <DeleteBoardModal
+        <DeleteModal
+          type="board"
+          activeName={activeBoard.name}
           onClose={() => {
             setDeleteBoardVisible(false);
             setOptionsVisible(false);

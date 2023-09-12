@@ -8,6 +8,7 @@ import { BoardSchema, initialBoardData } from "../../../../utils/utils";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import cl from "./modal_styles.module.css";
+import { FieldName } from "../../../../shared/components/field_name";
 
 type Props = {
   onClose: () => void;
@@ -40,20 +41,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
             <h2 className={cl.modal_title} data-testid="new-board-modal">
               Add New Board
             </h2>
-            <FieldWrapper fieldName={"Board Name"}>
-              <input
-                type={"text"}
-                placeholder="e.g Take coffee break"
-                spellCheck={false}
-                className={cl.input_style}
-                autoComplete="off"
-                name="name"
-                onChange={props.handleChange}
-              />
-              {props.errors.name && props.touched.name && (
-                <p style={{ color: "red" }}>{props.errors.name}</p>
-              )}
-            </FieldWrapper>
+            <FieldName formikName={"name"} />
             <FieldWrapper fieldName={"Board Columns"} clName="style_container">
               {Array.from({ length: columns }, (_, index) => (
                 <Input key={index} formikName={`columns[${index}].title`} />

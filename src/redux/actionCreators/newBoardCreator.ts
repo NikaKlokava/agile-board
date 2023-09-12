@@ -81,3 +81,22 @@ export const moveTask = (taskUuid: string, columnUuid: string) => {
     payload: { taskUuid, columnUuid },
   };
 };
+
+export const editTask = (
+  taskUuid: string,
+  title: string,
+  description: string,
+  subtasks: SubtasksType
+) => {
+  return {
+    type: "EDIT_TASK_ACTION",
+    payload: { taskUuid, title, description, subtasks },
+  };
+};
+
+export const deleteTask = (taskUuid: string) => {
+  return {
+    type: "DELETE_TASK_ACTION",
+    payload: { taskUuid },
+  };
+};

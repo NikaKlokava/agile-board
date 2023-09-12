@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test the NewTaskModal component The NewTaskModal renders correctly 1`] = `
+exports[`Test the EditTaskModal component The EditTaskModal renders correctly 1`] = `
 Array [
   <div
     className="modal_wrapper"
@@ -57,54 +57,18 @@ Array [
         Subtasks
       </p>
       <div
-        className="input_container"
+        className="button"
+        data-testid="add-new-subtask-btn"
+        onClick={[Function]}
       >
-        <input
-          autoComplete="off"
-          className="input_style"
-          maxLength={14}
-          name="subtasks[0].text"
-          onChange={[Function]}
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
+        <div
+          className="button_icon"
         />
         <div
-          className="delete_icon"
-          onClick={[Function]}
-        />
-      </div>
-      <div
-        className="input_container"
-      >
-        <input
-          autoComplete="off"
-          className="input_style"
-          maxLength={14}
-          name="subtasks[1].text"
-          onChange={[Function]}
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
-        <div
-          className="delete_icon"
-          onClick={[Function]}
-        />
-      </div>
-    </div>
-    <div
-      className="button"
-      data-testid="add-new-subtask-btn"
-      onClick={[Function]}
-    >
-      <div
-        className="button_icon"
-      />
-      <div
-        className="button_text"
-      >
-        Add New Subtask
+          className="button_text"
+        >
+          Add New Subtask
+        </div>
       </div>
     </div>
     <div
@@ -128,7 +92,7 @@ Array [
       <div
         className="button_text"
       >
-        Create Task
+        Save Edit
       </div>
     </div>
   </div>,

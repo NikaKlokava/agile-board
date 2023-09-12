@@ -22,11 +22,10 @@ Array [
       <p
         className="title"
       >
-        Board Name
+        Task name
       </p>
       <input
         autoComplete="off"
-        className="input_style"
         name="name"
         onChange={[Function]}
         placeholder="e.g Take coffee break"

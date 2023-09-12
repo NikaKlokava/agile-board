@@ -2,11 +2,8 @@
   align-self: center;
 }
 
-.textarea {
-  height: 200px;
-  padding-top: 10px;
-  resize: none;
-  overflow-y: scroll;
+.input_style {
+  width: 100%;
 }
 
 .options_modal_wrapper {
@@ -103,4 +100,9 @@ input[type=checkbox] {
 
 .active {
   background-color: #7c52de9f;
+}
+
+.modal_task_container {
+  display: flex;
+  justify-content: space-between;
 }

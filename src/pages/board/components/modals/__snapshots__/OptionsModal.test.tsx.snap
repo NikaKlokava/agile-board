@@ -9,13 +9,13 @@ exports[`Test the OptionsModal component The OptionsModal renders correctly 1`] 
     className="option_text edit"
     data-testid="options-edit-board"
   >
-    Edit Boards
+    Edit Board
   </p>
   <p
     className="option_text delete"
     data-testid="options-delete-board"
   >
-    Delete Boards
+    Delete Board
   </p>
 </div>
 `;

@@ -5,6 +5,7 @@ import { TaskModal } from "./TaskModal";
 
 describe("Test the TaskModal component", () => {
   test("The TaskModal renders correctly", () => {
+    jest.mock("./TaskModal.tsx");
     const taskModalSnap = renderer
       .create(
         <Provider store={store}>

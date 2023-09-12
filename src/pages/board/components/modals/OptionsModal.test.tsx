@@ -19,7 +19,7 @@ describe("Test the OptionsModal component", () => {
     const optionsModalSnap = renderer
       .create(
         <Provider store={store}>
-          <OptionsModal />
+          <OptionsModal type={"Board"} />
         </Provider>
       )
       .toJSON();
@@ -64,7 +64,7 @@ describe("Test the OptionsModal component", () => {
     act(() => {
       store.dispatch(addBoard(MockTestAddBoard));
     });
-    
+
     const optionsIcon = screen.getByTestId("options-icon");
 
     act(() => {

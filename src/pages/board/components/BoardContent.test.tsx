@@ -52,7 +52,7 @@ describe("Test the New Column element", () => {
 });
 
 describe("Test the Task Container", () => {
-  test("The task container should not be visible if there are no tasks", () => {
+  test("The task container should not be visible if there is no task", () => {
     render(
       <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
