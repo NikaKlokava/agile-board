@@ -1,15 +1,18 @@
 .sidebar_wrapper {
-  grid-row: 2/4;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 7fr 1fr;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
   padding-top: 20px;
   padding-bottom: 30px;
+  justify-content: flex-start;
 }
 
 .board_title_items {
   display: flex;
   flex-direction: column;
+  max-height: 350px;
+  overflow-x: scroll;
 }
 
 .title_item {
@@ -67,9 +70,16 @@
 
 .hide_sidebar {
   display: flex;
+  position: absolute;
+  min-height: 50px;
+  bottom: 85px;
+  padding-right: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
   align-items: center;
   color: #2b2b2baf;
   column-gap: 10px;
+  z-index: 7;
 }
 
 .hide_sidebar:hover,
@@ -79,9 +89,17 @@
 }
 
 .hide_icon {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background: url("../../../../assets/hide.svg");
+  background-size: 30px 30px;
+}
+
+.eye_icon {
+  width: 30px;
+  height: 30px;
+  background: url("../../../../assets/eye.svg");
+  background-size: 30px 30px;
 }
 
 
