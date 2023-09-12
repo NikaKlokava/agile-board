@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
 import { EditBoardModal, NewTaskModal } from "./modals";
+import { BoardNavbarModal } from "./modals/BoardNavbarModal";
 import { DeleteModal } from "./modals/DeleteModal";
 import { OptionsModal } from "./modals/OptionsModal";
 import cl from "./styles/header.module.css";
@@ -12,6 +13,7 @@ export const Header = () => {
   const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
+  const [boardNavbarVisible, setBoardNavbarVisible] = useState<boolean>(false);
 
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
@@ -24,7 +26,10 @@ export const Header = () => {
         <div className={cl.app_logo}></div>
         <h1 className={cl.title}>AGILE-BOARD</h1>
         <p className={cl.board_name}>{activeBoard.name}</p>
-        <div className={cl.navbar}></div>
+        <div
+          className={cl.navbar}
+          onClick={() => setBoardNavbarVisible(true)}
+        ></div>
       </div>
       <div className={cl.options}>
         {isBoardExist && (
@@ -67,6 +72,9 @@ export const Header = () => {
             setOptionsVisible(false);
           }}
         />
+      )}
+      {boardNavbarVisible && (
+        <BoardNavbarModal onClose={() => setBoardNavbarVisible(false)} />
       )}
     </div>
   );

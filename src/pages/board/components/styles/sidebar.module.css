@@ -8,66 +8,6 @@
   justify-content: flex-start;
 }
 
-.board_title_items {
-  display: flex;
-  flex-direction: column;
-  max-height: 350px;
-  overflow-x: scroll;
-}
-
-.title_item {
-  display: flex;
-  column-gap: 5px;
-  align-items: center;
-  color: #2b2b2b;
-}
-
-.active_board {
-  background-color: #7c52de;
-  color: white;
-}
-
-
-.active_board:hover {
-  color: #7c52de;
-}
-
-.title {
-  font-size: 22px;
-  line-height: 60px;
-  font-family: 'Philosopher', sans-serif;
-}
-
-.new_board {
-  color: #7c52de;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  background: url("../../../../assets/board-item.svg");
-}
-
-.icon_new_board {
-  width: 20px;
-  height: 20px;
-  background: url("../../../../assets/new_board.svg");
-}
-
-.title_item,
-.hide_sidebar {
-  padding-left: 20px;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-
-.sidebar_title {
-  font-size: 17px;
-  font-family: 'Philosopher', sans-serif;
-  color: #2b2b2baf;
-  padding-left: 20px;
-}
-
 .hide_sidebar {
   display: flex;
   position: absolute;
@@ -80,10 +20,11 @@
   color: #2b2b2baf;
   column-gap: 10px;
   z-index: 7;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 
-.hide_sidebar:hover,
-.title_item:hover {
+.hide_sidebar:hover {
   background-color: #ad91ec48;
   color: #7c52de;
 }
@@ -108,8 +49,10 @@
   font-family: 'Philosopher', sans-serif;
 }
 
-@media screen and (max-width: 1200px) {
-  .sidebar_wrapper {
+@media screen and (max-width: 800px) {
+
+  .sidebar_wrapper,
+  .hide_sidebar {
     display: none;
   }
 }

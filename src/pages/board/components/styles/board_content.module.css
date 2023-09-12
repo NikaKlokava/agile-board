@@ -116,7 +116,11 @@
 @media screen and (max-width: 700px) {
   .board_content_wrapper {
     margin-left: 0px;
-    padding-left: 20px;
+    padding-left: 0px;
+  }
+
+  .board_data_wrapper {
+    padding: 15px;
   }
 
   .add_column_title {
