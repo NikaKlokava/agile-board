@@ -53,8 +53,9 @@ export const EditTaskModal = ({
           const columnUuid = activeBoard.columns.find(
             (column) => column.title === values.columnTitle
           )!.uuid;
-          const subtasks = values.subtasks?.filter((subtask) => subtask?.text);
-
+          const subtasks = values.subtasks?.filter(
+            (subtask) => subtask?.text.trimStart().length !== 0
+          );
           dispatch(moveTask(taskUuid, columnUuid));
           dispatch(
             editTask(taskUuid, values.title, values.description, subtasks)
