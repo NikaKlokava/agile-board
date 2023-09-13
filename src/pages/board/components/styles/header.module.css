@@ -1,0 +1,81 @@
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 15px;
+}
+
+.navbar {
+  display: none;
+}
+
+.app_title {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.app_logo {
+  width: 50px;
+  height: 50px;
+  background: url("../../../../assets/board.svg");
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 700;
+  color: rgb(43, 43, 43);
+  font-weight: bold;
+}
+
+.board_name {
+  font-size: 25px;
+  font-family: 'Philosopher', sans-serif;
+  color: rgb(43, 43, 43);
+  margin-left: 30px;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .header_wrapper {
+    padding-right: 0px;
+  }
+
+  .options,
+  .app_title {
+    column-gap: 10px;
+    padding: 5px;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .app_logo {
+    width: 40px;
+    height: 40px;
+    background-size: 40px 40px;
+  }
+
+  .board_name {
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 0px;
+  }
+
+  .navbar {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url("../../../../assets/down.svg");
+    cursor: pointer;
+  }
+}

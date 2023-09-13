@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the BoardContent component The BoardContent renders correctly 1`] = `
+Array [
+  <div
+    className="sidebar_wrapper"
+  >
+    <div
+      className="sidebar_title"
+    >
+      ALL BOARDS (0)
+    </div>
+    <div
+      className="board_title_items"
+    >
+      <div
+        className="title_item"
+        data-testid="new-board"
+        onClick={[Function]}
+      >
+        <div
+          className="icon_new_board"
+        />
+        <p
+          className="title new_board"
+        >
+          New board
+        </p>
+      </div>
+    </div>
+    <div
+      className="hide_sidebar"
+    >
+      <div
+        className="hide_icon"
+      />
+      <div
+        className="hide_text"
+      >
+        Hide sidebar
+      </div>
+    </div>
+  </div>,
+  <div
+    className="board_content_wrapper"
+  />,
+]
+`;

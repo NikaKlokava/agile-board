@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the TaskModal component The TaskModal renders correctly 1`] = `
+Array [
+  <div
+    className="modal_wrapper"
+    onClick={[Function]}
+  />,
+  <div
+    className="modal_container"
+  >
+     
+    <div
+      className="modal_task_container"
+    >
+      <h2
+        className="modal_task_title"
+        data-testid="task-modal"
+      />
+    </div>
+    <p
+      className="description"
+    />
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Subtasks (undefined of undefined)
+      </p>
+    </div>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Current Status
+      </p>
+      <select
+        name="columnTitle"
+        onChange={[Function]}
+      />
+    </div>
+    <div
+      className="button"
+      data-testid="save-task"
+      onClick={[Function]}
+    >
+      <div
+        className="button_text"
+      >
+        Save
+      </div>
+    </div>
+  </div>,
+]
+`;

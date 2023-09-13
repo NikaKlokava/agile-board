@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the EditTaskModal component The EditTaskModal renders correctly 1`] = `
+Array [
+  <div
+    className="modal_wrapper"
+  />,
+  <div
+    className="modal_container"
+  >
+     
+    <h2
+      className="modal_title"
+      data-testid="new-task-modal"
+    >
+      Add New Task
+    </h2>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Task name
+      </p>
+      <input
+        autoComplete="off"
+        name="title"
+        onChange={[Function]}
+        placeholder="e.g Take coffee break"
+        spellCheck={false}
+        type="text"
+      />
+    </div>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Description
+      </p>
+      <textarea
+        className="textarea"
+        name="description"
+        onChange={[Function]}
+        placeholder="e.g. It's always good to take a break..."
+        spellCheck={false}
+      />
+    </div>
+    <div
+      className="container style_container"
+    >
+      <p
+        className="title"
+      >
+        Subtasks
+      </p>
+      <div
+        className="button"
+        data-testid="add-new-subtask-btn"
+        onClick={[Function]}
+      >
+        <div
+          className="button_icon"
+        />
+        <div
+          className="button_text"
+        >
+          Add New Subtask
+        </div>
+      </div>
+    </div>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Current Status
+      </p>
+      <select
+        name="columnTitle"
+        onChange={[Function]}
+      />
+    </div>
+    <div
+      className="button center"
+      data-testid="create-task-btn"
+      onClick={[Function]}
+    >
+      <div
+        className="button_text"
+      >
+        Save Edit
+      </div>
+    </div>
+  </div>,
+]
+`;

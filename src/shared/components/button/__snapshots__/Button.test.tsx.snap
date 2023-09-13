@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Button component The Button renders correctly 1`] = `
+<div
+  className="button"
+  data-testid="test"
+>
+  <div
+    className="button_text"
+  >
+    Test Btn
+  </div>
+</div>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Header component The Header renders correctly 1`] = `
+<div
+  className="header_wrapper"
+>
+  <div
+    className="app_title"
+  >
+    <div
+      className="app_logo"
+    />
+    <h1
+      className="title"
+    >
+      AGILE-BOARD
+    </h1>
+    <p
+      className="board_name"
+    />
+    <div
+      className="navbar"
+    />
+  </div>
+  <div
+    className="options"
+  />
+</div>
+`;

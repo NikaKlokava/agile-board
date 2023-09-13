@@ -1,0 +1,58 @@
+.sidebar_wrapper {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  justify-content: flex-start;
+}
+
+.hide_sidebar {
+  display: flex;
+  position: absolute;
+  min-height: 50px;
+  bottom: 85px;
+  padding-right: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  align-items: center;
+  color: #2b2b2baf;
+  column-gap: 10px;
+  z-index: 7;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.hide_sidebar:hover {
+  background-color: #ad91ec48;
+  color: #7c52de;
+}
+
+.hide_icon {
+  width: 30px;
+  height: 30px;
+  background: url("../../../../assets/hide.svg");
+  background-size: 30px 30px;
+}
+
+.eye_icon {
+  width: 30px;
+  height: 30px;
+  background: url("../../../../assets/eye.svg");
+  background-size: 30px 30px;
+}
+
+
+.hide_text {
+  font-size: 17px;
+  font-family: 'Philosopher', sans-serif;
+}
+
+@media screen and (max-width: 800px) {
+
+  .sidebar_wrapper,
+  .hide_sidebar {
+    display: none;
+  }
+}

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Footer component The Footer renders correctly 1`] = `
+<div
+  className="footer_wrapper"
+>
+  <p
+    className="footer_text"
+  >
+    Veranika Klokava
+  </p>
+  <p
+    className="footer_text"
+  >
+    2023
+  </p>
+  <div
+    className="footer_links"
+  >
+    <a
+      href="https://instagram.com/nika_klokava?igshid=MmIzYWVlNDQ5Yg=="
+    >
+      <div
+        className="instagram"
+      />
+    </a>
+    <a
+      href="https://linkedin.com/in/veranika-klokava-858b5b287"
+    >
+      <div
+        className="linkedin"
+      />
+    </a>
+    <a
+      href="https://github.com/NikaKlokava"
+    >
+      <div
+        className="github"
+      />
+    </a>
+  </div>
+</div>
+`;

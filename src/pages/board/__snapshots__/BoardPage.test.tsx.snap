@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
+<div
+  className="board"
+>
+  <div
+    className="header_wrapper"
+  >
+    <div
+      className="app_title"
+    >
+      <div
+        className="app_logo"
+      />
+      <h1
+        className="title"
+      >
+        AGILE-BOARD
+      </h1>
+      <p
+        className="board_name"
+      />
+      <div
+        className="navbar"
+      />
+    </div>
+    <div
+      className="options"
+    />
+  </div>
+  <div
+    className="sidebar_wrapper"
+  >
+    <div
+      className="sidebar_title"
+    >
+      ALL BOARDS (0)
+    </div>
+    <div
+      className="board_title_items"
+    >
+      <div
+        className="title_item"
+        data-testid="new-board"
+        onClick={[Function]}
+      >
+        <div
+          className="icon_new_board"
+        />
+        <p
+          className="title new_board"
+        >
+          New board
+        </p>
+      </div>
+    </div>
+    <div
+      className="hide_sidebar"
+    >
+      <div
+        className="hide_icon"
+      />
+      <div
+        className="hide_text"
+      >
+        Hide sidebar
+      </div>
+    </div>
+  </div>
+  <div
+    className="board_content_wrapper"
+  />
+  <div
+    className="footer_wrapper"
+  >
+    <p
+      className="footer_text"
+    >
+      Veranika Klokava
+    </p>
+    <p
+      className="footer_text"
+    >
+      2023
+    </p>
+    <div
+      className="footer_links"
+    >
+      <a
+        href="https://instagram.com/nika_klokava?igshid=MmIzYWVlNDQ5Yg=="
+      >
+        <div
+          className="instagram"
+        />
+      </a>
+      <a
+        href="https://linkedin.com/in/veranika-klokava-858b5b287"
+      >
+        <div
+          className="linkedin"
+        />
+      </a>
+      <a
+        href="https://github.com/NikaKlokava"
+      >
+        <div
+          className="github"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+`;

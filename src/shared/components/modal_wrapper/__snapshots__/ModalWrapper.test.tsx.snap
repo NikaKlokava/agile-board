@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the ModalWrapper component The ModalWrapper renders correctly 1`] = `
+Array [
+  <div
+    className="modal_wrapper"
+  />,
+  <div
+    className="modal_container"
+  >
+     
+  </div>,
+]
+`;
