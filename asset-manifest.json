@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/agile-board/static/css/main.47cd09a1.css",
+    "main.js": "/agile-board/static/js/main.e0cf8f73.js",
+    "static/media/flow_background.png": "/agile-board/static/media/flow_background.859820c808f92bdd724b.png",
+    "static/media/modal_img.png": "/agile-board/static/media/modal_img.8df70095f0af029927f4.png",
+    "static/media/github.svg": "/agile-board/static/media/github.ec181e98780739b34dd1.svg",
+    "static/media/options.svg": "/agile-board/static/media/options.785e624264bd707ec744.svg",
+    "static/media/board.svg": "/agile-board/static/media/board.c826b40bf5b88a9c83bf.svg",
+    "static/media/new_board.svg": "/agile-board/static/media/new_board.3464e079223c56ad7624.svg",
+    "static/media/linkedin.svg": "/agile-board/static/media/linkedin.2aa8124fe110de7754b6.svg",
+    "static/media/hide.svg": "/agile-board/static/media/hide.f427da06a5b609207c0c.svg",
+    "static/media/instagram.svg": "/agile-board/static/media/instagram.391545644e04e7aeb8ef.svg",
+    "index.html": "/agile-board/index.html",
+    "static/media/board-item.svg": "/agile-board/static/media/board-item.33ef511debfae9600c61.svg",
+    "static/media/eye.svg": "/agile-board/static/media/eye.7502be05884b33da5c0b.svg",
+    "static/media/delete.svg": "/agile-board/static/media/delete.f1c78f33f446ea52da1a.svg",
+    "static/media/plus.svg": "/agile-board/static/media/plus.b6e42b3a3c7c17a4789b.svg",
+    "static/media/down.svg": "/agile-board/static/media/down.c8e436d8fb4e7dc0d5d4.svg",
+    "main.47cd09a1.css.map": "/agile-board/static/css/main.47cd09a1.css.map",
+    "main.e0cf8f73.js.map": "/agile-board/static/js/main.e0cf8f73.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47cd09a1.css",
+    "static/js/main.e0cf8f73.js"
+  ]
+}
