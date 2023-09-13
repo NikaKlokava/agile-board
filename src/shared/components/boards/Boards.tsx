@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { isEqual } from "lodash";
 import { useEffect } from "react";
 import { selectBoard } from "../../../redux/actionCreators/newBoardCreator";
-// import { NewBoardModal } from "../../../pages/board/components";
 import classes from "classnames";
 import cl from "./boards.module.css";
 
@@ -11,8 +10,6 @@ type Props = {
 };
 
 export const Boards = ({ onBoardVisible }: Props) => {
-  // const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
-
   const boards = useSelector<RootState, Boards>((state) => state.boards.boards);
   const dispatch = useDispatch();
 

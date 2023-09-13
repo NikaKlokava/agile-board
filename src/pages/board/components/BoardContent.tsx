@@ -1,9 +1,10 @@
 import { EditBoardModal, TaskModal } from "./modals";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { checkedStatus } from "../../../utils/utils";
 import cl from "./styles/board_content.module.css";
+import { moveTask } from "../../../redux/actionCreators/newBoardCreator";
 
 export const BoardContent = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
@@ -16,6 +17,22 @@ export const BoardContent = () => {
   const isBoardExist = activeBoard.name !== "";
 
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
+
+  const dispatch = useDispatch();
+
+  const handleOnDrag = (e: React.DragEvent, taskUuid: string) => {
+    e.dataTransfer.setData("task", taskUuid);
+  };
+
+  const handleOnDrop = (e: React.DragEvent, colUuid: string) => {
+    const data = e.dataTransfer.getData("task");
+    dispatch(moveTask(data, colUuid));
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <div className={cl.board_content_wrapper}>
       <Sidebar />
@@ -24,7 +41,12 @@ export const BoardContent = () => {
           {isBoardExist &&
             activeBoard.columns.map((column, index) => {
               return (
-                <div className={cl.content_column} key={index}>
+                <div
+                  className={cl.content_column}
+                  key={index}
+                  onDrop={(e) => handleOnDrop(e, column.uuid)}
+                  onDragOver={handleDragOver}
+                >
                   <div className={cl.title_container}>
                     <div className={cl.column_circle} />
                     <div className={cl.column_title}>{column.title}</div>
@@ -37,6 +59,8 @@ export const BoardContent = () => {
                             className={cl.tasks_container}
                             key={index}
                             data-testid="task-container"
+                            draggable
+                            onDragStart={(e) => handleOnDrag(e, task.uuid)}
                             onClick={() => {
                               setTaskModalVisile(true);
                               setCurrentTaskUuid(task.uuid);
