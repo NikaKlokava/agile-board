@@ -5,7 +5,7 @@ export const initialBoardData = {
   columns: [{ title: "" }],
 };
 
-export const checkedStatus = (task: TaskType) => {
+export const checkedStatus = (task: TaskType | undefined) => {
   return task?.subtasks.reduce((accum: boolean[], current) => {
     if (current.checked === true) return [...accum, current.checked];
     return accum;

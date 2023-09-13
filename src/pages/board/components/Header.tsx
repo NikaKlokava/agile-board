@@ -18,7 +18,6 @@ export const Header = () => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
-  const isBoardExist = activeBoard.name !== "";
 
   return (
     <div className={cl.header_wrapper}>
@@ -32,30 +31,26 @@ export const Header = () => {
         ></div>
       </div>
       <div className={cl.options}>
-        {isBoardExist && (
-          <Button
-            text={"Add New Task"}
-            withIcon={true}
-            onClick={() => setNewTaskVisible(true)}
-            testid={"add-new-task-btn"}
-            newClass={"add-new-task"}
-          />
-        )}
-        {isBoardExist && (
-          <OptionsIcon onOpen={() => setOptionsVisible((prev) => !prev)} />
-        )}
+        <Button
+          text={"Add New Task"}
+          withIcon={true}
+          onClick={() => setNewTaskVisible(true)}
+          testid={"add-new-task-btn"}
+          newClass={"add-new-task"}
+        />
+        <OptionsIcon onOpen={() => setOptionsVisible((prev) => !prev)} />
       </div>
-      {newTaskVisible && isBoardExist && (
+      {newTaskVisible && (
         <NewTaskModal onClose={() => setNewTaskVisible(false)} />
       )}
-      {optionsVisible && !editBoardVisible && !deleteBoardVisible && (
+      {optionsVisible && (
         <OptionsModal
           type="Board"
           onEditClick={() => setEditBoardVisible(true)}
           onDeleteClick={() => setDeleteBoardVisible(true)}
         />
       )}
-      {editBoardVisible && isBoardExist && (
+      {editBoardVisible && (
         <EditBoardModal
           onClose={() => {
             setEditBoardVisible(false);
@@ -63,7 +58,7 @@ export const Header = () => {
           }}
         />
       )}
-      {deleteBoardVisible && isBoardExist && (
+      {deleteBoardVisible && (
         <DeleteModal
           type="board"
           activeName={activeBoard.name}

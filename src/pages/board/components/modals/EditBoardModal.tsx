@@ -34,7 +34,7 @@ export const EditBoardModal = ({ onClose }: Props) => {
             (column) => column?.title.trimStart().length !== 0
           );
           dispatch(addNewColumn(values.uuid, values.name, columns));
-          onClose!();
+          onClose?.();
         }}
       >
         {(props) => (

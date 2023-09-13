@@ -10,7 +10,7 @@ import cl from "./modal_styles.module.css";
 
 type Props = {
   type: "board" | "task";
-  activeName: string;
+  activeName: string | undefined;
   taskUuid?: string;
   onClose?: () => void;
 };
@@ -44,9 +44,9 @@ export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
               dispatch(deleteBoard(activeBoard.uuid));
               dispatch(deleteACtiveBoard());
             } else {
-              dispatch(deleteTask(taskUuid!));
+              if (taskUuid) dispatch(deleteTask(taskUuid));
             }
-            onClose!();
+            onClose?.();
           }}
         />
         <Button

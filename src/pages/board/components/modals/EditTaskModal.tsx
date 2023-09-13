@@ -16,7 +16,7 @@ import cl from "./modal_styles.module.css";
 import { EditTaskSchema } from "../../../../utils/utils";
 
 type Props = {
-  taskUuid: string;
+  taskUuid: string | undefined;
   onClose?: () => void;
   onTaskModalClose: () => void;
 };
@@ -31,11 +31,14 @@ export const EditTaskModal = ({
   );
 
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
-  const task = tasks.find((task) => task.uuid === taskUuid)!;
+  const task = tasks.find((task) => task.uuid === taskUuid);
   const column = activeBoard.columns.find(
     (column) => column.uuid === task?.columnUuid
-  )?.title!;
-  const [subtasks, setSubtasks] = useState(task?.subtasks.length);
+  )?.title;
+
+  const [subtasks, setSubtasks] = useState<number>(
+    task ? task.subtasks.length : 2
+  );
 
   const dispatch = useDispatch();
 
@@ -52,15 +55,18 @@ export const EditTaskModal = ({
         onSubmit={(values) => {
           const columnUuid = activeBoard.columns.find(
             (column) => column.title === values.columnTitle
-          )!.uuid;
+          )?.uuid;
           const subtasks = values.subtasks?.filter(
             (subtask) => subtask?.text.trimStart().length !== 0
           );
-          dispatch(moveTask(taskUuid, columnUuid));
-          dispatch(
-            editTask(taskUuid, values.title, values.description, subtasks)
-          );
-          onClose!();
+          if (taskUuid && columnUuid) dispatch(moveTask(taskUuid, columnUuid));
+
+          if (taskUuid && values.title && values.description && subtasks)
+            dispatch(
+              editTask(taskUuid, values.title, values.description, subtasks)
+            );
+
+          onClose?.();
           onTaskModalClose();
         }}
       >
@@ -76,7 +82,7 @@ export const EditTaskModal = ({
                 <Input
                   key={index}
                   formikName={`subtasks[${index}].text`}
-                  defaultVal={task.subtasks[index]?.text}
+                  defaultVal={task?.subtasks[index]?.text}
                 />
               ))}
               <Button

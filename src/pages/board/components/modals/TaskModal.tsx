@@ -18,7 +18,7 @@ import cl from "./modal_styles.module.css";
 import { EditTaskModal } from "./EditTaskModal";
 
 type Props = {
-  taskUuid: string;
+  taskUuid: string | undefined;
   onClose: () => void;
 };
 
@@ -32,7 +32,7 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
   );
 
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
-  const task = tasks.find((task) => task.uuid === taskUuid)!;
+  const task = tasks.find((task) => task.uuid === taskUuid);
 
   const columnTitle = activeBoard.columns.find(
     (column) => column.uuid === task?.columnUuid
@@ -40,106 +40,98 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
 
   const checkedSubtasks = checkedStatus(task);
 
-  const isBoardExist = activeBoard.name !== "";
-
   const dispatch = useDispatch();
+  if (editTaskVisible)
+    return (
+      <EditTaskModal
+        taskUuid={task && task.uuid}
+        onTaskModalClose={onClose}
+        onClose={() => setEditTaskVisible(false)}
+      />
+    );
   return (
-    <>
-      {!editTaskVisible && (
-        <ModalWrapper onWrapperClick={onClose}>
-          <Formik
-            initialValues={{
-              taskUuid: task?.uuid,
-              columnTitle: columnTitle,
-            }}
-            onSubmit={(values) => {
-              const columnUuid = activeBoard.columns.find(
-                (column) => column.title === values.columnTitle
-              )!.uuid;
-              dispatch(moveTask(values.taskUuid, columnUuid));
-              onClose();
-            }}
-          >
-            {(props) => (
-              <>
-                <div className={cl.modal_task_container}>
-                  <h2 className={cl.modal_task_title} data-testid="task-modal">
-                    {task?.title}
-                  </h2>
-                  {isBoardExist && (
-                    <OptionsIcon
-                      onOpen={() => setOptionsVisible((prev) => !prev)}
-                    />
-                  )}
-                </div>
-                <p className={cl.description}>{task?.description}</p>
-                {task?.subtasks.length !== 0 && (
-                  <FieldWrapper
-                    fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
-                  >
-                    {task &&
-                      task?.subtasks.map((subtask, i) => {
-                        return (
-                          <div
-                            className={classes(
-                              cl.subtasks_checkbox,
-                              subtask.checked && cl.active
-                            )}
-                            key={i}
-                          >
-                            <input
-                              type={"checkbox"}
-                              className={cl.checkbox}
-                              defaultChecked={subtask.checked}
-                              onClick={() => {
-                                dispatch(checkSubtask(subtask.uuid));
-                              }}
-                            />
-                            <p>{subtask.text}</p>
-                          </div>
-                        );
-                      })}
-                  </FieldWrapper>
-                )}
-                <FieldWrapper fieldName={"Current Status"}>
-                  <Select colUuid={task?.columnUuid} />
-                </FieldWrapper>
-                <Button
-                  text={"Save"}
-                  withIcon={false}
-                  testid={"save-task"}
-                  onClick={props.handleSubmit}
-                />
-              </>
+    <ModalWrapper onWrapperClick={onClose}>
+      <Formik
+        initialValues={{
+          taskUuid: task?.uuid,
+          columnTitle: columnTitle,
+        }}
+        onSubmit={(values) => {
+          const columnUuid = activeBoard.columns.find(
+            (column) => column.title === values.columnTitle
+          )?.uuid;
+          if (values.taskUuid && columnUuid)
+            dispatch(moveTask(values.taskUuid, columnUuid));
+          onClose();
+        }}
+      >
+        {(props) => (
+          <>
+            <div className={cl.modal_task_container}>
+              <h2 className={cl.modal_task_title} data-testid="task-modal">
+                {task?.title}
+              </h2>
+              <OptionsIcon onOpen={() => setOptionsVisible((prev) => !prev)} />
+            </div>
+            <p className={cl.description}>{task?.description}</p>
+            {task?.subtasks.length !== 0 && (
+              <FieldWrapper
+                fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
+              >
+                {task &&
+                  task?.subtasks.map((subtask, i) => {
+                    return (
+                      <div
+                        className={classes(
+                          cl.subtasks_checkbox,
+                          subtask.checked && cl.active
+                        )}
+                        key={i}
+                      >
+                        <input
+                          type={"checkbox"}
+                          className={cl.checkbox}
+                          defaultChecked={subtask.checked}
+                          onClick={() => {
+                            dispatch(checkSubtask(subtask.uuid));
+                          }}
+                        />
+                        <p>{subtask.text}</p>
+                      </div>
+                    );
+                  })}
+              </FieldWrapper>
             )}
-          </Formik>
-          {optionsVisible && (
-            <OptionsModal
-              type={"Task"}
-              onEditClick={() => setEditTaskVisible(true)}
-              onDeleteClick={() => setDeleteTaskVisible(true)}
+            <FieldWrapper fieldName={"Current Status"}>
+              <Select colUuid={task?.columnUuid} />
+            </FieldWrapper>
+            <Button
+              text={"Save"}
+              withIcon={false}
+              testid={"save-task"}
+              onClick={props.handleSubmit}
             />
-          )}
-          {deleteTaskVisible && (
-            <DeleteModal
-              activeName={task?.title}
-              type={"task"}
-              taskUuid={task?.uuid}
-              onClose={() => {
-                onClose();
-                setDeleteTaskVisible(false);
-              }}
-            />
-          )}
-        </ModalWrapper>
-      )}
-      {editTaskVisible && (
-        <EditTaskModal
-          taskUuid={task?.uuid}
-          onTaskModalClose={onClose}
-          onClose={() => setEditTaskVisible(false)}
+          </>
+        )}
+      </Formik>
+      {optionsVisible && (
+        <OptionsModal
+          type={"Task"}
+          onEditClick={() => setEditTaskVisible(true)}
+          onDeleteClick={() => setDeleteTaskVisible(true)}
         />
       )}
-    </>
+      {deleteTaskVisible && (
+        <DeleteModal
+          activeName={task && task.title}
+          type={"task"}
+          taskUuid={task?.uuid}
+          onClose={() => {
+            onClose();
+            setDeleteTaskVisible(false);
+          }}
+        />
+      )}
+    </ModalWrapper>
   );
 };
