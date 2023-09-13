@@ -30,7 +30,9 @@ export const EditBoardModal = ({ onClose }: Props) => {
         initialValues={activeBoard}
         validationSchema={EditBoardSchema}
         onSubmit={(values) => {
-          const columns = values.columns.filter((column) => column?.title);
+          const columns = values.columns.filter(
+            (column) => column?.title.trimStart().length !== 0
+          );
           dispatch(addNewColumn(values.uuid, values.name, columns));
           onClose!();
         }}

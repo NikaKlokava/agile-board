@@ -14,6 +14,7 @@ declare type TaskType = {
   title: string;
   description: string;
   subtasks: SubtasksType;
+  time: number;
 };
 declare type TasksType = TaskType[];
 
@@ -67,6 +68,7 @@ declare type AddTaskPayloadType = {
   subtasks: SubtasksType;
   subtaskUuid?: string;
   taskUuid?: string;
+  time?: number;
 };
 
 declare type AddTaskActionType = {

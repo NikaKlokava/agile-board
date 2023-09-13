@@ -24,6 +24,7 @@ export const tasksReducer = (
           {
             ...action.payload,
             uuid: uuidv4(),
+            time: new Date().getTime(),
             subtasks: [
               ...action.payload.subtasks.map((subtask) => {
                 return {
@@ -65,6 +66,7 @@ export const tasksReducer = (
             if (task.uuid === action.payload.taskUuid)
               return {
                 ...task,
+                time: new Date().getTime(),
                 columnUuid: action.payload.columnUuid,
               };
             return task;

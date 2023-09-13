@@ -52,31 +52,33 @@ export const BoardContent = () => {
                     <div className={cl.column_title}>{column.title}</div>
                   </div>
                   {tasks &&
-                    tasks.map((task, index) => {
-                      if (task.columnUuid === column.uuid) {
-                        return (
-                          <div
-                            className={cl.tasks_container}
-                            key={index}
-                            data-testid="task-container"
-                            draggable
-                            onDragStart={(e) => handleOnDrag(e, task.uuid)}
-                            onClick={() => {
-                              setTaskModalVisile(true);
-                              setCurrentTaskUuid(task.uuid);
-                            }}
-                          >
-                            <div className={cl.task_title}>{task.title}</div>
-                            <div className={cl.task_success}>{`${checkedStatus(
-                              task!
-                            )} of ${
-                              task.subtasks.length
-                            } completed tasks`}</div>
-                          </div>
-                        );
-                      }
-                      return null;
-                    })}
+                    tasks
+                      .sort((a, b) => a.time - b.time)
+                      .map((task, index) => {
+                        if (task.columnUuid === column.uuid) {
+                          return (
+                            <div
+                              className={cl.tasks_container}
+                              key={index}
+                              data-testid="task-container"
+                              draggable
+                              onDragStart={(e) => handleOnDrag(e, task.uuid)}
+                              onClick={() => {
+                                setTaskModalVisile(true);
+                                setCurrentTaskUuid(task.uuid);
+                              }}
+                            >
+                              <div className={cl.task_title}>{task.title}</div>
+                              <div
+                                className={cl.task_success}
+                              >{`${checkedStatus(task!)} of ${
+                                task.subtasks.length
+                              } completed tasks`}</div>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })}
                 </div>
               );
             })}
