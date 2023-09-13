@@ -42,7 +42,8 @@ export const NewTaskModal = ({ onClose }: Props) => {
             (column) => column?.title === values.columnTitle
           )?.uuid;
           const subtasks = values.subtasks.filter(
-            (subtask) => subtask?.text !== undefined && subtask?.text !== ""
+            (subtask) =>
+              subtask?.text !== undefined && subtask?.text.trimStart().length !== 0
           );
           dispatch(
             addNewTask({

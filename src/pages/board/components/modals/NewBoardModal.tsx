@@ -25,7 +25,9 @@ export const NewBoardModal = ({ onClose }: Props) => {
         validationSchema={BoardSchema}
         onSubmit={(values) => {
           const columns = values.columns.filter(
-            (column) => column?.title !== undefined
+            (column) =>
+              column?.title !== undefined &&
+              column.title.trimStart().length !== 0
           );
           dispatch(
             addBoard({
