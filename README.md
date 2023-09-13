@@ -2,6 +2,32 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#
+
+# _`Agile-Board`_
+
+## Work with:
+
+- github actions(create workflow with SSH);
+- react components;
+- react hooks: _useEffect, useState_;
+- redux hooks: _useDispatch, useSelector_;
+- libraries :
+  - Redux
+  - formik;
+  - react-router-dom;
+  - classnames;
+  - lodash;
+  - uuid;
+- unit tests, snapshot tests, TDD;
+- useFormikContext, validationSchema;
+- mocks;
+- css modules;
+
+## [_Website_](https://NikaKlokava.github.io/agile-board)
+
+#
+
 ## Available Scripts
 
 In the project directory, you can run:
