@@ -34,6 +34,7 @@
   flex-direction: column;
   row-gap: 20px;
   min-width: 280px;
+  min-height: 70vh;
 }
 
 .title_container {
