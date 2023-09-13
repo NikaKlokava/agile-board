@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { isEqual } from "lodash";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { selectBoard } from "../../../redux/actionCreators/newBoardCreator";
-import { NewBoardModal } from "../../../pages/board/components";
+// import { NewBoardModal } from "../../../pages/board/components";
 import classes from "classnames";
 import cl from "./boards.module.css";
 
