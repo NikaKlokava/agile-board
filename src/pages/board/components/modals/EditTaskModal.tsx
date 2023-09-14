@@ -16,8 +16,8 @@ import cl from "./modal_styles.module.css";
 import { EditTaskSchema } from "../../../../utils/utils";
 
 type Props = {
-  taskUuid: string | undefined;
-  onClose?: () => void;
+  taskUuid: string;
+  onClose: () => void;
   onTaskModalClose: () => void;
 };
 
@@ -31,44 +31,44 @@ export const EditTaskModal = ({
   );
 
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
-  const task = tasks.find((task) => task.uuid === taskUuid);
-  const column = activeBoard.columns.find(
-    (column) => column.uuid === task?.columnUuid
-  )?.title;
+  const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
+  const task = tasks[taskIndex];
 
-  const [subtasks, setSubtasks] = useState<number>(
-    task ? task.subtasks.length : 2
+  const columnIndex = activeBoard.columns.findIndex(
+    (column) => column.uuid === task.columnUuid
   );
+  const column = activeBoard.columns[columnIndex].title;
+
+  const [subtasks, setSubtasks] = useState<number>(task.subtasks.length);
 
   const dispatch = useDispatch();
 
+  const handleSubmit = (values: EditTaskType) => {
+    const columnIndex = activeBoard.columns.findIndex(
+      (column) => column.title === values.columnTitle
+    );
+    const columnUuid = activeBoard.columns[columnIndex].uuid;
+
+    const subtasks = values.subtasks.filter(
+      (subtask) => subtask?.text && subtask.text.trimStart().length !== 0
+    );
+    dispatch(moveTask(taskUuid, columnUuid));
+    dispatch(editTask(taskUuid, values.title, values.description, subtasks));
+
+    onClose();
+    onTaskModalClose();
+  };
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={{
-          title: task?.title,
-          description: task?.description,
-          subtasks: task?.subtasks,
+          title: task.title,
+          description: task.description,
+          subtasks: task.subtasks,
           columnTitle: column,
         }}
         validationSchema={EditTaskSchema}
-        onSubmit={(values) => {
-          const columnUuid = activeBoard.columns.find(
-            (column) => column.title === values.columnTitle
-          )?.uuid;
-          const subtasks = values.subtasks?.filter(
-            (subtask) => subtask?.text.trimStart().length !== 0
-          );
-          if (taskUuid && columnUuid) dispatch(moveTask(taskUuid, columnUuid));
-
-          if (taskUuid && values.title && values.description && subtasks)
-            dispatch(
-              editTask(taskUuid, values.title, values.description, subtasks)
-            );
-
-          onClose?.();
-          onTaskModalClose();
-        }}
+        onSubmit={(values) => handleSubmit(values)}
       >
         {({ values, handleSubmit }) => (
           <>
@@ -77,12 +77,12 @@ export const EditTaskModal = ({
             </h2>
             <FieldName name={values.title} formikName="title" />
             <DescriptionField description={values.description} />
-            <FieldWrapper fieldName={"Subtasks"} clName="style_container">
+            <FieldWrapper fieldName={"Subtasks"}>
               {Array.from({ length: subtasks }, (_, index) => (
                 <Input
                   key={index}
                   formikName={`subtasks[${index}].text`}
-                  defaultVal={task?.subtasks[index]?.text}
+                  defaultVal={task.subtasks[index]?.text}
                 />
               ))}
               <Button
@@ -93,7 +93,7 @@ export const EditTaskModal = ({
               />
             </FieldWrapper>
             <FieldWrapper fieldName="Current Status">
-              <Select colUuid={task?.columnUuid} />
+              <Select colUuid={task.columnUuid} />
             </FieldWrapper>
             <Button
               text="Save Edit"

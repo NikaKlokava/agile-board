@@ -15,7 +15,7 @@ export const BoardNavbarModal = ({ onClose }: Props) => {
     (state) => state.activeBoard
   );
   const noBoard = activeBoard.name === "";
-  
+
   if (newBoardVisible || noBoard)
     return <NewBoardModal onClose={() => setNewBoardVisible(false)} />;
 

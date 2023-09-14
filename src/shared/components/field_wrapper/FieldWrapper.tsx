@@ -1,16 +1,14 @@
 import { ReactNode } from "react";
-import classes from "classnames";
 import cl from "./field_wrapper.module.css";
 
 type Props = {
   children: ReactNode;
   fieldName: string;
-  clName?: "style_container";
 };
 
-export const FieldWrapper = ({ fieldName, children, clName }: Props) => {
+export const FieldWrapper = ({ fieldName, children }: Props) => {
   return (
-    <div className={classes(cl.container, clName && cl[clName])}>
+    <div className={cl.container}>
       <p className={cl.title}>{fieldName}</p>
       {children}
     </div>

@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewColumn } from "../../../../redux/actionCreators/newBoardCreator";
 import { Button } from "../../../../shared/components/button";
@@ -11,10 +11,10 @@ import { EditBoardSchema } from "../../../../utils/utils";
 import cl from "./modal_styles.module.css";
 
 type Props = {
-  onClose?: () => void;
+  onClose: () => void;
 };
 
-export const EditBoardModal = ({ onClose }: Props) => {
+export const EditBoardModal = memo(({ onClose }: Props) => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
@@ -24,18 +24,20 @@ export const EditBoardModal = ({ onClose }: Props) => {
   );
   const dispatch = useDispatch();
 
+  const handleSubmit = (values: BoardType) => {
+    const columns = values.columns.filter(
+      (column) => column?.title && column.title.trimStart().length !== 0
+    );
+    dispatch(addNewColumn(values.uuid, values.name, columns));
+    onClose();
+  };
+
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={activeBoard}
         validationSchema={EditBoardSchema}
-        onSubmit={(values) => {
-          const columns = values.columns.filter(
-            (column) => column?.title.trimStart().length !== 0
-          );
-          dispatch(addNewColumn(values.uuid, values.name, columns));
-          onClose?.();
-        }}
+        onSubmit={(values) => handleSubmit(values)}
       >
         {(props) => (
           <>
@@ -43,7 +45,7 @@ export const EditBoardModal = ({ onClose }: Props) => {
               Edit Board
             </h2>
             <FieldName formikName={"name"} name={activeBoard.name} />
-            <FieldWrapper fieldName="Board Columns" clName="style_container">
+            <FieldWrapper fieldName="Board Columns">
               {Array.from({ length: columnLength }, (_, i) => {
                 return (
                   <Input
@@ -72,4 +74,4 @@ export const EditBoardModal = ({ onClose }: Props) => {
       </Formik>
     </ModalWrapper>
   );
-};
+});

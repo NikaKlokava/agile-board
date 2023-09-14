@@ -75,3 +75,34 @@ declare type AddTaskActionType = {
   type: string;
   payload: AddTaskPayloadType;
 };
+
+declare type EditTaskType = {
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+  columnTitle: string;
+};
+
+declare type NewBoardType = {
+  name: string | undefined;
+  columns: {
+    title: string;
+  }[];
+};
+
+declare type NewTaskType = {
+  columnTitle: string;
+  boardUuid: string;
+  title: string;
+  description: string;
+  subtasks: {
+    uuid: string;
+    text: string;
+    checked: boolean;
+  }[];
+};
+
+declare type TaskModalType = {
+  taskUuid: string;
+  columnTitle: string;
+};

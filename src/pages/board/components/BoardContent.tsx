@@ -1,4 +1,4 @@
-import { EditBoardModal, TaskModal } from "./modals";
+import { EditBoardModal, NewBoardModal, TaskModal } from "./modals";
 import React, { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +7,12 @@ import cl from "./styles/board_content.module.css";
 import { moveTask } from "../../../redux/actionCreators/newBoardCreator";
 
 export const BoardContent = () => {
+  const [newBoardVisible, setNewBoardVisible] = useState<boolean>(true);
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
+
+  const boards = useSelector<RootState, Boards>((state) => state.boards.boards);
 
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
@@ -31,6 +34,15 @@ export const BoardContent = () => {
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
   };
+
+  const noBoards = boards.length === 0;
+
+  if (newBoardVisible || noBoards)
+    return (
+      <div>
+        <NewBoardModal onClose={() => setNewBoardVisible(false)} />
+      </div>
+    );
 
   return (
     <div className={cl.board_content_wrapper}>

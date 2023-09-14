@@ -18,25 +18,24 @@ export const NewBoardModal = ({ onClose }: Props) => {
   const [columns, setColumns] = useState<number>(2);
   const dispatch = useDispatch();
 
+  const handleSubmit = (values: NewBoardType) => {
+    const columns = values.columns.filter(
+      (column) => column?.title && column.title.trimStart().length !== 0
+    );
+    dispatch(
+      addBoard({
+        name: values.name,
+        columns: columns,
+      })
+    );
+    onClose();
+  };
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={initialBoardData}
         validationSchema={BoardSchema}
-        onSubmit={(values) => {
-          const columns = values.columns.filter(
-            (column) =>
-              column?.title !== undefined &&
-              column.title.trimStart().length !== 0
-          );
-          dispatch(
-            addBoard({
-              name: values.name,
-              columns: columns,
-            })
-          );
-          onClose();
-        }}
+        onSubmit={(values) => handleSubmit(values)}
       >
         {(props) => (
           <>
@@ -44,7 +43,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
               Add New Board
             </h2>
             <FieldName formikName={"name"} />
-            <FieldWrapper fieldName={"Board Columns"} clName="style_container">
+            <FieldWrapper fieldName={"Board Columns"}>
               {Array.from({ length: columns }, (_, index) => (
                 <Input key={index} formikName={`columns[${index}].title`} />
               ))}

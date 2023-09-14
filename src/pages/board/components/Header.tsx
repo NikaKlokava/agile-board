@@ -66,6 +66,7 @@ export const Header = () => {
             setDeleteBoardVisible(false);
             setOptionsVisible(false);
           }}
+          taskUuid={""}
         />
       )}
       {boardNavbarVisible && (

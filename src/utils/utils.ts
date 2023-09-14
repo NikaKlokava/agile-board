@@ -5,7 +5,15 @@ export const initialBoardData = {
   columns: [{ title: "" }],
 };
 
-export const checkedStatus = (task: TaskType | undefined) => {
+export const initialTaskData = {
+  boardUuid: "",
+  columnTitle: "",
+  title: "",
+  description: "",
+  subtasks: [{ uuid: "", text: "", checked: false }],
+};
+
+export const checkedStatus = (task: TaskType) => {
   return task?.subtasks.reduce((accum: boolean[], current) => {
     if (current.checked === true) return [...accum, current.checked];
     return accum;
@@ -16,7 +24,7 @@ export const BoardSchema = Yup.object().shape({
   name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
   columns: Yup.array().of(
     Yup.object().shape({
-      title: Yup.string().min(3, "Too Short!").max(14, "Too Long!"),
+      title: Yup.string().max(14, "Too Long!"),
     })
   ),
 });

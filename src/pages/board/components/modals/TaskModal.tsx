@@ -10,7 +10,7 @@ import { Select } from "../../../../shared/components/select";
 import { checkedStatus } from "../../../../utils/utils";
 import { Button } from "../../../../shared/components/button";
 import { OptionsIcon } from "../../../../shared/components/options_icon";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { OptionsModal } from "./OptionsModal";
 import { DeleteModal } from "./DeleteModal";
 import classes from "classnames";
@@ -26,60 +26,82 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
   const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
   const [deleteTaskVisible, setDeleteTaskVisible] = useState<boolean>(false);
   const [editTaskVisible, setEditTaskVisible] = useState<boolean>(false);
+  const [checkedSubtasks, setCheckedSubtasks] = useState<number>(0);
 
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
 
   const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
-  const task = tasks.find((task) => task.uuid === taskUuid);
+  const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
+  const task = tasks[taskIndex];
 
-  const columnTitle = activeBoard.columns.find(
-    (column) => column.uuid === task?.columnUuid
-  )?.title;
+  const columnIndex = activeBoard.columns.findIndex(
+    (column) => column.uuid === task.columnUuid
+  );
+  const columnTitle = activeBoard.columns[columnIndex].title;
 
-  const checkedSubtasks = checkedStatus(task);
+  useMemo(() => {
+    const checked = checkedStatus(task);
+    setCheckedSubtasks(checked);
+  }, [task]);
 
   const dispatch = useDispatch();
+
+  const handleSubmit = (values: TaskModalType) => {
+    const columnIndex = activeBoard.columns.findIndex(
+      (column) => column.title === values.columnTitle
+    );
+    const columnUuid = activeBoard.columns[columnIndex].uuid;
+
+    dispatch(moveTask(values.taskUuid, columnUuid));
+    onClose();
+  };
+
   if (editTaskVisible)
     return (
       <EditTaskModal
-        taskUuid={task && task.uuid}
+        taskUuid={task.uuid}
         onTaskModalClose={onClose}
         onClose={() => setEditTaskVisible(false)}
+      />
+    );
+  if (deleteTaskVisible)
+    return (
+      <DeleteModal
+        activeName={task && task.title}
+        type={"task"}
+        taskUuid={task.uuid}
+        onClose={() => {
+          onClose();
+          setDeleteTaskVisible(false);
+        }}
       />
     );
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={{
-          taskUuid: task?.uuid,
+          taskUuid: task.uuid,
           columnTitle: columnTitle,
         }}
-        onSubmit={(values) => {
-          const columnUuid = activeBoard.columns.find(
-            (column) => column.title === values.columnTitle
-          )?.uuid;
-          if (values.taskUuid && columnUuid)
-            dispatch(moveTask(values.taskUuid, columnUuid));
-          onClose();
-        }}
+        onSubmit={(values) => handleSubmit(values)}
       >
         {(props) => (
           <>
             <div className={cl.modal_task_container}>
               <h2 className={cl.modal_task_title} data-testid="task-modal">
-                {task?.title}
+                {task.title}
               </h2>
               <OptionsIcon onOpen={() => setOptionsVisible((prev) => !prev)} />
             </div>
-            <p className={cl.description}>{task?.description}</p>
-            {task?.subtasks.length !== 0 && (
+            <p className={cl.description}>{task.description}</p>
+            {task.subtasks.length !== 0 && (
               <FieldWrapper
-                fieldName={`Subtasks (${checkedSubtasks} of ${task?.subtasks.length})`}
+                fieldName={`Subtasks (${checkedSubtasks} of ${task.subtasks.length})`}
               >
                 {task &&
-                  task?.subtasks.map((subtask, i) => {
+                  task.subtasks.map((subtask, i) => {
                     return (
                       <div
                         className={classes(
@@ -103,7 +125,7 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
               </FieldWrapper>
             )}
             <FieldWrapper fieldName={"Current Status"}>
-              <Select colUuid={task?.columnUuid} />
+              <Select colUuid={task.columnUuid} />
             </FieldWrapper>
             <Button
               text={"Save"}
@@ -119,17 +141,6 @@ export const TaskModal = ({ taskUuid, onClose }: Props) => {
           type={"Task"}
           onEditClick={() => setEditTaskVisible(true)}
           onDeleteClick={() => setDeleteTaskVisible(true)}
-        />
-      )}
-      {deleteTaskVisible && (
-        <DeleteModal
-          activeName={task && task.title}
-          type={"task"}
-          taskUuid={task?.uuid}
-          onClose={() => {
-            onClose();
-            setDeleteTaskVisible(false);
-          }}
         />
       )}
     </ModalWrapper>

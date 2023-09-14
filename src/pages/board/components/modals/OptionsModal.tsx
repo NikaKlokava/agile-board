@@ -3,8 +3,8 @@ import cl from "./modal_styles.module.css";
 
 type Props = {
   type: "Board" | "Task";
-  onEditClick?: () => void;
-  onDeleteClick?: () => void;
+  onEditClick: () => void;
+  onDeleteClick: () => void;
 };
 
 export const OptionsModal = ({ type, onEditClick, onDeleteClick }: Props) => {
