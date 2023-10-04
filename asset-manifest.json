@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/agile-board/static/css/main.2b45f1cd.css",
-    "main.js": "/agile-board/static/js/main.227b6bcd.js",
+    "main.css": "/agile-board/static/css/main.ad286385.css",
+    "main.js": "/agile-board/static/js/main.b46f07a9.js",
     "static/media/flow_background.png": "/agile-board/static/media/flow_background.859820c808f92bdd724b.png",
     "static/media/modal_img.png": "/agile-board/static/media/modal_img.8df70095f0af029927f4.png",
     "static/media/github.svg": "/agile-board/static/media/github.ec181e98780739b34dd1.svg",
@@ -17,11 +17,11 @@
     "static/media/delete.svg": "/agile-board/static/media/delete.f1c78f33f446ea52da1a.svg",
     "static/media/plus.svg": "/agile-board/static/media/plus.b6e42b3a3c7c17a4789b.svg",
     "static/media/down.svg": "/agile-board/static/media/down.c8e436d8fb4e7dc0d5d4.svg",
-    "main.2b45f1cd.css.map": "/agile-board/static/css/main.2b45f1cd.css.map",
-    "main.227b6bcd.js.map": "/agile-board/static/js/main.227b6bcd.js.map"
+    "main.ad286385.css.map": "/agile-board/static/css/main.ad286385.css.map",
+    "main.b46f07a9.js.map": "/agile-board/static/js/main.b46f07a9.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b45f1cd.css",
-    "static/js/main.227b6bcd.js"
+    "static/css/main.ad286385.css",
+    "static/js/main.b46f07a9.js"
   ]
 }
