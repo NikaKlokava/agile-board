@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { FieldArray, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import {
   editTask,
@@ -6,14 +6,13 @@ import {
 } from "../../../../redux/actionCreators/newBoardCreator";
 import { Button } from "../../../../shared/components/button";
 import { DescriptionField } from "../../../../shared/components/description/DescriptionField";
-import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import { FieldName } from "../../../../shared/components/field_name";
-import { useState } from "react";
 import cl from "./modal_styles.module.css";
 import { EditTaskSchema } from "../../../../utils/utils";
+import { AddBtn } from "../../../../shared/components/add_button";
 
 type Props = {
   taskUuid: string;
@@ -37,72 +36,111 @@ export const EditTaskModal = ({
   const columnIndex = activeBoard.columns.findIndex(
     (column) => column.uuid === task.columnUuid
   );
-  const column = activeBoard.columns[columnIndex].title;
-
-  const [subtasks, setSubtasks] = useState<number>(task.subtasks.length);
+  const column = activeBoard.columns[columnIndex]?.title;
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values: EditTaskType) => {
+  const checkedSubtasks = task?.subtasks?.reduce(
+    (accum: boolean[], current) => {
+      return [...accum, current.checked];
+    },
+    []
+  );
+
+  const onSubmit = (values: EditTaskType) => {
     const columnIndex = activeBoard.columns.findIndex(
       (column) => column.title === values.columnTitle
     );
     const columnUuid = activeBoard.columns[columnIndex].uuid;
-
     const subtasks = values.subtasks.filter(
-      (subtask) => subtask?.text && subtask.text.trimStart().length !== 0
+      (subtask) => subtask?.text && subtask?.text.trimStart().length !== 0
     );
     dispatch(moveTask(taskUuid, columnUuid));
     dispatch(editTask(taskUuid, values.title, values.description, subtasks));
-
     onClose();
     onTaskModalClose();
   };
+
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={{
-          title: task.title,
-          description: task.description,
-          subtasks: task.subtasks,
+          title: task?.title,
+          description: task?.description,
+          subtasks: task?.subtasks?.reduce((accum: string[], current) => {
+            return [...accum, current.text];
+          }, []),
           columnTitle: column,
         }}
         validationSchema={EditTaskSchema}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={(values) => {
+          const newSubtasks = values.subtasks.reduce(
+            (accum: { text: string; checked: boolean }[], current, index) => {
+              return [
+                ...accum,
+                {
+                  text: current,
+                  checked: checkedSubtasks[index],
+                },
+              ];
+            },
+            []
+          );
+          onSubmit({
+            ...values,
+            subtasks: newSubtasks,
+          });
+        }}
       >
-        {({ values, handleSubmit }) => (
-          <>
+        {(props) => (
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              props.handleSubmit();
+            }}
+            className={cl.form_container}
+          >
             <h2 className={cl.modal_title} data-testid="new-task-modal">
-              Add New Task
+              Edit Task
             </h2>
-            <FieldName name={values.title} formikName="title" />
-            <DescriptionField description={values.description} />
-            <FieldWrapper fieldName={"Subtasks"}>
-              {Array.from({ length: subtasks }, (_, index) => (
-                <Input
-                  key={index}
-                  formikName={`subtasks[${index}].text`}
-                  defaultVal={task.subtasks[index]?.text}
-                />
-              ))}
-              <Button
-                text="Add New Subtask"
-                withIcon={true}
-                testid={"add-new-subtask-btn"}
-                onClick={() => setSubtasks((prev) => prev + 1)}
-              />
-            </FieldWrapper>
-            <FieldWrapper fieldName="Current Status">
-              <Select colUuid={task.columnUuid} />
-            </FieldWrapper>
+            <FieldName formikName="title" />
+            {props.errors.title && props.touched.title && (
+              <p style={{ color: "red" }}>{props.errors.title}</p>
+            )}
+            <DescriptionField />
+            <FieldArray
+              name="subtasks"
+              render={(arrayHelpers) => (
+                <>
+                  <div className={cl.container}>
+                    <p className={cl.title}>Subtasks</p>
+                    {props.values.subtasks?.map((_, index) => (
+                      <Input
+                        key={index}
+                        formikName={`subtasks[${index}]`}
+                        remove={arrayHelpers.remove}
+                        index={index}
+                        checked={checkedSubtasks}
+                      />
+                    ))}
+                    <AddBtn
+                      add={arrayHelpers.push}
+                      text="Add New Subtask"
+                      testid={"add-new-subtask-btn"}
+                    />
+                  </div>
+                </>
+              )}
+            />
+            <Select />
             <Button
               text="Save Edit"
               withIcon={false}
               newClass="center"
               testid={"create-task-btn"}
-              onClick={handleSubmit}
+              type="submit"
             />
-          </>
+          </Form>
         )}
       </Formik>
     </ModalWrapper>

@@ -83,7 +83,7 @@ export const editTask = (
   taskUuid: string,
   title: string,
   description: string,
-  subtasks: SubtasksType
+  subtasks: {text: string, checked: boolean}[]
 ) => ({
   type: EDIT_TASK_ACTION,
   payload: { taskUuid, title, description, subtasks },

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Boards } from "../../../shared/components/boards";
 import { NewBoardModal } from "./modals";
 import cl from "./styles/sidebar.module.css";
 
-export const Sidebar = () => {
+export const Sidebar = memo(() => {
   const [sidebarVisible, setSidebarVisible] = useState<boolean>(true);
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
 
@@ -26,4 +26,4 @@ export const Sidebar = () => {
       </div>
     </>
   );
-};
+});

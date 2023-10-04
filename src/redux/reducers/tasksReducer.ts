@@ -73,11 +73,13 @@ export const tasksReducer = (
       };
     case EDIT_TASK_ACTION:
       const updatedSubtasks = action.payload.subtasks.map((subtask) => {
-        return {
+        const newSubtask = {
           ...subtask,
           uuid: uuidv4(),
           checked: false,
         };
+        if (!subtask.checked) return newSubtask;
+        return { ...subtask, uuid: uuidv4() };
       });
       const updatedTasks = state.tasks.map((task: TaskType) => {
         const updatedTask = {

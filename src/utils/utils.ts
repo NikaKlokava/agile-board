@@ -30,14 +30,7 @@ export const TaskSchema = Yup.object().shape({
   columnTitle: Yup.string(),
   title: Yup.string().min(3, "Too Short!").max(45, "Too Long!").required(),
   description: Yup.string(),
-  subtasks: Yup.array().of(Yup.string().max(14, "Too Long!"))
-  // Yup.array().of(
-  //   Yup.object().shape({
-  //     uuid: Yup.string(),
-  //     text: Yup.string().min(1, "Too Short!").max(14, "Too Long!"),
-  //     checked: Yup.boolean(),
-  //   })
-  // ),
+  subtasks: Yup.array().of(Yup.string().max(14, "Too Long!")),
 });
 
 export const EditBoardSchema = Yup.object().shape({
@@ -49,12 +42,6 @@ export const EditBoardSchema = Yup.object().shape({
 export const EditTaskSchema = Yup.object().shape({
   title: Yup.string().min(3, "Too Short!").max(45, "Too Long!").required(),
   description: Yup.string(),
-  subtasks: Yup.array().of(
-    Yup.object().shape({
-      uuid: Yup.string(),
-      text: Yup.string().min(1, "Too Short!").max(14, "Too Long!"),
-      checked: Yup.boolean(),
-    })
-  ),
+  subtasks: Yup.array().of(Yup.string().max(14, "Too Long!")),
   columnTitle: Yup.string(),
 });

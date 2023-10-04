@@ -95,7 +95,7 @@ export const BoardContent = () => {
           <div
             className={cl.add_column}
             onClick={() => setEditBoardVisible(true)}
-            data-testid="add_column"
+            data-testid="add-column-element"
           >
             <p className={cl.add_column_title}>{"+ New Column"}</p>
           </div>

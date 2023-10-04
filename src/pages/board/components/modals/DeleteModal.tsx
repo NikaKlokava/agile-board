@@ -39,6 +39,7 @@ export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
           withIcon={false}
           testid={"delete-btn"}
           newClass="delete"
+          type="button"
           onClick={() => {
             if (type === "board") {
               dispatch(deleteBoard(activeBoard.uuid));
@@ -54,6 +55,7 @@ export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
           withIcon={false}
           testid={"delete-btn"}
           newClass="cancel"
+          type="button"
           onClick={onClose}
         />
       </div>

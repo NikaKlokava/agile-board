@@ -2,6 +2,23 @@
   align-self: center;
 }
 
+.form_container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 10px;
+}
+
+.title {
+  color: #2b2b2baf;
+}
+
 .input_style {
   width: 100%;
 }

@@ -10,50 +10,63 @@ Array [
     className="modal_container"
   >
      
-    <div
-      className="modal_task_container"
-    >
-      <h2
-        className="modal_task_title"
-        data-testid="task-modal"
-      />
-    </div>
-    <p
-      className="description"
-    />
-    <div
-      className="container"
-    >
-      <p
-        className="title"
-      >
-        Subtasks (undefined of undefined)
-      </p>
-    </div>
-    <div
-      className="container"
-    >
-      <p
-        className="title"
-      >
-        Current Status
-      </p>
-      <select
-        name="columnTitle"
-        onChange={[Function]}
-      />
-    </div>
-    <div
-      className="button"
-      data-testid="save-task"
-      onClick={[Function]}
+    <form
+      action="#"
+      className="form_container"
+      onReset={[Function]}
+      onSubmit={[Function]}
     >
       <div
-        className="button_text"
+        className="modal_task_container"
       >
-        Save
+        <h2
+          className="modal_task_title"
+          data-testid="task-modal"
+        />
+        <div
+          className="options_icon"
+          data-testid="options-icon"
+          onClick={[Function]}
+        />
       </div>
-    </div>
+      <p
+        className="description"
+      />
+      <div
+        className="container"
+      >
+        <p
+          className="title"
+        >
+          Subtasks (undefined of undefined)
+        </p>
+      </div>
+      <div
+        className="container"
+      >
+        <p
+          className="title"
+        >
+          Current Status
+        </p>
+        <select
+          name="columnTitle"
+          onBlur={[Function]}
+          onChange={[Function]}
+        />
+      </div>
+      <button
+        className="button"
+        data-testid="save-task"
+        type="submit"
+      >
+        <div
+          className="button_text"
+        >
+          Save
+        </div>
+      </button>
+    </form>
   </div>,
 ]
 `;

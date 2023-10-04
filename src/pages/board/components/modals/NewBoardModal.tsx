@@ -1,24 +1,22 @@
 import { Button } from "../../../../shared/components/button";
-import { FieldWrapper } from "../../../../shared/components/field_wrapper";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
-import { Formik } from "formik";
+import { FieldArray, Form, Formik } from "formik";
 import { addBoard } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
 import { BoardSchema, initialBoardData } from "../../../../utils/utils";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import cl from "./modal_styles.module.css";
 import { FieldName } from "../../../../shared/components/field_name";
+import cl from "./modal_styles.module.css";
+import { AddBtn } from "../../../../shared/components/add_button";
 
 type Props = {
   onClose: () => void;
 };
 
 export const NewBoardModal = ({ onClose }: Props) => {
-  const [columns, setColumns] = useState<number>(2);
   const dispatch = useDispatch();
 
-  const handleSubmit = (values: NewBoardType) => {
+  const onSubmit = (values: NewBoardType) => {
     const columns = values.columns.filter(
       (column) => column?.title && column.title.trimStart().length !== 0
     );
@@ -30,40 +28,65 @@ export const NewBoardModal = ({ onClose }: Props) => {
     );
     onClose();
   };
+
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
         initialValues={initialBoardData}
         validationSchema={BoardSchema}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={(values) => {
+          onSubmit({
+            ...values,
+            columns: values.columns.map((e) => ({ title: e })),
+          });
+        }}
       >
         {(props) => (
-          <>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              props.handleSubmit();
+            }}
+            className={cl.form_container}
+          >
             <h2 className={cl.modal_title} data-testid="new-board-modal">
               Add New Board
             </h2>
             <FieldName formikName={"name"} />
-            <FieldWrapper fieldName={"Board Columns"}>
-              {Array.from({ length: columns }, (_, index) => (
-                <Input key={index} formikName={`columns[${index}].title`} />
-              ))}
-            </FieldWrapper>
-            <Button
-              text={"Add New Column"}
-              withIcon={true}
-              testid={"add-new-column-btn"}
-              onClick={() => setColumns((prev) => prev + 1)}
+            {props.errors.name && props.touched.name && (
+              <p style={{ color: "red" }}>{props.errors.name}</p>
+            )}
+            <FieldArray
+              name="columns"
+              render={(arrayHelpers) => (
+                <>
+                  <div className={cl.container}>
+                    <p className={cl.title}>Board Columns</p>
+                    {props.values.columns.map((_, index) => (
+                      <Input
+                        key={index}
+                        formikName={`columns[${index}]`}
+                        remove={arrayHelpers.remove}
+                        index={index}
+                      />
+                    ))}
+                  </div>
+                  <AddBtn
+                    add={arrayHelpers.push}
+                    text="Add New Column"
+                    testid={"add-new-column-btn"}
+                  />
+                </>
+              )}
             />
             <Button
               text={"Create New Board"}
               withIcon={false}
               newClass="center"
               testid="create-new-board-btn"
-              onClick={() => {
-                props.handleSubmit();
-              }}
+              type="submit"
             />
-          </>
+          </Form>
         )}
       </Formik>
     </ModalWrapper>

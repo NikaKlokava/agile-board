@@ -1,17 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test the Sidebar component The Sidebar renders correctly 1`] = `
-<div
-  className="sidebar_wrapper"
->
+Array [
   <div
-    className="sidebar_title"
+    className="sidebar_wrapper"
   >
-    ALL BOARDS (0)
-  </div>
-  <div
-    className="board_title_items"
-  >
+    <div
+      className="sidebar_title"
+    >
+      ALL BOARDS (0)
+    </div>
+    <div
+      className="board_title_items"
+    />
     <div
       className="title_item"
       data-testid="new-board"
@@ -26,9 +27,10 @@ exports[`Test the Sidebar component The Sidebar renders correctly 1`] = `
         New board
       </p>
     </div>
-  </div>
+  </div>,
   <div
     className="hide_sidebar"
+    onClick={[Function]}
   >
     <div
       className="hide_icon"
@@ -38,6 +40,6 @@ exports[`Test the Sidebar component The Sidebar renders correctly 1`] = `
     >
       Hide sidebar
     </div>
-  </div>
-</div>
+  </div>,
+]
 `;

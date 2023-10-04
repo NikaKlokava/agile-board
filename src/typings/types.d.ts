@@ -79,7 +79,7 @@ declare type AddTaskActionType = {
 declare type EditTaskType = {
   title: string;
   description: string;
-  subtasks: SubtasksType;
+  subtasks: {text:string, checked: boolean}[];
   columnTitle: string;
 };
 

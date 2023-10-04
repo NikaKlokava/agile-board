@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
@@ -18,6 +18,13 @@ export const Header = () => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
+  const handleOptionsIconClick = useCallback(() => {
+    setOptionsVisible((prev) => !prev);
+  }, []);
+
+  const handleAddNewTaskClick = useCallback(() => {
+    setNewTaskVisible(true);
+  }, []);
 
   return (
     <div className={cl.header_wrapper}>
@@ -34,16 +41,17 @@ export const Header = () => {
         <Button
           text={"Add New Task"}
           withIcon={true}
-          onClick={() => setNewTaskVisible(true)}
+          onClick={handleAddNewTaskClick}
           testid={"add-new-task-btn"}
           newClass={"add-new-task"}
+          type="button"
         />
-        <OptionsIcon onOpen={() => setOptionsVisible((prev) => !prev)} />
+        <OptionsIcon onOpen={handleOptionsIconClick} />
       </div>
       {newTaskVisible && (
         <NewTaskModal onClose={() => setNewTaskVisible(false)} />
       )}
-      {optionsVisible && (
+      {optionsVisible && !editBoardVisible && !deleteBoardVisible && (
         <OptionsModal
           type="Board"
           onEditClick={() => setEditBoardVisible(true)}
