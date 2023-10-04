@@ -19,7 +19,11 @@ describe("Test the OptionsModal component", () => {
     const optionsModalSnap = renderer
       .create(
         <Provider store={store}>
-          <OptionsModal type={"Board"} />
+          <OptionsModal
+            type={"Board"}
+            onDeleteClick={() => {}}
+            onEditClick={() => {}}
+          />
         </Provider>
       )
       .toJSON();

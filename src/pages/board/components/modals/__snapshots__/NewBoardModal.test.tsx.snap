@@ -10,99 +10,111 @@ Array [
     className="modal_container"
   >
      
-    <h2
-      className="modal_title"
-      data-testid="new-board-modal"
+    <form
+      action="#"
+      className="form_container"
+      onReset={[Function]}
+      onSubmit={[Function]}
     >
-      Add New Board
-    </h2>
-    <div
-      className="container"
-    >
-      <p
-        className="title"
+      <h2
+        className="modal_title"
+        data-testid="new-board-modal"
       >
-        Task name
-      </p>
-      <input
-        autoComplete="off"
-        name="name"
-        onChange={[Function]}
-        placeholder="e.g Take coffee break"
-        spellCheck={false}
-        type="text"
-      />
-    </div>
-    <div
-      className="container style_container"
-    >
-      <p
-        className="title"
-      >
-        Board Columns
-      </p>
+        Add New Board
+      </h2>
       <div
-        className="input_container"
+        className="container"
       >
+        <p
+          className="title"
+        >
+          Task name
+        </p>
         <input
           autoComplete="off"
-          className="input_style"
-          maxLength={14}
-          name="columns[0].title"
+          data-testid="board-name-inpt"
+          name="name"
+          onBlur={[Function]}
           onChange={[Function]}
           placeholder="e.g Take coffee break"
-          spellCheck={false}
           type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="container"
+      >
+        <p
+          className="title"
+        >
+          Board Columns
+        </p>
+        <div
+          className="input_container"
+        >
+          <input
+            autoComplete="off"
+            className="input_style"
+            maxLength={14}
+            name="columns[0]"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="e.g Take coffee break"
+            type="text"
+            value=""
+          />
+          <div
+            className="delete_icon"
+            onClick={[Function]}
+          />
+        </div>
+        <div
+          className="input_container"
+        >
+          <input
+            autoComplete="off"
+            className="input_style"
+            maxLength={14}
+            name="columns[1]"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="e.g Take coffee break"
+            type="text"
+            value=""
+          />
+          <div
+            className="delete_icon"
+            onClick={[Function]}
+          />
+        </div>
+      </div>
+      <button
+        className="button"
+        data-testid="add-new-column-btn"
+        onClick={[Function]}
+        type="button"
+      >
+        <div
+          className="button_icon"
         />
         <div
-          className="delete_icon"
-          onClick={[Function]}
-        />
-      </div>
-      <div
-        className="input_container"
+          className="button_text"
+        >
+          Add New Column
+        </div>
+      </button>
+      <button
+        className="button center"
+        data-testid="create-new-board-btn"
+        type="submit"
       >
-        <input
-          autoComplete="off"
-          className="input_style"
-          maxLength={14}
-          name="columns[1].title"
-          onChange={[Function]}
-          placeholder="e.g Take coffee break"
-          spellCheck={false}
-          type="text"
-        />
         <div
-          className="delete_icon"
-          onClick={[Function]}
-        />
-      </div>
-    </div>
-    <div
-      className="button"
-      data-testid="add-new-column-btn"
-      onClick={[Function]}
-    >
-      <div
-        className="button_icon"
-      />
-      <div
-        className="button_text"
-      >
-        Add New Column
-      </div>
-    </div>
-    <div
-      className="button center"
-      data-testid="create-new-board-btn"
-      onClick={[Function]}
-    >
-      <div
-        className="button_text"
-      >
-        Create New Board
-      </div>
-    </div>
+          className="button_text"
+        >
+          Create New Board
+        </div>
+      </button>
+    </form>
   </div>,
 ]
 `;

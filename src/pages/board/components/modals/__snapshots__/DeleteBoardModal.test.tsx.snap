@@ -4,6 +4,7 @@ exports[`Test the DeleteBoardModal component The DeleteBoardModal renders correc
 Array [
   <div
     className="modal_wrapper"
+    onClick={[Function]}
   />,
   <div
     className="modal_container"
@@ -23,27 +24,30 @@ Array [
     <div
       className="btns_container"
     >
-      <div
+      <button
         className="button delete"
         data-testid="delete-btn"
         onClick={[Function]}
+        type="button"
       >
         <div
           className="button_text"
         >
           Delete
         </div>
-      </div>
-      <div
+      </button>
+      <button
         className="button cancel"
         data-testid="delete-btn"
+        onClick={[Function]}
+        type="button"
       >
         <div
           className="button_text"
         >
           Cancel
         </div>
-      </div>
+      </button>
     </div>
   </div>,
 ]

@@ -1,23 +1,19 @@
-import { useFormikContext } from "formik";
+import { FastField } from "formik";
+import { memo } from "react";
 import { FieldWrapper } from "../field_wrapper";
 import cl from "./description.module.css";
 
-type Props = {
-  description?: string;
-};
-
-export const DescriptionField = ({ description }: Props) => {
-  const { handleChange } = useFormikContext();
+export const DescriptionField = memo(() => {
   return (
     <FieldWrapper fieldName={"Description"}>
-      <textarea
+      <FastField
         className={cl.textarea}
-        spellCheck={false}
         placeholder="e.g. It's always good to take a break..."
-        onChange={handleChange}
-        defaultValue={description && description}
+        autoComplete="off"
+        type="text"
+        as="textarea"
         name="description"
       />
     </FieldWrapper>
   );
-};
+});

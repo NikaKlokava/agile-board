@@ -10,9 +10,9 @@ import cl from "./modal_styles.module.css";
 
 type Props = {
   type: "board" | "task";
-  activeName: string;
-  taskUuid?: string;
-  onClose?: () => void;
+  activeName: string | undefined;
+  taskUuid: string;
+  onClose: () => void;
 };
 
 export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
@@ -39,14 +39,15 @@ export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
           withIcon={false}
           testid={"delete-btn"}
           newClass="delete"
+          type="button"
           onClick={() => {
             if (type === "board") {
               dispatch(deleteBoard(activeBoard.uuid));
               dispatch(deleteACtiveBoard());
             } else {
-              dispatch(deleteTask(taskUuid!));
+              dispatch(deleteTask(taskUuid));
             }
-            onClose!();
+            onClose();
           }}
         />
         <Button
@@ -54,6 +55,7 @@ export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
           withIcon={false}
           testid={"delete-btn"}
           newClass="cancel"
+          type="button"
           onClick={onClose}
         />
       </div>

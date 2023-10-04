@@ -57,7 +57,7 @@ declare type AddBoardActionType = {
 
 declare type SelectBoardActionType = {
   type: string;
-  payload: { board: BoardType };
+  payload: { board: BoardType; columnUuid?: string };
 };
 
 declare type AddTaskPayloadType = {
@@ -74,4 +74,43 @@ declare type AddTaskPayloadType = {
 declare type AddTaskActionType = {
   type: string;
   payload: AddTaskPayloadType;
+};
+
+declare type EditTaskType = {
+  title: string;
+  description: string;
+  subtasks: {text:string, checked: boolean}[];
+  columnTitle: string;
+};
+
+declare type NewBoardType = {
+  name: string | undefined;
+  columns: {
+    title: string;
+  }[];
+};
+
+declare type NewBoardType2 = {
+  name: undefined;
+  columns: {
+    title: string;
+  }[];
+};
+
+declare type NewTaskType = {
+  columnTitle: string;
+  boardUuid: string;
+  title: string;
+  description: string;
+  subtasks: {
+    uuid: string;
+    text: string;
+    checked: boolean;
+  }[];
+};
+
+declare type TaskModalType = {
+  taskUuid: string;
+  columnTitle: string;
+  checked: boolean[];
 };

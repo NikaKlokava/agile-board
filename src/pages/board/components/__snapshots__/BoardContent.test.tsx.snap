@@ -1,48 +1,120 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test the BoardContent component The BoardContent renders correctly 1`] = `
-Array [
+<div>
   <div
-    className="sidebar_wrapper"
+    className="modal_wrapper"
+    onClick={[Function]}
+  />
+  <div
+    className="modal_container"
   >
-    <div
-      className="sidebar_title"
+     
+    <form
+      action="#"
+      className="form_container"
+      onReset={[Function]}
+      onSubmit={[Function]}
     >
-      ALL BOARDS (0)
-    </div>
-    <div
-      className="board_title_items"
-    >
+      <h2
+        className="modal_title"
+        data-testid="new-board-modal"
+      >
+        Add New Board
+      </h2>
       <div
-        className="title_item"
-        data-testid="new-board"
+        className="container"
+      >
+        <p
+          className="title"
+        >
+          Task name
+        </p>
+        <input
+          autoComplete="off"
+          data-testid="board-name-inpt"
+          name="name"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="e.g Take coffee break"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="container"
+      >
+        <p
+          className="title"
+        >
+          Board Columns
+        </p>
+        <div
+          className="input_container"
+        >
+          <input
+            autoComplete="off"
+            className="input_style"
+            maxLength={14}
+            name="columns[0]"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="e.g Take coffee break"
+            type="text"
+            value=""
+          />
+          <div
+            className="delete_icon"
+            onClick={[Function]}
+          />
+        </div>
+        <div
+          className="input_container"
+        >
+          <input
+            autoComplete="off"
+            className="input_style"
+            maxLength={14}
+            name="columns[1]"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="e.g Take coffee break"
+            type="text"
+            value=""
+          />
+          <div
+            className="delete_icon"
+            onClick={[Function]}
+          />
+        </div>
+      </div>
+      <button
+        className="button"
+        data-testid="add-new-column-btn"
         onClick={[Function]}
+        type="button"
       >
         <div
-          className="icon_new_board"
+          className="button_icon"
         />
-        <p
-          className="title new_board"
+        <div
+          className="button_text"
         >
-          New board
-        </p>
-      </div>
-    </div>
-    <div
-      className="hide_sidebar"
-    >
-      <div
-        className="hide_icon"
-      />
-      <div
-        className="hide_text"
+          Add New Column
+        </div>
+      </button>
+      <button
+        className="button center"
+        data-testid="create-new-board-btn"
+        type="submit"
       >
-        Hide sidebar
-      </div>
-    </div>
-  </div>,
-  <div
-    className="board_content_wrapper"
-  />,
-]
+        <div
+          className="button_text"
+        >
+          Create New Board
+        </div>
+      </button>
+    </form>
+  </div>
+</div>
 `;

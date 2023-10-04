@@ -6,8 +6,6 @@ import { Header } from "./Header";
 import App from "../../../App";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
-import { addBoard } from "../../../redux/actionCreators/newBoardCreator";
-import { MockTestAddBoard } from "../../../mocks/TestMocks";
 
 describe("Test the Header component", () => {
   test("The Header renders correctly", () => {
@@ -22,28 +20,12 @@ describe("Test the Header component", () => {
   });
 });
 describe("Test the button Add New Task", () => {
-  test("The button Add New Task should not be visible if there are no boards", () => {
+  test("The button Add New Task should be visible when you open the page", () => {
     render(
       <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
       </MemoryRouter>
     );
-    const addNewTaskBtn = screen.queryByTestId("add-new-task-btn");
-
-    expect(addNewTaskBtn).not.toBeInTheDocument();
-  });
-
-  test("The button Add New Task should be visible if there is one board or more", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
-
-    act(() => {
-      store.dispatch(addBoard(MockTestAddBoard));
-    });
-
     const addNewTaskBtn = screen.queryByTestId("add-new-task-btn");
 
     expect(addNewTaskBtn).toBeInTheDocument();

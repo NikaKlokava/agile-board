@@ -15,53 +15,48 @@ export const boardsReducer = (
 ) => {
   switch (action.type) {
     case ADD_BOARD_ACTION:
-      return {
-        ...state,
-        boards: [
-          ...state.boards,
-          {
+      const newBoard = {
+        uuid: uuidv4(),
+        ...action.payload,
+        columns: action.payload.columns.map((column) => {
+          return {
+            ...column,
             uuid: uuidv4(),
-            ...action.payload,
-            columns: action.payload.columns.map((column) => {
-              return {
-                ...column,
-                uuid: uuidv4(),
-              };
-            }),
-          },
-        ],
+          };
+        }),
       };
-
-    case ADD_NEW_COLUMN_ACTION:
       return {
         ...state,
-        boards: [
-          ...state.boards.map((board: BoardType) => {
-            if (board.uuid === action.payload.uuid)
-              return {
-                ...board,
-                name: action.payload.name,
-                columns: action.payload.columns.map((column) => {
-                  if (!column.uuid)
-                    return {
-                      ...column,
-                      uuid: uuidv4(),
-                    };
-                  return column;
-                }),
-              };
-            return board;
-          }),
-        ],
+        boards: [...state.boards, newBoard],
+      };
+    case ADD_NEW_COLUMN_ACTION:
+      const newColumns = action.payload.columns.map((column) => {
+        const newColumn = {
+          ...column,
+          uuid: uuidv4(),
+        };
+        if (!column.uuid) return newColumn;
+        return column;
+      });
+
+      return {
+        ...state,
+        boards: state.boards.map((board: BoardType) => {
+          const updatedBoard = {
+            ...board,
+            name: action.payload.name,
+            columns: newColumns,
+          };
+          if (board.uuid === action.payload.uuid) return updatedBoard;
+          return board;
+        }),
       };
     case DELETE_BOARD_ACTION:
       return {
         ...state,
-        boards: [
-          ...state.boards.filter(
-            (board: BoardType) => board.uuid !== action.payload.uuid
-          ),
-        ],
+        boards: state.boards.filter(
+          (board: BoardType) => board.uuid !== action.payload.uuid
+        ),
       };
     default:
       return state;
