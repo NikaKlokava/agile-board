@@ -13,13 +13,17 @@ export const Boards = ({ onBoardVisible }: Props) => {
   const boards = useSelector<RootState, Boards>((state) => state.boards.boards);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(selectBoard(boards[0]));
-  }, [dispatch, boards]);
-
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
+
+  useEffect(() => {
+    const activeBoardIndex = boards.findIndex(
+      (board) => board.uuid === activeBoard.uuid
+    );
+    if (isEqual(activeBoardIndex, -1)) dispatch(selectBoard(boards[0]));
+    dispatch(selectBoard(boards[activeBoardIndex]));
+  }, [dispatch, boards, activeBoard.uuid]);
 
   return (
     <>
