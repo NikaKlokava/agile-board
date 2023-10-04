@@ -1,8 +1,16 @@
 import * as Yup from "yup";
 
 export const initialBoardData = {
-  name: undefined,
-  columns: [{ title: "" }],
+  name: "",
+  columns: ["", ""],
+};
+
+export const initialTaskData = {
+  boardUuid: "",
+  columnTitle: "",
+  title: "",
+  description: "",
+  subtasks: ["", ""],
 };
 
 export const checkedStatus = (task: TaskType) => {
@@ -14,11 +22,7 @@ export const checkedStatus = (task: TaskType) => {
 
 export const BoardSchema = Yup.object().shape({
   name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
-  columns: Yup.array().of(
-    Yup.object().shape({
-      title: Yup.string().min(3, "Too Short!").max(14, "Too Long!"),
-    })
-  ),
+  columns: Yup.array().of(Yup.string().max(14, "Too Long!")),
 });
 
 export const TaskSchema = Yup.object().shape({
@@ -26,34 +30,18 @@ export const TaskSchema = Yup.object().shape({
   columnTitle: Yup.string(),
   title: Yup.string().min(3, "Too Short!").max(45, "Too Long!").required(),
   description: Yup.string(),
-  subtasks: Yup.array().of(
-    Yup.object().shape({
-      uuid: Yup.string(),
-      text: Yup.string().min(1, "Too Short!").max(14, "Too Long!"),
-      checked: Yup.boolean(),
-    })
-  ),
+  subtasks: Yup.array().of(Yup.string().max(14, "Too Long!")),
 });
 
 export const EditBoardSchema = Yup.object().shape({
   uuid: Yup.string(),
   name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
-  columns: Yup.array().of(
-    Yup.object().shape({
-      title: Yup.string().min(1, "Too Short!").max(14, "Too Long!"),
-    })
-  ),
+  columns: Yup.array().of(Yup.string().max(14, "Too Long!")),
 });
 
 export const EditTaskSchema = Yup.object().shape({
   title: Yup.string().min(3, "Too Short!").max(45, "Too Long!").required(),
   description: Yup.string(),
-  subtasks: Yup.array().of(
-    Yup.object().shape({
-      uuid: Yup.string(),
-      text: Yup.string().min(1, "Too Short!").max(14, "Too Long!"),
-      checked: Yup.boolean(),
-    })
-  ),
+  subtasks: Yup.array().of(Yup.string().max(14, "Too Long!")),
   columnTitle: Yup.string(),
 });

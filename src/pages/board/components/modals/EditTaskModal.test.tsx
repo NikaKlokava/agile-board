@@ -11,9 +11,8 @@ describe("Test the EditTaskModal component", () => {
         <Provider store={store}>
           <EditTaskModal
             taskUuid={"test id"}
-            onTaskModalClose={() => {
-              console.log("test");
-            }}
+            onTaskModalClose={() => {}}
+            onClose={() => {}}
           />
         </Provider>
       )

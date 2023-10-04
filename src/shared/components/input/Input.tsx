@@ -1,36 +1,44 @@
-import { useFormikContext } from "formik";
+import { Field } from "formik";
+import { memo } from "react";
 import cl from "./input.module.css";
 
 type Props = {
   formikName: string;
-  defaultVal?: string;
+  index?: number;
+  remove?: any;
+  uuids?: string[];
+  checked?: boolean[];
 };
 
-export const Input = ({ formikName, defaultVal }: Props) => {
-  const { handleChange, setFieldValue } = useFormikContext();
+export const Input = memo(
+  ({ formikName, remove, index, uuids, checked }: Props) => {
+    return (
+      <div className={cl.input_container}>
+        <Field
+          placeholder="e.g Take coffee break"
+          autoComplete="off"
+          type="text"
+          as="input"
+          name={formikName}
+          maxLength={14}
+          className={cl.input_style}
+        ></Field>
+        <DeleteIcon
+          onDelete={() => {
+            if (typeof index === "number")
+              uuids?.splice(index, 1) || checked?.splice(index, 1);
 
-  const handleDeleteCLick = (elem: any) => {
-    elem.parentElement.remove();
-    setFieldValue(formikName, undefined);
-  };
+            remove?.(index);
+          }}
+        />
+      </div>
+    );
+  }
+);
+type IconProps = {
+  onDelete?: any;
+};
 
-  return (
-    <div className={cl.input_container}>
-      <input
-        type={"text"}
-        placeholder="e.g Take coffee break"
-        spellCheck={false}
-        className={cl.input_style}
-        autoComplete="off"
-        onChange={handleChange}
-        name={formikName}
-        defaultValue={defaultVal}
-        maxLength={14}
-      />
-      <div
-        className={cl.delete_icon}
-        onClick={(e) => handleDeleteCLick(e.target)}
-      />
-    </div>
-  );
+const DeleteIcon = ({ onDelete }: IconProps) => {
+  return <div className={cl.delete_icon} onClick={onDelete} />;
 };

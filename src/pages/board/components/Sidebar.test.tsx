@@ -1,6 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
 import renderer from "react-test-renderer";
 import App from "../../../App";
 import { Sidebar } from "./Sidebar";
@@ -21,20 +20,24 @@ describe("Test the Sidebar component", () => {
 });
 
 describe("Test the New Board element", () => {
-  test("The NewBoardModal should be visible on click", () => {
+  test("The NewBoardModal should be visible on click", async () => {
     render(
       <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
       </MemoryRouter>
     );
-    const newBoardEl = screen.getByTestId("new-board");
+    const boardNameInpt = screen.getByTestId("board-name-inpt");
+    const newBoardBtn = screen.getByTestId("create-new-board-btn");
 
-    act(() => {
+    fireEvent.change(boardNameInpt, { target: { value: "mockname" } });
+    fireEvent.click(newBoardBtn);
+
+    await waitFor(() => {
+      const newBoardEl = screen.getByTestId("new-board");
       newBoardEl.click();
+      const newBoardModal = screen.queryByTestId("new-board-modal");
+
+      expect(newBoardModal).toBeInTheDocument();
     });
-
-    const newBoardModal = screen.queryByTestId("new-board-modal");
-
-    expect(newBoardModal).toBeInTheDocument();
   });
 });

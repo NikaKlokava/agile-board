@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
@@ -18,7 +18,13 @@ export const Header = () => {
   const activeBoard = useSelector<RootState, BoardType>(
     (state) => state.activeBoard
   );
-  const isBoardExist = activeBoard.name !== "";
+  const handleOptionsIconClick = useCallback(() => {
+    setOptionsVisible((prev) => !prev);
+  }, []);
+
+  const handleAddNewTaskClick = useCallback(() => {
+    setNewTaskVisible(true);
+  }, []);
 
   return (
     <div className={cl.header_wrapper}>
@@ -32,20 +38,17 @@ export const Header = () => {
         ></div>
       </div>
       <div className={cl.options}>
-        {isBoardExist && (
-          <Button
-            text={"Add New Task"}
-            withIcon={true}
-            onClick={() => setNewTaskVisible(true)}
-            testid={"add-new-task-btn"}
-            newClass={"add-new-task"}
-          />
-        )}
-        {isBoardExist && (
-          <OptionsIcon onOpen={() => setOptionsVisible((prev) => !prev)} />
-        )}
+        <Button
+          text={"Add New Task"}
+          withIcon={true}
+          onClick={handleAddNewTaskClick}
+          testid={"add-new-task-btn"}
+          newClass={"add-new-task"}
+          type="button"
+        />
+        <OptionsIcon onOpen={handleOptionsIconClick} />
       </div>
-      {newTaskVisible && isBoardExist && (
+      {newTaskVisible && (
         <NewTaskModal onClose={() => setNewTaskVisible(false)} />
       )}
       {optionsVisible && !editBoardVisible && !deleteBoardVisible && (
@@ -55,7 +58,7 @@ export const Header = () => {
           onDeleteClick={() => setDeleteBoardVisible(true)}
         />
       )}
-      {editBoardVisible && isBoardExist && (
+      {editBoardVisible && (
         <EditBoardModal
           onClose={() => {
             setEditBoardVisible(false);
@@ -63,7 +66,7 @@ export const Header = () => {
           }}
         />
       )}
-      {deleteBoardVisible && isBoardExist && (
+      {deleteBoardVisible && (
         <DeleteModal
           type="board"
           activeName={activeBoard.name}
@@ -71,6 +74,7 @@ export const Header = () => {
             setDeleteBoardVisible(false);
             setOptionsVisible(false);
           }}
+          taskUuid={""}
         />
       )}
       {boardNavbarVisible && (

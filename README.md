@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - github actions(create workflow with SSH);
 - react components;
-- react hooks: _useEffect, useState_;
+- react hooks: _useEffect, useState, useMemo_;
 - redux hooks: _useDispatch, useSelector_;
 - libraries :
   - Redux

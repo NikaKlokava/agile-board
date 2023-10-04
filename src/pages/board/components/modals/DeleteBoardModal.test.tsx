@@ -8,7 +8,12 @@ describe("Test the DeleteBoardModal component", () => {
     const deleteBoardModalSnap = renderer
       .create(
         <Provider store={store}>
-          <DeleteModal type={"board"} activeName={"test"} />
+          <DeleteModal
+            type={"board"}
+            activeName={"test"}
+            taskUuid={"test id"}
+            onClose={() => {}}
+          />
         </Provider>
       )
       .toJSON();

@@ -20,10 +20,32 @@ exports[`Test the Header component The Header renders correctly 1`] = `
     />
     <div
       className="navbar"
+      onClick={[Function]}
     />
   </div>
   <div
     className="options"
-  />
+  >
+    <button
+      className="button add-new-task"
+      data-testid="add-new-task-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <div
+        className="button_icon"
+      />
+      <div
+        className="button_text"
+      >
+        Add New Task
+      </div>
+    </button>
+    <div
+      className="options_icon"
+      data-testid="options-icon"
+      onClick={[Function]}
+    />
+  </div>
 </div>
 `;

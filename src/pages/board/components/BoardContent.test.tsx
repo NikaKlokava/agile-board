@@ -1,13 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
 import renderer from "react-test-renderer";
 import App from "../../../App";
 import { BoardContent } from "./BoardContent";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
-import { addBoard } from "../../../redux/actionCreators/newBoardCreator";
-import { MockTestAddBoard } from "../../../mocks/TestMocks";
 
 describe("Test the BoardContent component", () => {
   test("The BoardContent renders correctly", () => {
@@ -34,20 +31,23 @@ describe("Test the New Column element", () => {
     expect(newColumnEl).not.toBeInTheDocument();
   });
 
-  test("The New Column element should be visible if we have active board", () => {
+  test("The New Column element should be visible if we have active board", async () => {
     render(
       <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
       </MemoryRouter>
     );
 
-    act(() => {
-      store.dispatch(addBoard(MockTestAddBoard));
+    const boardNameInpt = screen.getByTestId("board-name-inpt");
+    const newBoardBtn = screen.getByTestId("create-new-board-btn");
+
+    fireEvent.change(boardNameInpt, { target: { value: "mockname" } });
+    fireEvent.click(newBoardBtn);
+
+    await waitFor(() => {
+      const newColumnEl = screen.queryByTestId("add-column-element");
+      expect(newColumnEl).toBeInTheDocument();
     });
-
-    const newColumnEl = screen.queryByTestId("add_column");
-
-    expect(newColumnEl).toBeInTheDocument();
   });
 });
 

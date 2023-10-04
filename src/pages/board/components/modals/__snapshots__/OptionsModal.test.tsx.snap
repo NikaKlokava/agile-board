@@ -8,12 +8,14 @@ exports[`Test the OptionsModal component The OptionsModal renders correctly 1`] 
   <p
     className="option_text edit"
     data-testid="options-edit-board"
+    onClick={[Function]}
   >
     Edit Board
   </p>
   <p
     className="option_text delete"
     data-testid="options-delete-board"
+    onClick={[Function]}
   >
     Delete Board
   </p>

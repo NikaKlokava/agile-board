@@ -8,7 +8,7 @@ describe("Test the NewTaskModal component", () => {
     const newTaskModalSnap = renderer
       .create(
         <Provider store={store}>
-          <NewTaskModal />
+          <NewTaskModal onClose={() => {}} />
         </Provider>
       )
       .toJSON();

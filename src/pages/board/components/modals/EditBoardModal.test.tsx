@@ -8,7 +8,7 @@ describe("Test the EditBoardModal component", () => {
     const editBoardModalSnap = renderer
       .create(
         <Provider store={store}>
-          <EditBoardModal />
+          <EditBoardModal onClose={() => {}} />
         </Provider>
       )
       .toJSON();
