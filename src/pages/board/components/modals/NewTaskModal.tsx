@@ -26,14 +26,14 @@ export const NewTaskModal = ({ onClose }: Props) => {
     columnTitle: activeBoard.columns[0]?.title,
   };
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: NewTaskType) => {
     const columnIndex = activeBoard.columns.findIndex(
       (column) => column.title === values.columnTitle
     );
     const columnUuid = activeBoard.columns[columnIndex].uuid;
 
     const subtasks = values.subtasks.filter(
-      (subtask: any) => subtask?.text && subtask.text.trimStart().length !== 0
+      (subtask) => subtask?.text && subtask.text.trimStart().length !== 0
     );
     columnUuid &&
       activeBoard.uuid &&

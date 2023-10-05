@@ -16,9 +16,9 @@ type Props = {
 export const NewBoardModal = ({ onClose }: Props) => {
   const dispatch = useDispatch();
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: BoardType) => {
     const columns = values.columns.filter(
-      (column: any) => column?.title && column.title.trimStart().length !== 0
+      (column) => column?.title && column.title.trimStart().length !== 0
     );
     values.name && dispatch(addBoard({ name: values.name, columns: columns }));
     onClose();

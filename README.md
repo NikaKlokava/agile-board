@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - react hooks: _useEffect, useState, useMemo_;
 - redux hooks: _useDispatch, useSelector_;
 - libraries :
-  - Redux
+  - Redux(@reduxjs/toolkit)
   - formik;
   - react-router-dom;
   - classnames;

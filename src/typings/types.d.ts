@@ -1,5 +1,5 @@
 declare type SubtaskType = {
-  uuid: string;
+  uuid?: string;
   text: string;
   checked: boolean;
 };
@@ -36,4 +36,50 @@ declare type Boards = BoardType[];
 
 declare type BoardsType = {
   boards: Boards;
+};
+
+declare type AddBoardAction = { name: string; columns: { title: string }[] };
+
+declare type AddColumnAction = {
+  name: string;
+  columns: { title: string; uuid?: string }[];
+  uuid: string | undefined;
+};
+
+declare type AddNewTaskAction = {
+  boardUuid: string;
+  columnUuid: string;
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+};
+
+declare type EditTaskAction = {
+  subtasks: SubtasksType;
+  title: string;
+  description: string;
+  taskUuid: string;
+};
+
+declare type MoveTaskAction = { columnUuid: string; taskUuid: string };
+
+declare type EditTaskType = {
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+  columnTitle: string;
+};
+
+declare type NewTaskType = {
+  boardUuid: string;
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+  columnTitle: string;
+};
+
+declare type TaskModalType = {
+  checked: boolean[];
+  taskUuid: string;
+  columnTitle: string;
 };

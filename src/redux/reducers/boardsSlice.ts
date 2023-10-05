@@ -10,10 +10,7 @@ export const boardsSlice = createSlice({
   name: "boards",
   initialState,
   reducers: {
-    addBoard: (
-      state: BoardsType,
-      action: PayloadAction<{ name: string; columns: { title: string }[] }>
-    ) => {
+    addBoard: (state: BoardsType, action: PayloadAction<AddBoardAction>) => {
       const newBoard = {
         ...action.payload,
         uuid: uuidv4(),
@@ -28,11 +25,7 @@ export const boardsSlice = createSlice({
     },
     addNewColumn: (
       state: BoardsType,
-      action: PayloadAction<{
-        name: string;
-        columns: { title: string; uuid?: string }[];
-        uuid: string | undefined;
-      }>
+      action: PayloadAction<AddColumnAction>
     ) => {
       const newColumns = action.payload.columns.map((column) => {
         const newColumn = {

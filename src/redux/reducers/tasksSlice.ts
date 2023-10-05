@@ -10,17 +10,8 @@ export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    addNewTask: (
-      state: TasksType,
-      action: PayloadAction<{
-        boardUuid: string;
-        columnUuid: string;
-        title: string;
-        description: string;
-        subtasks: SubtasksType;
-      }>
-    ) => {
-      const newSubtasks = action.payload.subtasks.map((subtask: any) => {
+    addNewTask: (state: TasksType, action: PayloadAction<AddNewTaskAction>) => {
+      const newSubtasks = action.payload.subtasks.map((subtask) => {
         return {
           ...subtask,
           uuid: uuidv4(),
@@ -34,7 +25,6 @@ export const tasksSlice = createSlice({
         time: new Date().getTime(),
         subtasks: newSubtasks,
       };
-      console.log(action.payload);
       state.tasks = [...state.tasks, newTask];
     },
     checkSubtask: (
@@ -58,16 +48,8 @@ export const tasksSlice = createSlice({
       });
       state.tasks = checkedTasks;
     },
-    editTask: (
-      state: TasksType,
-      action: PayloadAction<{
-        subtasks: SubtasksType;
-        title: string;
-        description: string;
-        taskUuid: string;
-      }>
-    ) => {
-      const updatedSubtasks = action.payload.subtasks.map((subtask: any) => {
+    editTask: (state: TasksType, action: PayloadAction<EditTaskAction>) => {
+      const updatedSubtasks = action.payload.subtasks.map((subtask) => {
         const newSubtask = {
           ...subtask,
           uuid: uuidv4(),
@@ -90,10 +72,7 @@ export const tasksSlice = createSlice({
       });
       state.tasks = updatedTasks;
     },
-    moveTask: (
-      state: TasksType,
-      action: PayloadAction<{ columnUuid: string; taskUuid: string }>
-    ) => {
+    moveTask: (state: TasksType, action: PayloadAction<MoveTaskAction>) => {
       const movedTasks = state.tasks.map((task: Task) => {
         const newTaskPos = {
           ...task,

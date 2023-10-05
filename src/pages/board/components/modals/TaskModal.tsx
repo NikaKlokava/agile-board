@@ -44,7 +44,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: TaskModalType) => {
     const columnIndex = activeBoard.columns.findIndex(
       (column) => column.title === values.columnTitle
     );
@@ -120,7 +120,10 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
                         type="checkbox"
                         name={`checked.${i}`}
                         onClick={() => {
-                          dispatch(checkSubtask({ subtaskUuid: subtask.uuid }));
+                          subtask.uuid &&
+                            dispatch(
+                              checkSubtask({ subtaskUuid: subtask.uuid })
+                            );
                         }}
                       />
                       <p>{subtask.text}</p>
