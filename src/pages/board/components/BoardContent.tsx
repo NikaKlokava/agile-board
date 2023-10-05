@@ -4,7 +4,8 @@ import { Sidebar } from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { checkedStatus } from "../../../utils/utils";
 import cl from "./styles/board_content.module.css";
-import { moveTask } from "../../../redux/actionCreators/newBoardCreator";
+import { RootState } from "../../../redux/store/store";
+import { moveTask } from "../../../redux/reducers/tasksSlice";
 
 export const BoardContent = () => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(true);
@@ -12,13 +13,11 @@ export const BoardContent = () => {
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
 
-  const boards = useSelector<RootState, Boards>((state) => state.boards.boards);
+  const boards = useSelector((state: RootState) => state.boards.boards);
 
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
-  const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
   const dispatch = useDispatch();
 
@@ -28,7 +27,7 @@ export const BoardContent = () => {
 
   const handleOnDrop = (e: React.DragEvent, colUuid: string) => {
     const data = e.dataTransfer.getData("task");
-    dispatch(moveTask(data, colUuid));
+    dispatch(moveTask({ taskUuid: data, columnUuid: colUuid }));
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -54,7 +53,7 @@ export const BoardContent = () => {
               <div
                 className={cl.content_column}
                 key={index}
-                onDrop={(e) => handleOnDrop(e, column.uuid)}
+                onDrop={(e) => column.uuid && handleOnDrop(e, column.uuid)}
                 onDragOver={handleDragOver}
               >
                 <div className={cl.title_container}>

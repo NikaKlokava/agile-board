@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import App from "../../../../App";
 import { MockTestAddBoard } from "../../../../mocks/TestMocks";
-import { addBoard } from "../../../../redux/actionCreators/newBoardCreator";
+import { addBoard } from "../../../../redux/reducers/boardsSlice";
 import store from "../../../../redux/store/store";
 import { OptionsModal } from "./OptionsModal";
 
@@ -39,6 +39,7 @@ describe("Test the OptionsModal component", () => {
 
     act(() => {
       store.dispatch(addBoard(MockTestAddBoard));
+      console.log();
     });
 
     const optionsIcon = screen.getByTestId("options-icon");
@@ -51,7 +52,8 @@ describe("Test the OptionsModal component", () => {
 
     act(() => {
       editBoardEl.click();
-      store.dispatch(addBoard(MockTestAddBoard));
+      // store.dispatch(addBoard(MockTestAddBoard));
+      console.log();
     });
 
     const editBoardModal = screen.getByTestId("edit-board-modal");
@@ -67,6 +69,7 @@ describe("Test the OptionsModal component", () => {
     );
     act(() => {
       store.dispatch(addBoard(MockTestAddBoard));
+      console.log();
     });
 
     const optionsIcon = screen.getByTestId("options-icon");
