@@ -1,9 +1,5 @@
 import { FieldArray, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  editTask,
-  moveTask,
-} from "../../../../redux/actionCreators/newBoardCreator";
 import { Button } from "../../../../shared/components/button";
 import { DescriptionField } from "../../../../shared/components/description/DescriptionField";
 import { Input } from "../../../../shared/components/input";
@@ -13,6 +9,8 @@ import { FieldName } from "../../../../shared/components/field_name";
 import cl from "./modal_styles.module.css";
 import { EditTaskSchema } from "../../../../utils/utils";
 import { AddBtn } from "../../../../shared/components/add_button";
+import { RootState } from "../../../../redux/store/store";
+import { editTask, moveTask } from "../../../../redux/reducers/tasksSlice";
 
 type Props = {
   taskUuid: string;
@@ -25,11 +23,9 @@ export const EditTaskModal = ({
   onClose,
   onTaskModalClose,
 }: Props) => {
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
-  const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
   const task = tasks[taskIndex];
 
@@ -51,12 +47,20 @@ export const EditTaskModal = ({
     const columnIndex = activeBoard.columns.findIndex(
       (column) => column.title === values.columnTitle
     );
+
     const columnUuid = activeBoard.columns[columnIndex].uuid;
     const subtasks = values.subtasks.filter(
       (subtask) => subtask?.text && subtask?.text.trimStart().length !== 0
     );
-    dispatch(moveTask(taskUuid, columnUuid));
-    dispatch(editTask(taskUuid, values.title, values.description, subtasks));
+    columnUuid && dispatch(moveTask({ taskUuid, columnUuid }));
+    dispatch(
+      editTask({
+        taskUuid,
+        title: values.title,
+        description: values.description,
+        subtasks,
+      })
+    );
     onClose();
     onTaskModalClose();
   };

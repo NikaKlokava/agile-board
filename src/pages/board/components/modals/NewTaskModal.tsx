@@ -3,7 +3,6 @@ import { Button } from "../../../../shared/components/button";
 import { FieldArray, Form, Formik } from "formik";
 import { Input } from "../../../../shared/components/input";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTask } from "../../../../redux/actionCreators/newBoardCreator";
 import { Select } from "../../../../shared/components/select";
 import { initialTaskData, TaskSchema } from "../../../../utils/utils";
 import { FieldName } from "../../../../shared/components/field_name";
@@ -11,15 +10,15 @@ import { DescriptionField } from "../../../../shared/components/description/Desc
 import { AddBtn } from "../../../../shared/components/add_button";
 import { v4 as uuidv4 } from "uuid";
 import cl from "./modal_styles.module.css";
+import { RootState } from "../../../../redux/store/store";
+import { addNewTask } from "../../../../redux/reducers/tasksSlice";
 
 type Props = {
   onClose: () => void;
 };
 
 export const NewTaskModal = ({ onClose }: Props) => {
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
   const dispatch = useDispatch();
 
   const initialData = {
@@ -36,15 +35,17 @@ export const NewTaskModal = ({ onClose }: Props) => {
     const subtasks = values.subtasks.filter(
       (subtask) => subtask?.text && subtask.text.trimStart().length !== 0
     );
-    dispatch(
-      addNewTask({
-        boardUuid: activeBoard.uuid,
-        columnUuid: columnUuid,
-        title: values.title,
-        description: values.description,
-        subtasks: subtasks,
-      })
-    );
+    columnUuid &&
+      activeBoard.uuid &&
+      dispatch(
+        addNewTask({
+          boardUuid: activeBoard.uuid,
+          columnUuid: columnUuid,
+          title: values.title,
+          description: values.description,
+          subtasks: subtasks,
+        })
+      );
     onClose();
   };
 

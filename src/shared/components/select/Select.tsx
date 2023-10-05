@@ -1,15 +1,11 @@
 import { Field } from "formik";
 import { memo } from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/store";
 import { FieldWrapper } from "../field_wrapper";
-type Props = {
-  colUuid?: string;
-};
 
-export const Select = memo(({ colUuid }: Props) => {
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+export const Select = memo(() => {
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
   return (
     <FieldWrapper fieldName={"Current Status"}>

@@ -1,13 +1,11 @@
-declare type RootState = ReturnType<typeof store.getState>;
-
 declare type SubtaskType = {
-  uuid: string;
+  uuid?: string;
   text: string;
   checked: boolean;
 };
 declare type SubtasksType = SubtaskType[];
 
-declare type TaskType = {
+declare type Task = {
   uuid: string;
   boardUuid: string;
   columnUuid: string;
@@ -16,7 +14,9 @@ declare type TaskType = {
   subtasks: SubtasksType;
   time: number;
 };
-declare type TasksType = TaskType[];
+declare type Tasks = Task[];
+
+declare type TasksType = { tasks: Task[] };
 
 declare type ColumnType = {
   uuid: string;
@@ -25,9 +25,11 @@ declare type ColumnType = {
 declare type ColumnsType = ColumnType[];
 
 declare type BoardType = {
-  uuid: string;
   name: string;
-  columns: ColumnsType;
+  columns: { title: string; uuid?: string }[];
+  uuid?: string;
+  columnUuid?: string;
+  title?: string;
 };
 
 declare type Boards = BoardType[];
@@ -36,81 +38,48 @@ declare type BoardsType = {
   boards: Boards;
 };
 
-declare type Store = {
-  boards: Boards;
-  tasks: TasksType;
-  selectedBoard?: any;
-};
+declare type AddBoardAction = { name: string; columns: { title: string }[] };
 
-declare type AddBoardPayloadType = {
-  uuid?: string;
-  columnUuid?: string;
-  title?: string;
-  name: string | undefined;
+declare type AddColumnAction = {
+  name: string;
   columns: { title: string; uuid?: string }[];
+  uuid: string | undefined;
 };
 
-declare type AddBoardActionType = {
-  type: string;
-  payload: AddBoardPayloadType;
-};
-
-declare type SelectBoardActionType = {
-  type: string;
-  payload: { board: BoardType; columnUuid?: string };
-};
-
-declare type AddTaskPayloadType = {
+declare type AddNewTaskAction = {
   boardUuid: string;
   columnUuid: string;
   title: string;
   description: string;
   subtasks: SubtasksType;
-  subtaskUuid?: string;
-  taskUuid?: string;
-  time?: number;
 };
 
-declare type AddTaskActionType = {
-  type: string;
-  payload: AddTaskPayloadType;
+declare type EditTaskAction = {
+  subtasks: SubtasksType;
+  title: string;
+  description: string;
+  taskUuid: string;
 };
+
+declare type MoveTaskAction = { columnUuid: string; taskUuid: string };
 
 declare type EditTaskType = {
   title: string;
   description: string;
-  subtasks: {text:string, checked: boolean}[];
+  subtasks: SubtasksType;
   columnTitle: string;
-};
-
-declare type NewBoardType = {
-  name: string | undefined;
-  columns: {
-    title: string;
-  }[];
-};
-
-declare type NewBoardType2 = {
-  name: undefined;
-  columns: {
-    title: string;
-  }[];
 };
 
 declare type NewTaskType = {
-  columnTitle: string;
   boardUuid: string;
   title: string;
   description: string;
-  subtasks: {
-    uuid: string;
-    text: string;
-    checked: boolean;
-  }[];
+  subtasks: SubtasksType;
+  columnTitle: string;
 };
 
 declare type TaskModalType = {
+  checked: boolean[];
   taskUuid: string;
   columnTitle: string;
-  checked: boolean[];
 };

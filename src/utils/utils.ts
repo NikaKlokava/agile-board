@@ -13,7 +13,7 @@ export const initialTaskData = {
   subtasks: ["", ""],
 };
 
-export const checkedStatus = (task: TaskType) => {
+export const checkedStatus = (task: Task) => {
   return task?.subtasks.reduce((accum: boolean[], current) => {
     if (current.checked === true) return [...accum, current.checked];
     return accum;

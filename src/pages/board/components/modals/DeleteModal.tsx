@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteACtiveBoard,
-  deleteBoard,
-  deleteTask,
-} from "../../../../redux/actionCreators/newBoardCreator";
+import { deleteActiveBoard } from "../../../../redux/reducers/activeBoardSlice";
+import { deleteBoard } from "../../../../redux/reducers/boardsSlice";
+import { deleteTask } from "../../../../redux/reducers/tasksSlice";
+import { RootState } from "../../../../redux/store/store";
 import { Button } from "../../../../shared/components/button";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import cl from "./modal_styles.module.css";
@@ -16,9 +15,7 @@ type Props = {
 };
 
 export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
   const dispatch = useDispatch();
   return (
@@ -42,10 +39,11 @@ export const DeleteModal = ({ type, activeName, taskUuid, onClose }: Props) => {
           type="button"
           onClick={() => {
             if (type === "board") {
-              dispatch(deleteBoard(activeBoard.uuid));
-              dispatch(deleteACtiveBoard());
+              activeBoard.uuid &&
+                dispatch(deleteBoard({ uuid: activeBoard.uuid }));
+              dispatch(deleteActiveBoard());
             } else {
-              dispatch(deleteTask(taskUuid));
+              dispatch(deleteTask({ uuid: taskUuid }));
             }
             onClose();
           }}

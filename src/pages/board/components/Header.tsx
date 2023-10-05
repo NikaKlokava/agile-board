@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/store";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
 import { EditBoardModal, NewTaskModal } from "./modals";
@@ -15,9 +16,7 @@ export const Header = () => {
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
   const [boardNavbarVisible, setBoardNavbarVisible] = useState<boolean>(false);
 
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
   const handleOptionsIconClick = useCallback(() => {
     setOptionsVisible((prev) => !prev);
   }, []);

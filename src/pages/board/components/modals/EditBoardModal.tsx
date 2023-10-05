@@ -1,6 +1,5 @@
 import { FieldArray, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewColumn } from "../../../../redux/actionCreators/newBoardCreator";
 import { Button } from "../../../../shared/components/button";
 import { FieldName } from "../../../../shared/components/field_name";
 import { Input } from "../../../../shared/components/input";
@@ -8,14 +7,16 @@ import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { EditBoardSchema } from "../../../../utils/utils";
 import { AddBtn } from "../../../../shared/components/add_button";
 import cl from "./modal_styles.module.css";
+import { addNewColumn } from "../../../../redux/reducers/boardsSlice";
+import { RootState } from "../../../../redux/store/store";
 
 type Props = {
   onClose: () => void;
 };
 
 export const EditBoardModal = ({ onClose }: Props) => {
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
+  const activeBoard = useSelector(
+    (state: RootState) => state.activeBoard
   );
 
   const dispatch = useDispatch();
@@ -24,7 +25,9 @@ export const EditBoardModal = ({ onClose }: Props) => {
     const columns = values.columns.filter(
       (column) => column?.title && column.title.trimStart().length !== 0
     );
-    dispatch(addNewColumn(values.uuid, values.name, columns));
+    dispatch(
+      addNewColumn({ name: values.name, columns: columns, uuid: values.uuid })
+    );
     onClose();
   };
 
@@ -36,9 +39,12 @@ export const EditBoardModal = ({ onClose }: Props) => {
     uuid: activeBoard.uuid,
   };
 
-  const uuids = activeBoard.columns.reduce((accum: string[], current) => {
-    return [...accum, current.uuid];
-  }, []);
+  const uuids = activeBoard.columns.reduce(
+    (accum: string[], current): string[] => {
+      return [...accum, current.uuid!];
+    },
+    []
+  );
 
   return (
     <ModalWrapper onWrapperClick={onClose}>

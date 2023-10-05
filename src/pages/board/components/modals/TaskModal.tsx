@@ -1,9 +1,5 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  checkSubtask,
-  moveTask,
-} from "../../../../redux/actionCreators/newBoardCreator";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import { checkedStatus } from "../../../../utils/utils";
@@ -15,6 +11,8 @@ import { DeleteModal } from "./DeleteModal";
 import classes from "classnames";
 import cl from "./modal_styles.module.css";
 import { EditTaskModal } from "./EditTaskModal";
+import { RootState } from "../../../../redux/store/store";
+import { checkSubtask, moveTask } from "../../../../redux/reducers/tasksSlice";
 
 type Props = {
   taskUuid: string | undefined;
@@ -27,15 +25,12 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
   const [editTaskVisible, setEditTaskVisible] = useState<boolean>(false);
   const [checkedSubtasks, setCheckedSubtasks] = useState<number>(0);
 
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
-  const tasks: TasksType = useSelector<RootState, TasksType>(
-    (state) => state.tasks.tasks
-  );
+  const tasks: Tasks = useSelector((state: RootState) => state.tasks.tasks);
+
   const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
-  const task: TaskType = tasks[taskIndex];
+  const task: Task = tasks[taskIndex];
 
   const columnIndex = activeBoard.columns.findIndex(
     (column) => column.uuid === task.columnUuid
@@ -55,7 +50,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
     );
     const columnUuid = activeBoard.columns[columnIndex].uuid;
 
-    dispatch(moveTask(values.taskUuid, columnUuid));
+    columnUuid && dispatch(moveTask({ taskUuid: values.taskUuid, columnUuid }));
     onClose();
   };
 
@@ -125,7 +120,10 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
                         type="checkbox"
                         name={`checked.${i}`}
                         onClick={() => {
-                          dispatch(checkSubtask(subtask.uuid));
+                          subtask.uuid &&
+                            dispatch(
+                              checkSubtask({ subtaskUuid: subtask.uuid })
+                            );
                         }}
                       />
                       <p>{subtask.text}</p>
@@ -134,7 +132,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
                 })}
               </div>
             )}
-            <Select colUuid={task?.columnUuid} />
+            <Select />
             <Button
               text={"Save"}
               withIcon={false}

@@ -1,26 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { isEqual } from "lodash";
 import { useEffect } from "react";
-import { selectBoard } from "../../../redux/actionCreators/newBoardCreator";
 import classes from "classnames";
 import cl from "./boards.module.css";
+import { RootState } from "../../../redux/store/store";
+import { selectBoard } from "../../../redux/reducers/activeBoardSlice";
 
 type Props = {
   onBoardVisible: () => void;
 };
 
 export const Boards = ({ onBoardVisible }: Props) => {
-  const boards = useSelector<RootState, Boards>((state) => state.boards.boards);
-  const dispatch = useDispatch();
+  const boards = useSelector((state: RootState) => state.boards.boards);
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const activeBoardIndex = boards.findIndex(
       (board) => board.uuid === activeBoard.uuid
     );
+
     if (isEqual(activeBoardIndex, -1)) dispatch(selectBoard(boards[0]));
     dispatch(selectBoard(boards[activeBoardIndex]));
   }, [dispatch, boards, activeBoard.uuid]);
