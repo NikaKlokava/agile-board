@@ -1,0 +1,23 @@
+.login_wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.login_modal {
+  width: 300px;
+  border: 1px solid grey;
+  padding: 15px;
+  background-color: #f5f5f5a0;
+  height: 300px;
+  padding-top: 25px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+}
