@@ -6,29 +6,26 @@ import { ErrorPage } from "./pages/error";
 import { LoginPage } from "./pages/login";
 import store from "./redux/store/store";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function App() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(false);
   const auth = getAuth();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) setUser(true);
-  });
-  
   useEffect(() => {
-    !user && navigate("/agile-board/authorization");
-  }, [navigate, user]);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("agile-board");
+      } else navigate("/agile-board/authorization");
+    });
+  }, [auth, navigate]);
 
   return (
     <Provider store={store}>
       <Routes>
-        {user && <Route path="/agile-board" element={<BoardPage />} />}
-        {!user && (
-          <Route path="/agile-board/authorization" element={<LoginPage />} />
-        )}
+        <Route path="/agile-board" element={<BoardPage />} />
+        <Route path="/agile-board/authorization" element={<LoginPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Provider>

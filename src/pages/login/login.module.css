@@ -9,15 +9,47 @@
 }
 
 .login_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
   width: 300px;
-  border: 1px solid grey;
-  padding: 15px;
+  border-radius: 20px;
+  padding: 25px;
   background-color: #f5f5f5a0;
-  height: 300px;
-  padding-top: 25px;
+  border: 1px solid grey;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 30px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+}
+
+.login_btn_container {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.gmail_icon {
+  width: 30px;
+  height: 30px;
+  background: url("../../assets/gmail.svg");
+  background-size: 30px 30px;
+}
+
+.login_text {
+  font-size: 24px;
+  color: rgb(122, 0, 0);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.login_text:hover {
+  color: rgb(169, 0, 0);
 }
