@@ -1,4 +1,6 @@
+import { ref, remove, set, update } from "firebase/database";
 import * as Yup from "yup";
+import { database } from "../firebase";
 
 export const initialBoardData = {
   name: "",
@@ -45,3 +47,23 @@ export const EditTaskSchema = Yup.object().shape({
   subtasks: Yup.array().of(Yup.string().max(14, "Too Long!")),
   columnTitle: Yup.string(),
 });
+
+export const addUserBoardData = (userId: string, newBoard: BoardType) => {
+  const boardsRef = ref(
+    database,
+    "users/" + userId + "/boards/" + newBoard.uuid
+  );
+  set(boardsRef, {
+    ...newBoard,
+  });
+};
+export const updateUserBoardData = (userId: string, board: BoardType) => {
+  const updates: any = {};
+  const index = "users/" + userId + "/boards/" + board.uuid;
+  updates[index] = board;
+
+  return update(ref(database), updates);
+};
+export const deleteUserBoard = (userId: string, uuid: string) => {
+  remove(ref(database, "users/" + userId + "/boards/" + uuid));
+};
