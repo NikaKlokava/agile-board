@@ -6,6 +6,7 @@ import { checkedStatus } from "../../../utils/utils";
 import cl from "./styles/board_content.module.css";
 import { RootState } from "../../../redux/store/store";
 import { moveTask } from "../../../redux/reducers/tasksSlice";
+import { cloneDeep } from "lodash";
 
 export const BoardContent = () => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(true);
@@ -18,6 +19,7 @@ export const BoardContent = () => {
   const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const copyTasks = cloneDeep(tasks);
 
   const dispatch = useDispatch();
 
@@ -60,8 +62,8 @@ export const BoardContent = () => {
                   <div className={cl.column_circle} />
                   <div className={cl.column_title}>{column.title}</div>
                 </div>
-                {tasks &&
-                  tasks
+                {copyTasks &&
+                  copyTasks
                     .sort((a, b) => a.time - b.time)
                     .map((task, index) => {
                       if (task.columnUuid === column.uuid) {
