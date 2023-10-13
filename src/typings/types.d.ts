@@ -30,6 +30,7 @@ declare type BoardType = {
   uuid?: string;
   columnUuid?: string;
   title?: string;
+  time?: number;
 };
 
 declare type Boards = BoardType[];
@@ -38,7 +39,11 @@ declare type BoardsType = {
   boards: Boards;
 };
 
-declare type AddBoardAction = { name: string; columns: { title: string }[] };
+declare type AddBoardAction = {
+  name: string;
+  columns: { title: string; uuid?: strign }[];
+  time?: number
+};
 
 declare type AddColumnAction = {
   name: string;

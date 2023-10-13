@@ -76,7 +76,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
             <h2 className={cl.modal_title} data-testid="new-task-modal">
               Add New Task
             </h2>
-            <FieldName formikName="title" />
+            <FieldName formikName="title" fieldName={"Task name"} />
             {props.errors.title && props.touched.title && (
               <p style={{ color: "red" }}>{props.errors.title}</p>
             )}

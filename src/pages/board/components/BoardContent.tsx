@@ -1,5 +1,5 @@
 import { EditBoardModal, NewBoardModal, TaskModal } from "./modals";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { checkedStatus } from "../../../utils/utils";
@@ -7,12 +7,19 @@ import cl from "./styles/board_content.module.css";
 import { RootState } from "../../../redux/store/store";
 import { moveTask } from "../../../redux/reducers/tasksSlice";
 import { cloneDeep } from "lodash";
+import { useData } from "../../../shared/hooks/useData";
 
 export const BoardContent = () => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(true);
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
+
+  const { boardsData } = useData();
+
+  useEffect(() => {
+    boardsData && setNewBoardVisible(false);
+  }, [boardsData]);
 
   const boards = useSelector((state: RootState) => state.boards.boards);
 

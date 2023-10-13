@@ -1,30 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-import { ref, remove, set, update } from "firebase/database";
-import { auth, database } from "../../firebase";
+import { auth } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import {
+  addUserTasksData,
+  removeUserTask,
+  updateUserTasksData,
+} from "../../utils/utils";
 
 const initialState: TasksType = {
   tasks: [],
-};
-
-const addUserTasksData = (userId: string, newTask: Task) => {
-  const tasksRef = ref(database, "users/" + userId + "/tasks/" + newTask.uuid);
-  set(tasksRef, {
-    ...newTask,
-  });
-};
-const updateUserTaskData = (userId: string, updatedTask: Task) => {
-  const updates: any = {};
-  const index = "users/" + userId + "/tasks/" + updatedTask.uuid;
-  updates[index] = updatedTask;
-
-  return update(ref(database), updates);
-};
-
-const removeUserTask = (userId: string, uuid: string) => {
-  remove(ref(database, "users/" + userId + "/tasks/" + uuid));
 };
 
 export const tasksSlice = createSlice({
@@ -33,13 +19,17 @@ export const tasksSlice = createSlice({
   reducers: {
     addNewTask: (state: TasksType, action: PayloadAction<AddNewTaskAction>) => {
       const newSubtasks = action.payload.subtasks.map((subtask) => {
+        if (!subtask.checked)
+          return {
+            ...subtask,
+            uuid: uuidv4(),
+            checked: false,
+          };
         return {
           ...subtask,
           uuid: uuidv4(),
-          checked: false,
         };
       });
-
       const newTask = {
         ...action.payload,
         uuid: uuidv4(),
@@ -70,11 +60,10 @@ export const tasksSlice = createSlice({
           subtasks: updatedSubtasks,
         };
       });
-      checkedTasks.forEach((checkedTask) => {
-        onAuthStateChanged(auth, (user) => {
-          user && updateUserTaskData(user.uid, checkedTask);
-        });
+      onAuthStateChanged(auth, (user) => {
+        user && updateUserTasksData(user.uid, checkedTasks);
       });
+
       state.tasks = checkedTasks;
     },
     editTask: (state: TasksType, action: PayloadAction<EditTaskAction>) => {
@@ -94,13 +83,14 @@ export const tasksSlice = createSlice({
           description: action.payload.description,
           subtasks: updatedSubtasks,
         };
-        onAuthStateChanged(auth, (user) => {
-          user && updateUserTaskData(user.uid, updatedTask);
-        });
+
         if (task.uuid === action.payload.taskUuid) {
           return updatedTask;
         }
         return task;
+      });
+      onAuthStateChanged(auth, (user) => {
+        user && updateUserTasksData(user.uid, updatedTasks);
       });
       state.tasks = updatedTasks;
     },
@@ -111,11 +101,11 @@ export const tasksSlice = createSlice({
           time: new Date().getTime(),
           columnUuid: action.payload.columnUuid,
         };
-        onAuthStateChanged(auth, (user) => {
-          user && updateUserTaskData(user.uid, newTaskPos);
-        });
         if (task.uuid === action.payload.taskUuid) return newTaskPos;
         return task;
+      });
+      onAuthStateChanged(auth, (user) => {
+        user && updateUserTasksData(user.uid, movedTasks);
       });
       state.tasks = movedTasks;
     },
