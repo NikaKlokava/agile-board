@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { auth } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import {
   addUserBoardData,
   deleteUserBoard,
@@ -44,9 +43,7 @@ export const boardsSlice = createSlice({
               return column;
             }),
           };
-      onAuthStateChanged(auth, (user) => {
-        user && addUserBoardData(user.uid, newBoard);
-      });
+      auth.currentUser && addUserBoardData(auth.currentUser?.uid, newBoard);
       state.boards = [...state.boards, newBoard];
     },
     addNewColumn: (
@@ -71,24 +68,24 @@ export const boardsSlice = createSlice({
         return board;
       });
       state.boards = updatedBoards;
-      onAuthStateChanged(auth, (user) => {
-        user && updateUserBoardData(user.uid, updatedBoards);
-      });
+      auth.currentUser &&
+        updateUserBoardData(auth.currentUser.uid, updatedBoards);
     },
     deleteBoard: (
       state: BoardsType,
       action: PayloadAction<{ uuid: string }>
     ) => {
-      onAuthStateChanged(auth, (user) => {
-        user && deleteUserBoard(user.uid, action.payload.uuid);
-      });
+      auth.currentUser &&
+        deleteUserBoard(auth.currentUser.uid, action.payload.uuid);
       state.boards = state.boards.filter(
         (board: BoardType) => board.uuid !== action.payload.uuid
       );
     },
+    resetBoards: () => initialState,
   },
 });
 
-export const { addBoard, addNewColumn, deleteBoard } = boardsSlice.actions;
+export const { addBoard, addNewColumn, deleteBoard, resetBoards } =
+  boardsSlice.actions;
 
 export default boardsSlice.reducer;

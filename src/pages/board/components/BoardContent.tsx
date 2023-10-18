@@ -1,5 +1,5 @@
 import { EditBoardModal, NewBoardModal, TaskModal } from "./modals";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { checkedStatus } from "../../../utils/utils";
@@ -7,19 +7,13 @@ import cl from "./styles/board_content.module.css";
 import { RootState } from "../../../redux/store/store";
 import { moveTask } from "../../../redux/reducers/tasksSlice";
 import { cloneDeep } from "lodash";
-import { useData } from "../../../shared/hooks/useData";
+import { Loader } from "../../../shared/components/loader";
 
-export const BoardContent = () => {
-  const [newBoardVisible, setNewBoardVisible] = useState<boolean>(true);
+export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
+  const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
-
-  const { boardsData } = useData();
-
-  useEffect(() => {
-    boardsData && setNewBoardVisible(false);
-  }, [boardsData]);
 
   const boards = useSelector((state: RootState) => state.boards.boards);
 
@@ -45,12 +39,14 @@ export const BoardContent = () => {
 
   const noBoards = boards.length === 0;
 
-  if (newBoardVisible || noBoards)
+  if (!isLoading && (newBoardVisible || noBoards))
     return (
       <div>
         <NewBoardModal onClose={() => setNewBoardVisible(false)} />
       </div>
     );
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className={cl.board_content_wrapper}>

@@ -108,6 +108,11 @@
   color: #2b2b2baf;
 }
 
+.loading_container {
+  font-size: 30px;
+  color: red;
+}
+
 @media screen and (max-width: 1200px) {
   .board_content_wrapper {
     grid-row: 2/3;

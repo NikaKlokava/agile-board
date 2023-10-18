@@ -1,5 +1,9 @@
+import { signOut } from "firebase/auth";
 import { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "../../../firebase";
+import { resetBoards } from "../../../redux/reducers/boardsSlice";
+import { resetTasks } from "../../../redux/reducers/tasksSlice";
 import { RootState } from "../../../redux/store/store";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
@@ -17,6 +21,8 @@ export const Header = () => {
   const [boardNavbarVisible, setBoardNavbarVisible] = useState<boolean>(false);
 
   const activeBoard = useSelector((state: RootState) => state.activeBoard);
+  const dispatch = useDispatch();
+
   const handleOptionsIconClick = useCallback(() => {
     setOptionsVisible((prev) => !prev);
   }, []);
@@ -24,6 +30,12 @@ export const Header = () => {
   const handleAddNewTaskClick = useCallback(() => {
     setNewTaskVisible(true);
   }, []);
+
+  const handleSignOutClick = () => {
+    dispatch(resetTasks());
+    dispatch(resetBoards());
+    signOut(auth);
+  };
 
   return (
     <div className={cl.header_wrapper}>
@@ -46,6 +58,9 @@ export const Header = () => {
           type="button"
         />
         <OptionsIcon onOpen={handleOptionsIconClick} />
+        <p className={cl.sign_out} onClick={handleSignOutClick}>
+          Sign Out
+        </p>
       </div>
       {newTaskVisible && (
         <NewTaskModal onClose={() => setNewTaskVisible(false)} />

@@ -11,7 +11,7 @@ describe("Test the BoardContent component", () => {
     const boardContentSnap = renderer
       .create(
         <Provider store={store}>
-          <BoardContent />
+          <BoardContent isLoading={true} />
         </Provider>
       )
       .toJSON();
