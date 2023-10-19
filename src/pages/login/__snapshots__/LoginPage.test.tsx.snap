@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the LoginPage component The LoginPage renders correctly 1`] = `
+<div
+  className="login_wrapper"
+>
+  <div
+    className="login_modal"
+  >
+    <h1
+      className="title"
+    >
+      AGILE-BOARD
+    </h1>
+    <div
+      className="line"
+    />
+    <div
+      className="login_btn_container"
+    >
+      <div
+        className="gmail_icon"
+      />
+      <p
+        className="login_text"
+        data-testid="login_btn"
+        onClick={[Function]}
+      >
+        Log in with Google
+      </p>
+    </div>
+  </div>
+</div>
+`;

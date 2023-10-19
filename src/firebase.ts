@@ -20,4 +20,3 @@ export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 export const database = getDatabase(app);
 
-// project-206915705433

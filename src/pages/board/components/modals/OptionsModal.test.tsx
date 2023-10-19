@@ -9,9 +9,11 @@ import { addBoard } from "../../../../redux/reducers/boardsSlice";
 import store from "../../../../redux/store/store";
 import { OptionsModal } from "./OptionsModal";
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+jest.mock("../../../../shared/hooks/useAuthorization", () => ({
+  useAuthorization: () => ({ isUserExist: true }),
+}));
+
+afterEach(() => jest.clearAllMocks());
 
 describe("Test the OptionsModal component", () => {
   test("The OptionsModal renders correctly", () => {
@@ -39,7 +41,6 @@ describe("Test the OptionsModal component", () => {
 
     act(() => {
       store.dispatch(addBoard(MockTestAddBoard));
-      console.log();
     });
 
     const optionsIcon = screen.getByTestId("options-icon");
@@ -52,8 +53,6 @@ describe("Test the OptionsModal component", () => {
 
     act(() => {
       editBoardEl.click();
-      // store.dispatch(addBoard(MockTestAddBoard));
-      console.log();
     });
 
     const editBoardModal = screen.getByTestId("edit-board-modal");

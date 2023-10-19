@@ -5,20 +5,10 @@ import { BoardPage } from "./pages/board";
 import { ErrorPage } from "./pages/error";
 import { LoginPage } from "./pages/login";
 import store from "./redux/store/store";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useAuthorization } from "./shared/hooks/useAuthorization";
 
 function App() {
-  const [isUserExist, setIsUserExist] = useState<boolean>(false);
-
-  const auth = getAuth();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) setIsUserExist(true);
-      else setIsUserExist(false);
-    });
-  }, [auth]);
+  const { isUserExist } = useAuthorization();
 
   if (!isUserExist) {
     return <LoginPage />;

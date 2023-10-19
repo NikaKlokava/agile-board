@@ -11,6 +11,7 @@ export const LoginPage = () => {
         <div className={cl.login_btn_container}>
           <div className={cl.gmail_icon} />
           <p
+            data-testid="login_btn"
             className={cl.login_text}
             onClick={() =>
               signInWithPopup(auth, provider)

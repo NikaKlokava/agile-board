@@ -87,7 +87,7 @@ export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
                               task
                             )} of ${
                               task.subtasks.length
-                            } completed tasks`}</div>
+                            } completed subtasks`}</div>
                           </div>
                         );
                       }

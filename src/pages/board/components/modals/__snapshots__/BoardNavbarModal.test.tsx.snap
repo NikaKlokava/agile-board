@@ -28,7 +28,7 @@ Array [
         <p
           className="title"
         >
-          Task name
+          Board name
         </p>
         <input
           autoComplete="off"
