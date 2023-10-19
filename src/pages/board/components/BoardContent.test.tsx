@@ -2,9 +2,9 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import App from "../../../App";
+import store from "../../../redux/store/store";
 import { BoardContent } from "./BoardContent";
 import { Provider } from "react-redux";
-import store from "../../../redux/store/store";
 
 jest.mock("../../../shared/hooks/useAuthorization", () => ({
   useAuthorization: () => ({ isUserExist: true }),
