@@ -6,12 +6,18 @@ import { BoardContent } from "./BoardContent";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
 
+jest.mock("../../../shared/hooks/useAuthorization", () => ({
+  useAuthorization: () => ({ isUserExist: true }),
+}));
+
+beforeEach(() => jest.clearAllMocks());
+
 describe("Test the BoardContent component", () => {
   test("The BoardContent renders correctly", () => {
     const boardContentSnap = renderer
       .create(
         <Provider store={store}>
-          <BoardContent />
+          <BoardContent isLoading={true} />
         </Provider>
       )
       .toJSON();
@@ -33,9 +39,9 @@ describe("Test the New Column element", () => {
 
   test("The New Column element should be visible if we have active board", async () => {
     render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <BoardContent isLoading={false} />
+      </Provider>
     );
 
     const boardNameInpt = screen.getByTestId("board-name-inpt");

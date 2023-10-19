@@ -47,7 +47,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
             <h2 className={cl.modal_title} data-testid="new-board-modal">
               Add New Board
             </h2>
-            <FieldName formikName={"name"} />
+            <FieldName formikName={"name"} fieldName={"Board name"} />
             {props.errors.name && props.touched.name && (
               <p style={{ color: "red" }}>{props.errors.name}</p>
             )}

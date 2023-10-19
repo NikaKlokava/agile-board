@@ -33,7 +33,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
   const task: Task = tasks[taskIndex];
 
   const columnIndex = activeBoard.columns.findIndex(
-    (column) => column.uuid === task.columnUuid
+    (column) => column?.uuid === task.columnUuid
   );
   const columnTitle = activeBoard.columns[columnIndex]?.title;
 
@@ -122,7 +122,10 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
                         onClick={() => {
                           subtask.uuid &&
                             dispatch(
-                              checkSubtask({ subtaskUuid: subtask.uuid })
+                              checkSubtask({
+                                subtaskUuid: subtask.uuid,
+                                taskUuid: task.uuid,
+                              })
                             );
                         }}
                       />

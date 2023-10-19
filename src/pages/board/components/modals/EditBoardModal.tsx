@@ -15,9 +15,7 @@ type Props = {
 };
 
 export const EditBoardModal = ({ onClose }: Props) => {
-  const activeBoard = useSelector(
-    (state: RootState) => state.activeBoard
-  );
+  const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
   const dispatch = useDispatch();
 
@@ -78,7 +76,7 @@ export const EditBoardModal = ({ onClose }: Props) => {
             <h2 className={cl.modal_title} data-testid="edit-board-modal">
               Edit Board
             </h2>
-            <FieldName formikName={"name"} />
+            <FieldName formikName={"name"} fieldName={"Board name"} />
             {props.errors.name && props.touched.name && (
               <p style={{ color: "red" }}>{props.errors.name}</p>
             )}

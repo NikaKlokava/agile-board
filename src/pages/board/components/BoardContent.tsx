@@ -6,9 +6,11 @@ import { checkedStatus } from "../../../utils/utils";
 import cl from "./styles/board_content.module.css";
 import { RootState } from "../../../redux/store/store";
 import { moveTask } from "../../../redux/reducers/tasksSlice";
+import { cloneDeep } from "lodash";
+import { Loader } from "../../../shared/components/loader";
 
-export const BoardContent = () => {
-  const [newBoardVisible, setNewBoardVisible] = useState<boolean>(true);
+export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
+  const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
@@ -18,6 +20,7 @@ export const BoardContent = () => {
   const activeBoard = useSelector((state: RootState) => state.activeBoard);
 
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const copyTasks = cloneDeep(tasks);
 
   const dispatch = useDispatch();
 
@@ -36,12 +39,14 @@ export const BoardContent = () => {
 
   const noBoards = boards.length === 0;
 
-  if (newBoardVisible || noBoards)
+  if (!isLoading && (newBoardVisible || noBoards))
     return (
       <div>
         <NewBoardModal onClose={() => setNewBoardVisible(false)} />
       </div>
     );
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className={cl.board_content_wrapper}>
@@ -60,8 +65,8 @@ export const BoardContent = () => {
                   <div className={cl.column_circle} />
                   <div className={cl.column_title}>{column.title}</div>
                 </div>
-                {tasks &&
-                  tasks
+                {copyTasks &&
+                  copyTasks
                     .sort((a, b) => a.time - b.time)
                     .map((task, index) => {
                       if (task.columnUuid === column.uuid) {
@@ -82,7 +87,7 @@ export const BoardContent = () => {
                               task
                             )} of ${
                               task.subtasks.length
-                            } completed tasks`}</div>
+                            } completed subtasks`}</div>
                           </div>
                         );
                       }
