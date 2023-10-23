@@ -68,7 +68,6 @@ describe("Test the OptionsModal component", () => {
     );
     act(() => {
       store.dispatch(addBoard(MockTestAddBoard));
-      console.log();
     });
 
     const optionsIcon = screen.getByTestId("options-icon");

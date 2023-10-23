@@ -16,6 +16,9 @@ export const boardsSlice = createSlice({
   name: "boards",
   initialState,
   reducers: {
+    fetchBoardsData: (state: BoardsType, action: PayloadAction<Boards>) => {
+      state.boards = action.payload;
+    },
     addBoard: (state: BoardsType, action: PayloadAction<AddBoardAction>) => {
       const newBoard = action.payload.time
         ? {
@@ -85,7 +88,12 @@ export const boardsSlice = createSlice({
   },
 });
 
-export const { addBoard, addNewColumn, deleteBoard, resetBoards } =
-  boardsSlice.actions;
+export const {
+  addBoard,
+  addNewColumn,
+  deleteBoard,
+  resetBoards,
+  fetchBoardsData,
+} = boardsSlice.actions;
 
 export default boardsSlice.reducer;
