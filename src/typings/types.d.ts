@@ -42,7 +42,7 @@ declare type BoardsType = {
 declare type AddBoardAction = {
   name: string;
   columns: { title: string; uuid?: strign }[];
-  time?: number
+  time?: number;
 };
 
 declare type AddColumnAction = {

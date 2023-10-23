@@ -16,6 +16,9 @@ export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
+    fetchTasksData: (state: TasksType, action: PayloadAction<Tasks>) => {
+      state.tasks = action.payload;
+    },
     addNewTask: (state: TasksType, action: PayloadAction<AddNewTaskAction>) => {
       const newSubtasks = action.payload.subtasks.map((subtask) => {
         if (!subtask.checked)
@@ -119,6 +122,7 @@ export const {
   moveTask,
   deleteTask,
   resetTasks,
+  fetchTasksData,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
