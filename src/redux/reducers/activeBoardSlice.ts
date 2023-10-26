@@ -1,7 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: BoardType = { uuid: "", name: "", columns: [] };
+const initialState: BoardType = {
+  uuid: "",
+  name: "",
+  columns: [],
+  usersEmail: [],
+  time: 0,
+};
 
 export const activeBoardSlice = createSlice({
   name: "active-board",

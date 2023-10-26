@@ -26,11 +26,12 @@ declare type ColumnsType = ColumnType[];
 
 declare type BoardType = {
   name: string;
-  columns: { title: string; uuid?: string }[];
-  uuid?: string;
+  columns: ColumnsType;
+  uuid: string;
   columnUuid?: string;
   title?: string;
-  time?: number;
+  time: number;
+  usersEmail: string[];
 };
 
 declare type Boards = BoardType[];
@@ -39,44 +40,31 @@ declare type BoardsType = {
   boards: Boards;
 };
 
-declare type AddBoardAction = {
+declare type UpdateBoardAction = {
   name: string;
-  columns: { title: string; uuid?: strign }[];
-  time?: number;
-};
-
-declare type AddColumnAction = {
-  name: string;
-  columns: { title: string; uuid?: string }[];
-  uuid: string | undefined;
+  columns: ColumnsType;
+  uuid: string;
+  usersEmail: string[];
+  time: number;
 };
 
 declare type AddNewTaskAction = {
+  uuid: string;
   boardUuid: string;
+  columnTitle: string;
+  title: string;
+  description: string;
+  subtasks: SubtasksType;
+  time: number;
+};
+
+declare type MoveTaskAction = {
   columnUuid: string;
-  title: string;
-  description: string;
-  subtasks: SubtasksType;
-};
-
-declare type EditTaskAction = {
-  subtasks: SubtasksType;
-  title: string;
-  description: string;
   taskUuid: string;
+  time: number;
 };
-
-declare type MoveTaskAction = { columnUuid: string; taskUuid: string };
 
 declare type EditTaskType = {
-  title: string;
-  description: string;
-  subtasks: SubtasksType;
-  columnTitle: string;
-};
-
-declare type NewTaskType = {
-  boardUuid: string;
   title: string;
   description: string;
   subtasks: SubtasksType;

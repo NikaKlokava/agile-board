@@ -1,11 +1,10 @@
 import { Field } from "formik";
 import { memo } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store/store";
+import { useAppSelector } from "../../../redux/hooks/hook";
 import { FieldWrapper } from "../field_wrapper";
 
 export const Select = memo(() => {
-  const activeBoard = useSelector((state: RootState) => state.activeBoard);
+  const activeBoard = useAppSelector((state) => state.activeBoard);
 
   return (
     <FieldWrapper fieldName={"Current Status"}>

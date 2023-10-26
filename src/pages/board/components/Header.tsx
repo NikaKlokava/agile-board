@@ -1,10 +1,9 @@
 import { signOut } from "firebase/auth";
 import { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../../../firebase";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hook";
 import { resetBoards } from "../../../redux/reducers/boardsSlice";
 import { resetTasks } from "../../../redux/reducers/tasksSlice";
-import { RootState } from "../../../redux/store/store";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
 import { EditBoardModal, NewTaskModal } from "./modals";
@@ -20,8 +19,8 @@ export const Header = () => {
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
   const [boardNavbarVisible, setBoardNavbarVisible] = useState<boolean>(false);
 
-  const activeBoard = useSelector((state: RootState) => state.activeBoard);
-  const dispatch = useDispatch();
+  const activeBoard = useAppSelector((state) => state.activeBoard);
+  const dispatch = useAppDispatch();
 
   const handleOptionsIconClick = useCallback(() => {
     setOptionsVisible((prev) => !prev);

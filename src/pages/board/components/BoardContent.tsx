@@ -1,13 +1,13 @@
 import { EditBoardModal, NewBoardModal, TaskModal } from "./modals";
 import React, { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import { useDispatch, useSelector } from "react-redux";
 import { checkedStatus } from "../../../utils/utils";
-import cl from "./styles/board_content.module.css";
-import { RootState } from "../../../redux/store/store";
 import { moveTask } from "../../../redux/reducers/tasksSlice";
 import { cloneDeep } from "lodash";
 import { Loader } from "../../../shared/components/loader";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hook";
+import cl from "./styles/board_content.module.css";
+import { updateUserTaskData } from "../../../redux/thunk/saveDataThunk";
 
 export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
@@ -15,22 +15,38 @@ export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
 
-  const boards = useSelector((state: RootState) => state.boards.boards);
+  const boards = useAppSelector((state) => state.boards.boards);
 
-  const activeBoard = useSelector((state: RootState) => state.activeBoard);
+  const activeBoard = useAppSelector((state) => state.activeBoard);
 
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const tasks = useAppSelector((state) => state.tasks.tasks);
   const copyTasks = cloneDeep(tasks);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleOnDrag = (e: React.DragEvent, taskUuid: string) => {
     e.dataTransfer.setData("task", taskUuid);
   };
 
-  const handleOnDrop = (e: React.DragEvent, colUuid: string) => {
+  const handleOnDrop = (e: React.DragEvent, columnUuid: string) => {
     const data = e.dataTransfer.getData("task");
-    dispatch(moveTask({ taskUuid: data, columnUuid: colUuid }));
+    const taskIndex = tasks.findIndex((task) => task.uuid === data);
+    const task = tasks[taskIndex];
+
+    const time = new Date().getTime();
+    dispatch(
+      moveTask({
+        taskUuid: data,
+        columnUuid,
+        time,
+      })
+    );
+    const newTask = {
+      ...task,
+      columnUuid,
+      time,
+    };
+    dispatch(updateUserTaskData(newTask));
   };
 
   const handleDragOver = (e: React.DragEvent) => {
