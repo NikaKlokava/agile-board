@@ -7,7 +7,7 @@ import { AppThunk } from "../store/store";
 
 export const fetchBoards = (): AppThunk => {
   return async (dispatch: Dispatch<AnyAction>) => {
-    get(child(ref(database), "users/" + auth.currentUser?.uid + "/boards"))
+    get(child(ref(database), "users/boards"))
       .then((snapshot) => {
         if (snapshot.exists()) {
           const res = snapshot.val();
@@ -18,7 +18,16 @@ export const fetchBoards = (): AppThunk => {
             }
             return 0;
           });
-          dispatch(fetchBoardsData(sortedBoards));
+
+          const userBoards = sortedBoards.filter((board) => {
+            return (
+              board.usersEmail?.findIndex(
+                (email) => email === auth.currentUser?.email
+              ) !== -1
+            );
+          });
+
+          dispatch(fetchBoardsData(userBoards));
         } else {
           console.log("No boards data available");
         }
@@ -31,7 +40,7 @@ export const fetchBoards = (): AppThunk => {
 
 export const fetchTasks = (): AppThunk => {
   return async (dispatch: Dispatch<AnyAction>) => {
-    get(child(ref(database), "users/" + auth.currentUser?.uid + "/tasks"))
+    get(child(ref(database), "users/tasks"))
       .then((snapshot) => {
         if (snapshot.exists()) {
           const res = snapshot.val();

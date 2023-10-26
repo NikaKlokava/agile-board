@@ -2,50 +2,47 @@ import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Button } from "../../../../shared/components/button";
 import { FieldArray, Form, Formik } from "formik";
 import { Input } from "../../../../shared/components/input";
-import { useDispatch, useSelector } from "react-redux";
 import { Select } from "../../../../shared/components/select";
 import { initialTaskData, TaskSchema } from "../../../../utils/utils";
 import { FieldName } from "../../../../shared/components/field_name";
 import { DescriptionField } from "../../../../shared/components/description/DescriptionField";
 import { AddBtn } from "../../../../shared/components/add_button";
 import { v4 as uuidv4 } from "uuid";
-import cl from "./modal_styles.module.css";
-import { RootState } from "../../../../redux/store/store";
 import { addNewTask } from "../../../../redux/reducers/tasksSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
+import { addUserTaskData } from "../../../../redux/thunk/saveDataThunk";
+import cl from "./modal_styles.module.css";
 
 type Props = {
   onClose: () => void;
 };
 
 export const NewTaskModal = ({ onClose }: Props) => {
-  const activeBoard = useSelector((state: RootState) => state.activeBoard);
-  const dispatch = useDispatch();
+  const activeBoard = useAppSelector((state) => state.activeBoard);
+  const dispatch = useAppDispatch();
 
   const initialData = {
     ...initialTaskData,
     columnTitle: activeBoard.columns[0]?.title,
   };
 
-  const onSubmit = (values: NewTaskType) => {
+  const onSubmit = (values: AddNewTaskAction) => {
     const columnIndex = activeBoard.columns.findIndex(
       (column) => column.title === values.columnTitle
     );
     const columnUuid = activeBoard.columns[columnIndex].uuid;
 
-    const subtasks = values.subtasks.filter(
-      (subtask) => subtask?.text && subtask.text.trimStart().length !== 0
-    );
-    columnUuid &&
-      activeBoard.uuid &&
-      dispatch(
-        addNewTask({
-          boardUuid: activeBoard.uuid,
-          columnUuid: columnUuid,
-          title: values.title,
-          description: values.description,
-          subtasks: subtasks,
-        })
-      );
+    const newTask: Task = {
+      uuid: uuidv4(),
+      boardUuid: activeBoard.uuid,
+      columnUuid,
+      title: values.title,
+      description: values.description,
+      subtasks: values.subtasks,
+      time: new Date().getTime(),
+    };
+    dispatch(addNewTask(newTask));
+    dispatch(addUserTaskData(newTask));
     onClose();
   };
 
@@ -55,13 +52,17 @@ export const NewTaskModal = ({ onClose }: Props) => {
         initialValues={initialData}
         validationSchema={TaskSchema}
         onSubmit={(values) => {
-          onSubmit({
-            ...values,
-            subtasks: values.subtasks.map((e) => ({
-              text: e,
+          const subtasks = values.subtasks
+            .filter((subtask) => subtask && subtask.trimStart().length !== 0)
+            .map((e) => ({
+              text: e.trimStart(),
               uuid: uuidv4(),
               checked: false,
-            })),
+            }));
+
+          onSubmit({
+            ...values,
+            subtasks: subtasks,
           });
         }}
       >

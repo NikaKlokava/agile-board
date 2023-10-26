@@ -1,20 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
 import { isEqual } from "lodash";
 import { useEffect } from "react";
 import classes from "classnames";
 import cl from "./boards.module.css";
-import { RootState } from "../../../redux/store/store";
 import { selectBoard } from "../../../redux/reducers/activeBoardSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hook";
 
 type Props = {
   onBoardVisible: () => void;
 };
 
 export const Boards = ({ onBoardVisible }: Props) => {
-  const boards = useSelector((state: RootState) => state.boards.boards);
-  const activeBoard = useSelector((state: RootState) => state.activeBoard);
+  const boards = useAppSelector((state) => state.boards.boards);
+  const activeBoard = useAppSelector((state) => state.activeBoard);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const activeBoardIndex = boards.findIndex(

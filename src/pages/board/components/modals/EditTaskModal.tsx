@@ -1,16 +1,17 @@
 import { FieldArray, Form, Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../shared/components/button";
 import { DescriptionField } from "../../../../shared/components/description/DescriptionField";
 import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import { FieldName } from "../../../../shared/components/field_name";
-import cl from "./modal_styles.module.css";
 import { EditTaskSchema } from "../../../../utils/utils";
 import { AddBtn } from "../../../../shared/components/add_button";
-import { RootState } from "../../../../redux/store/store";
 import { editTask, moveTask } from "../../../../redux/reducers/tasksSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
+import { updateUserTaskData } from "../../../../redux/thunk/saveDataThunk";
+import { v4 as uuidv4 } from "uuid";
+import cl from "./modal_styles.module.css";
 
 type Props = {
   taskUuid: string;
@@ -23,9 +24,10 @@ export const EditTaskModal = ({
   onClose,
   onTaskModalClose,
 }: Props) => {
-  const activeBoard = useSelector((state: RootState) => state.activeBoard);
+  const activeBoard = useAppSelector((state) => state.activeBoard);
 
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const tasks = useAppSelector((state) => state.tasks.tasks);
+
   const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
   const task = tasks[taskIndex];
 
@@ -34,7 +36,7 @@ export const EditTaskModal = ({
   );
   const column = activeBoard.columns[columnIndex]?.title;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const checkedSubtasks = task?.subtasks?.reduce(
     (accum: boolean[], current) => {
@@ -44,47 +46,58 @@ export const EditTaskModal = ({
   );
 
   const onSubmit = (values: EditTaskType) => {
+    console.log(values);
     const columnIndex = activeBoard.columns.findIndex(
       (column) => column.title === values.columnTitle
     );
-
     const columnUuid = activeBoard.columns[columnIndex].uuid;
-    const subtasks = values.subtasks.filter(
-      (subtask) => subtask?.text && subtask?.text.trimStart().length !== 0
-    );
-    columnUuid && dispatch(moveTask({ taskUuid, columnUuid }));
-    dispatch(
-      editTask({
-        taskUuid,
-        title: values.title,
-        description: values.description,
-        subtasks,
-      })
-    );
+    const time = new Date().getTime();
+    const updatedTask = {
+      ...task,
+      columnUuid,
+      title: values.title,
+      description: values.description,
+      subtasks: values.subtasks,
+      time,
+    };
+    columnUuid && dispatch(moveTask({ taskUuid, columnUuid, time }));
+    dispatch(editTask(updatedTask));
+
+    dispatch(updateUserTaskData(updatedTask));
+
     onClose();
     onTaskModalClose();
+  };
+
+  const initialTaskData = {
+    title: task?.title,
+    description: task?.description,
+    subtasks: task?.subtasks?.reduce((accum: string[], current) => {
+      return [...accum, current.text];
+    }, []),
+    columnTitle: column,
   };
 
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
-        initialValues={{
-          title: task?.title,
-          description: task?.description,
-          subtasks: task?.subtasks?.reduce((accum: string[], current) => {
-            return [...accum, current.text];
-          }, []),
-          columnTitle: column,
-        }}
+        initialValues={initialTaskData}
         validationSchema={EditTaskSchema}
         onSubmit={(values) => {
-          const newSubtasks = values.subtasks.reduce(
+          const subtasks = values.subtasks
+            .filter((subtask) => subtask && subtask.trimStart().length !== 0)
+            .map((subtask) => subtask.trimStart());
+
+          const newSubtasks = subtasks.reduce(
             (accum: { text: string; checked: boolean }[], current, index) => {
               return [
                 ...accum,
                 {
                   text: current,
-                  checked: checkedSubtasks[index],
+                  checked: checkedSubtasks[index]
+                    ? checkedSubtasks[index]
+                    : false,
+                  uuid: uuidv4(),
                 },
               ];
             },

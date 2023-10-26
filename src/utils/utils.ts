@@ -1,10 +1,11 @@
-import { ref, remove, set, update } from "firebase/database";
 import * as Yup from "yup";
-import { database } from "../firebase";
 
 export const initialBoardData = {
   name: "",
   columns: ["", ""],
+  usersEmail: [""],
+  uuid: "",
+  time: 0,
 };
 
 export const initialTaskData = {
@@ -13,6 +14,8 @@ export const initialTaskData = {
   title: "",
   description: "",
   subtasks: ["", ""],
+  time: 0,
+  uuid: "",
 };
 
 export const checkedStatus = (task: Task) => {
@@ -25,6 +28,7 @@ export const checkedStatus = (task: Task) => {
 export const BoardSchema = Yup.object().shape({
   name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
   columns: Yup.array().of(Yup.string().max(14, "Too Long!")),
+  // usersEmail: Yup.array().of(Yup.string().max(100, "Too Long!")),
 });
 
 export const TaskSchema = Yup.object().shape({
@@ -39,6 +43,7 @@ export const EditBoardSchema = Yup.object().shape({
   uuid: Yup.string(),
   name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
   columns: Yup.array().of(Yup.string().max(14, "Too Long!")),
+  usersEmail: Yup.array().of(Yup.string().max(100, "Too Long!")),
 });
 
 export const EditTaskSchema = Yup.object().shape({
@@ -47,45 +52,3 @@ export const EditTaskSchema = Yup.object().shape({
   subtasks: Yup.array().of(Yup.string().max(14, "Too Long!")),
   columnTitle: Yup.string(),
 });
-
-export const addUserBoardData = (userId: string, newBoard: BoardType) => {
-  const boardsRef = ref(
-    database,
-    `users/` + userId + `/boards/` + newBoard.uuid
-  );
-  set(boardsRef, {
-    ...newBoard,
-  });
-};
-export const updateUserBoardData = (userId: string, boards: Boards) => {
-  boards.forEach((board) => {
-    const updates: any = {};
-    const index = "users/" + userId + "/boards/" + board.uuid;
-    updates[index] = board;
-
-    return update(ref(database), updates);
-  });
-};
-export const deleteUserBoard = (userId: string, uuid: string) => {
-  remove(ref(database, "users/" + userId + "/boards/" + uuid));
-};
-
-export const addUserTasksData = (userId: string, newTask: Task) => {
-  const tasksRef = ref(database, "users/" + userId + "/tasks/" + newTask.uuid);
-  set(tasksRef, {
-    ...newTask,
-  });
-};
-export const updateUserTasksData = (userId: string, updatedTasks: Tasks) => {
-  updatedTasks.forEach((updatedTask) => {
-    const updates: any = {};
-    const index = "users/" + userId + "/tasks/" + updatedTask.uuid;
-    updates[index] = updatedTask;
-
-    return update(ref(database), updates);
-  });
-};
-
-export const removeUserTask = (userId: string, uuid: string) => {
-  remove(ref(database, "users/" + userId + "/tasks/" + uuid));
-};

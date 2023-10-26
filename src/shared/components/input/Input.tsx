@@ -8,19 +8,20 @@ type Props = {
   remove?: any;
   uuids?: string[];
   checked?: boolean[];
+  type?: "email";
 };
 
 export const Input = memo(
-  ({ formikName, remove, index, uuids, checked }: Props) => {
+  ({ formikName, remove, index, uuids, checked, type }: Props) => {
     return (
       <div className={cl.input_container}>
         <Field
-          placeholder="e.g Take coffee break"
+          placeholder={type ? "Enter email" : "e.g Take coffee break"}
           autoComplete="off"
           type="text"
           as="input"
           name={formikName}
-          maxLength={14}
+          maxLength={type ? 100 : 14}
           className={cl.input_style}
         ></Field>
         <DeleteIcon
