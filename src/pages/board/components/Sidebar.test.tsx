@@ -1,9 +1,13 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { Sidebar } from "./Sidebar";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
-import { BoardContent } from "./BoardContent";
+import { act } from "react-dom/test-utils";
+import { MemoryRouter } from "react-router-dom";
+import App from "../../../App";
+import { addBoard } from "../../../redux/reducers/boardsSlice";
+import { MockTestAddBoard } from "../../../mocks/TestMocks";
 jest.mock("../../../shared/hooks/useAuthorization", () => ({
   useAuthorization: () => ({ isUserExist: true }),
 }));
@@ -26,15 +30,13 @@ describe("Test the Sidebar component", () => {
 describe("Test the New Board element", () => {
   test("The NewBoardModal should be visible on click", async () => {
     render(
-      <Provider store={store}>
-        <BoardContent isLoading={false} />
-      </Provider>
+      <MemoryRouter initialEntries={["/agile-board"]}>
+        <App />
+      </MemoryRouter>
     );
-    const boardNameInpt = screen.getByTestId("board-name-inpt");
-    const newBoardBtn = screen.getByTestId("create-new-board-btn");
-
-    fireEvent.change(boardNameInpt, { target: { value: "mockname" } });
-    fireEvent.click(newBoardBtn);
+    act(() => {
+      store.dispatch(addBoard(MockTestAddBoard));
+    });
 
     await waitFor(() => {
       const newBoardEl = screen.getByTestId("new-board");

@@ -28,7 +28,7 @@ export const checkedStatus = (task: Task) => {
 export const BoardSchema = Yup.object().shape({
   name: Yup.string().min(3, "Too Short!").max(14, "Too Long!").required(),
   columns: Yup.array().of(Yup.string().max(14, "Too Long!")),
-  usersEmail: Yup.array().of(Yup.string().max(100, "Too Long!")),
+  // usersEmail: Yup.array().of(Yup.string().max(100, "Too Long!")),
 });
 
 export const TaskSchema = Yup.object().shape({

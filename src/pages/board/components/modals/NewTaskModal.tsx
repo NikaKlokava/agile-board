@@ -23,7 +23,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
 
   const initialData = {
     ...initialTaskData,
-    columnTitle: activeBoard.columns[0].title,
+    columnTitle: activeBoard.columns[0]?.title,
   };
 
   const onSubmit = (values: AddNewTaskAction) => {
