@@ -6,8 +6,8 @@ import store from "../../../redux/store/store";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import App from "../../../App";
-import { addBoard } from "../../../redux/reducers/boardsSlice";
-import { MockTestAddBoard } from "../../../mocks/TestMocks";
+import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
+import { MockBoard } from "../../../mocks/BoardMocks";
 jest.mock("../../../shared/hooks/useAuthorization", () => ({
   useAuthorization: () => ({ isUserExist: true }),
 }));
@@ -35,7 +35,8 @@ describe("Test the New Board element", () => {
       </MemoryRouter>
     );
     act(() => {
-      store.dispatch(addBoard(MockTestAddBoard));
+      store.dispatch(changeStatus({ isLoading: false }));
+      store.dispatch(addBoard(MockBoard));
     });
 
     await waitFor(() => {

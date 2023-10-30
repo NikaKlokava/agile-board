@@ -6,6 +6,9 @@ import { Header } from "./Header";
 import App from "../../../App";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
+import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
+import { MockBoard, MockBoardWithoutColumn } from "../../../mocks/BoardMocks";
+import { selectBoard } from "../../../redux/reducers/activeBoardSlice";
 
 jest.mock("../../../shared/hooks/useAuthorization", () => ({
   useAuthorization: () => ({ isUserExist: true }),
@@ -26,15 +29,34 @@ describe("Test the Header component", () => {
   });
 });
 describe("Test the button Add New Task", () => {
-  test("The button Add New Task should be visible when you open the page", () => {
+  test("The button Add New Task should be visible when you open the page and have at least one column", () => {
     render(
       <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
       </MemoryRouter>
     );
+    act(() => {
+      store.dispatch(changeStatus({ isLoading: false }));
+      store.dispatch(addBoard(MockBoard));
+    });
+
     const addNewTaskBtn = screen.queryByTestId("add-new-task-btn");
 
     expect(addNewTaskBtn).toBeInTheDocument();
+  });
+
+  test("The button Add New Task should not be visible if have not at least one column", () => {
+    render(
+      <MemoryRouter initialEntries={["/agile-board"]}>
+        <App />
+      </MemoryRouter>
+    );
+    act(() => {
+      store.dispatch(selectBoard(MockBoardWithoutColumn));
+    });
+
+    const addNewTaskBtn = screen.queryByTestId("add-new-task-btn");
+    expect(addNewTaskBtn).not.toBeInTheDocument();
   });
 
   test("The NewTaskModal should be visible on button Add New Task click", () => {

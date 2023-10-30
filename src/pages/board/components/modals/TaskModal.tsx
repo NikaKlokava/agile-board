@@ -49,12 +49,14 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleCheckClick = (uuid: string | undefined) => {
-    const currentSubtask: SubtaskType = task.subtasks?.reduce((accum, curr) => {
-      if (curr.uuid === uuid) return curr;
-      return accum;
-    });
+    const currentSubtask: SubtaskType = task?.subtasks?.reduce(
+      (accum, curr) => {
+        if (curr.uuid === uuid) return curr;
+        return accum;
+      }
+    );
 
-    const newSubtasks = task.subtasks?.map((subtask) => {
+    const newSubtasks = task?.subtasks?.map((subtask) => {
       if (subtask.uuid === uuid)
         return {
           ...subtask,
@@ -146,7 +148,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
             <p className={cl.description}>{task?.description}</p>
             {task?.subtasks?.length !== 0 && (
               <div className={cl.container}>
-                {task.subtasks && task.subtasks?.length !== 0 && (
+                {task?.subtasks && task.subtasks?.length !== 0 && (
                   <p
                     className={cl.title}
                   >{`Subtasks (${checkedSubtasks} of ${task?.subtasks?.length})`}</p>
