@@ -48,14 +48,16 @@ export const Header = () => {
         ></div>
       </div>
       <div className={cl.options}>
-        <Button
-          text={"Add New Task"}
-          withIcon={true}
-          onClick={handleAddNewTaskClick}
-          testid={"add-new-task-btn"}
-          newClass={"add-new-task"}
-          type="button"
-        />
+        {activeBoard.columns && activeBoard.columns?.length !== 0 && (
+          <Button
+            text={"Add New Task"}
+            withIcon={true}
+            onClick={handleAddNewTaskClick}
+            testid={"add-new-task-btn"}
+            newClass={"add-new-task"}
+            type="button"
+          />
+        )}
         <OptionsIcon onOpen={handleOptionsIconClick} />
         <p className={cl.sign_out} onClick={handleSignOutClick}>
           Sign Out

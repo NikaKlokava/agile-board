@@ -10,12 +10,13 @@ import { DeleteModal } from "./DeleteModal";
 import classes from "classnames";
 import cl from "./modal_styles.module.css";
 import { EditTaskModal } from "./EditTaskModal";
-import { checkSubtask, moveTask } from "../../../../redux/reducers/tasksSlice";
-import { useAppSelector, useAppDispatch } from "../../../../redux/hooks/hook";
 import {
-  updateUserSubtasksData,
-  updateUserTaskData,
-} from "../../../../redux/thunk/saveDataThunk";
+  checkSubtask,
+  moveTask,
+  updateSubtasksData,
+} from "../../../../redux/reducers/tasksSlice";
+import { useAppSelector, useAppDispatch } from "../../../../redux/hooks/hook";
+import { updateTaskData } from "../../../../redux/reducers/tasksSlice";
 
 type Props = {
   taskUuid: string | undefined;
@@ -35,10 +36,10 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
   const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
   const task: Task = tasks[taskIndex];
 
-  const columnIndex = activeBoard.columns.findIndex(
+  const columnIndex = activeBoard.columns?.findIndex(
     (column) => column?.uuid === task.columnUuid
   );
-  const columnTitle = activeBoard.columns[columnIndex]?.title;
+  const columnTitle = activeBoard.columns?.[columnIndex]?.title;
 
   useMemo(() => {
     const checked = checkedStatus(task);
@@ -48,12 +49,12 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleCheckClick = (uuid: string | undefined) => {
-    const currentSubtask: SubtaskType = task.subtasks.reduce((accum, curr) => {
+    const currentSubtask: SubtaskType = task.subtasks?.reduce((accum, curr) => {
       if (curr.uuid === uuid) return curr;
       return accum;
     });
 
-    const newSubtasks = task.subtasks.map((subtask) => {
+    const newSubtasks = task.subtasks?.map((subtask) => {
       if (subtask.uuid === uuid)
         return {
           ...subtask,
@@ -66,14 +67,16 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
       dispatch(
         checkSubtask({ taskUuid: task.uuid, updatedSubtasks: newSubtasks })
       );
-    dispatch(updateUserSubtasksData(task.uuid, newSubtasks));
+    dispatch(
+      updateSubtasksData({ taskUuid: task.uuid, updatedSubtasks: newSubtasks })
+    );
   };
 
   const onSubmit = (values: TaskModalType) => {
-    const columnIndex = activeBoard.columns.findIndex(
+    const columnIndex = activeBoard.columns?.findIndex(
       (column) => column.title === values.columnTitle
     );
-    const columnUuid = activeBoard.columns[columnIndex].uuid;
+    const columnUuid = activeBoard.columns?.[columnIndex].uuid;
     const time = new Date().getTime();
 
     dispatch(
@@ -88,13 +91,12 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
       columnUuid,
       time,
     };
-
-    dispatch(updateUserTaskData(newTask));
+    dispatch(updateTaskData({ updatedTask: newTask }));
     onClose();
   };
 
   const initialData = {
-    checked: task?.subtasks.reduce((accum: boolean[], current) => {
+    checked: task?.subtasks?.reduce((accum: boolean[], current) => {
       return [...accum, current.checked];
     }, []),
     taskUuid: task?.uuid,
@@ -144,9 +146,11 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
             <p className={cl.description}>{task?.description}</p>
             {task?.subtasks?.length !== 0 && (
               <div className={cl.container}>
-                <p
-                  className={cl.title}
-                >{`Subtasks (${checkedSubtasks} of ${task?.subtasks?.length})`}</p>
+                {task.subtasks && task.subtasks?.length !== 0 && (
+                  <p
+                    className={cl.title}
+                  >{`Subtasks (${checkedSubtasks} of ${task?.subtasks?.length})`}</p>
+                )}
                 {task?.subtasks?.map((subtask, i) => {
                   return (
                     <div

@@ -9,9 +9,9 @@ import { EditTaskSchema } from "../../../../utils/utils";
 import { AddBtn } from "../../../../shared/components/add_button";
 import { editTask, moveTask } from "../../../../redux/reducers/tasksSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
-import { updateUserTaskData } from "../../../../redux/thunk/saveDataThunk";
 import { v4 as uuidv4 } from "uuid";
 import cl from "./modal_styles.module.css";
+import { updateTaskData } from "../../../../redux/reducers/tasksSlice";
 
 type Props = {
   taskUuid: string;
@@ -31,10 +31,10 @@ export const EditTaskModal = ({
   const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
   const task = tasks[taskIndex];
 
-  const columnIndex = activeBoard.columns.findIndex(
+  const columnIndex = activeBoard.columns?.findIndex(
     (column) => column.uuid === task.columnUuid
   );
-  const column = activeBoard.columns[columnIndex]?.title;
+  const column = activeBoard.columns?.[columnIndex]?.title;
 
   const dispatch = useAppDispatch();
 
@@ -46,11 +46,10 @@ export const EditTaskModal = ({
   );
 
   const onSubmit = (values: EditTaskType) => {
-    console.log(values);
-    const columnIndex = activeBoard.columns.findIndex(
+    const columnIndex = activeBoard.columns?.findIndex(
       (column) => column.title === values.columnTitle
     );
-    const columnUuid = activeBoard.columns[columnIndex].uuid;
+    const columnUuid = activeBoard.columns?.[columnIndex].uuid;
     const time = new Date().getTime();
     const updatedTask = {
       ...task,
@@ -62,8 +61,7 @@ export const EditTaskModal = ({
     };
     columnUuid && dispatch(moveTask({ taskUuid, columnUuid, time }));
     dispatch(editTask(updatedTask));
-
-    dispatch(updateUserTaskData(updatedTask));
+    dispatch(updateTaskData({ updatedTask }));
 
     onClose();
     onTaskModalClose();
@@ -94,7 +92,7 @@ export const EditTaskModal = ({
                 ...accum,
                 {
                   text: current,
-                  checked: checkedSubtasks[index]
+                  checked: checkedSubtasks?.[index]
                     ? checkedSubtasks[index]
                     : false,
                   uuid: uuidv4(),

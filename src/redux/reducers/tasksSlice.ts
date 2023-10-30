@@ -13,6 +13,7 @@ export const tasksSlice = createSlice({
       state.tasks = action.payload;
     },
     addNewTask: (state: TasksType, action: PayloadAction<Task>) => {
+      if (!state.tasks) state.tasks = [action.payload];
       state.tasks = [...state.tasks, action.payload];
     },
     checkSubtask: (
@@ -56,6 +57,17 @@ export const tasksSlice = createSlice({
       );
     },
     resetTasks: () => {},
+    awaitUserTasksData: () => {},
+    saveTaskData: (_, _action: PayloadAction<{ newTask: Task }>) => {},
+    updateTaskData: (_, _action: PayloadAction<{ updatedTask: Task }>) => {},
+    updateSubtasksData: (
+      _,
+      _action: PayloadAction<{
+        taskUuid: string;
+        updatedSubtasks: SubtasksType;
+      }>
+    ) => {},
+    deleteTaskData: (_, _action: PayloadAction<{ uuid: string }>) => {},
   },
 });
 
@@ -67,6 +79,11 @@ export const {
   deleteTask,
   resetTasks,
   fetchTasksData,
+  awaitUserTasksData,
+  saveTaskData,
+  updateTaskData,
+  updateSubtasksData,
+  deleteTaskData,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

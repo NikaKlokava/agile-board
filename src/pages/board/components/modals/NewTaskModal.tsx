@@ -10,8 +10,8 @@ import { AddBtn } from "../../../../shared/components/add_button";
 import { v4 as uuidv4 } from "uuid";
 import { addNewTask } from "../../../../redux/reducers/tasksSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
-import { addUserTaskData } from "../../../../redux/thunk/saveDataThunk";
 import cl from "./modal_styles.module.css";
+import { saveTaskData } from "../../../../redux/reducers/tasksSlice";
 
 type Props = {
   onClose: () => void;
@@ -23,7 +23,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
 
   const initialData = {
     ...initialTaskData,
-    columnTitle: activeBoard.columns[0]?.title,
+    columnTitle: activeBoard.columns[0].title,
   };
 
   const onSubmit = (values: AddNewTaskAction) => {
@@ -42,7 +42,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
       time: new Date().getTime(),
     };
     dispatch(addNewTask(newTask));
-    dispatch(addUserTaskData(newTask));
+    dispatch(saveTaskData({ newTask: newTask }));
     onClose();
   };
 
@@ -53,8 +53,8 @@ export const NewTaskModal = ({ onClose }: Props) => {
         validationSchema={TaskSchema}
         onSubmit={(values) => {
           const subtasks = values.subtasks
-            .filter((subtask) => subtask && subtask.trimStart().length !== 0)
-            .map((e) => ({
+            ?.filter((subtask) => subtask && subtask.trimStart().length !== 0)
+            ?.map((e) => ({
               text: e.trimStart(),
               uuid: uuidv4(),
               checked: false,
@@ -88,7 +88,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
                 <>
                   <div className={cl.container}>
                     <p className={cl.title}>Subtasks</p>
-                    {props.values.subtasks.map((_, index) => (
+                    {props.values.subtasks?.map((_, index) => (
                       <Input
                         key={index}
                         formikName={`subtasks[${index}]`}

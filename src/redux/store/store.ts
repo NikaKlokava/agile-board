@@ -8,6 +8,15 @@ import {
 import boardsReducer from "../reducers/boardsSlice";
 import activeBoardReducer from "../reducers/activeBoardSlice";
 import tasksReducer from "../reducers/tasksSlice";
+import createSagaMiddleware from "redux-saga";
+import thunk from "redux-thunk";
+import {
+  deleteTaskSaga,
+  saveTasksSaga,
+  fetchTasksSaga,
+  updateSubtasksSaga,
+  updateTasksSaga,
+} from "../saga/saga";
 
 const reducers = {
   boards: boardsReducer,
@@ -30,11 +39,18 @@ const resettableRootReducer = (
 
   return rootReducer(state, action);
 };
+const saga = createSagaMiddleware();
 
 const store = configureStore({
   reducer: resettableRootReducer,
-  devTools: process.env.NODE_ENV !== "production",
+  middleware: (gDM) => gDM().concat(saga, thunk),
 });
+
+saga.run(fetchTasksSaga);
+saga.run(saveTasksSaga);
+saga.run(updateTasksSaga);
+saga.run(updateSubtasksSaga);
+saga.run(deleteTaskSaga);
 
 export default store;
 

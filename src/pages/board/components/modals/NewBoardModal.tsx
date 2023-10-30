@@ -20,7 +20,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
   const dispatch = useAppDispatch();
 
   const onSubmit = (values: BoardType) => {
-    const columns = values.columns.filter(
+    const columns = values.columns?.filter(
       (column) => column?.title && column.title.trimStart().length !== 0
     );
     const newBoard: BoardType = {
@@ -46,7 +46,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
         onSubmit={(values) => {
           onSubmit({
             ...values,
-            columns: values.columns.map((e) => ({ title: e, uuid: uuidv4() })),
+            columns: values.columns?.map((e) => ({ title: e, uuid: uuidv4() })),
           });
         }}
       >
@@ -71,7 +71,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
                 <>
                   <div className={cl.container}>
                     <p className={cl.title}>Board Columns</p>
-                    {props.values.columns.map((_, index) => (
+                    {props.values.columns?.map((_, index) => (
                       <Input
                         key={index}
                         formikName={`columns[${index}]`}

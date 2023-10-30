@@ -38,6 +38,7 @@ declare type Boards = BoardType[];
 
 declare type BoardsType = {
   boards: Boards;
+  isLoading: boolean;
 };
 
 declare type UpdateBoardAction = {

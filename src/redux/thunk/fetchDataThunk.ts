@@ -2,7 +2,6 @@ import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { child, get, ref } from "firebase/database";
 import { auth, database } from "../../firebase";
 import { fetchBoardsData } from "../reducers/boardsSlice";
-import { fetchTasksData } from "../reducers/tasksSlice";
 import { AppThunk } from "../store/store";
 
 export const fetchBoards = (): AppThunk => {
@@ -30,25 +29,6 @@ export const fetchBoards = (): AppThunk => {
           dispatch(fetchBoardsData(userBoards));
         } else {
           console.log("No boards data available");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-};
-
-export const fetchTasks = (): AppThunk => {
-  return async (dispatch: Dispatch<AnyAction>) => {
-    get(child(ref(database), "users/tasks"))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const res = snapshot.val();
-          const tasks: Tasks = Object.values(res);
-
-          dispatch(fetchTasksData(tasks));
-        } else {
-          console.log("No tasks data available");
         }
       })
       .catch((error) => {
