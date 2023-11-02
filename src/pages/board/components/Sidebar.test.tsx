@@ -4,7 +4,7 @@ import { Sidebar } from "./Sidebar";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
 import { act } from "react-dom/test-utils";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import App from "../../../App";
 import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
 import { MockBoard } from "../../../mocks/BoardMocks";
@@ -18,9 +18,11 @@ describe("Test the Sidebar component", () => {
   test("The Sidebar renders correctly", () => {
     const sidebarSnap = renderer
       .create(
-        <Provider store={store}>
-          <Sidebar />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <Sidebar />
+          </Provider>
+        </BrowserRouter>
       )
       .toJSON();
     expect(sidebarSnap).toMatchSnapshot();

@@ -18,9 +18,13 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       >
         AGILE-BOARD
       </h1>
-      <p
-        className="board_name"
-      />
+      <div
+        className="board_name_container"
+      >
+        <p
+          className="board_name"
+        />
+      </div>
       <div
         className="navbar"
         onClick={[Function]}
@@ -32,6 +36,10 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
       <div
         className="options_icon"
         data-testid="options-icon"
+        onClick={[Function]}
+      />
+      <div
+        className="user_profile"
         onClick={[Function]}
       />
       <p
