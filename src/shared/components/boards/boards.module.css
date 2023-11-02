@@ -28,19 +28,41 @@
   font-family: 'Philosopher', sans-serif;
 }
 
+.subtitle {
+  color: #2b2b2baf;
+  margin-bottom: 10px;
+  align-self: center;
+  font-size: 14px;
+}
+
+.my_boards {
+  color: #d89910;
+  text-shadow: 1px 1px 2px #bd860ec1;
+  border-bottom: 2px dotted #d89910;
+}
+
+.shared_boards {
+  margin-top: 10px;
+  color: #cd2f5e;
+  text-shadow: 1px 1px 2px #8c1f40bc;
+  border-bottom: 2px dotted #cd2f5e;
+}
+
 .new_board {
   color: #7c52de;
 }
 
-.icon {
+.board_icon,
+.icon_new_board {
   width: 20px;
   height: 20px;
+}
+
+.board_icon {
   background: url("../../../assets/board-item.svg");
 }
 
 .icon_new_board {
-  width: 20px;
-  height: 20px;
   background: url("../../../assets/new_board.svg");
 }
 

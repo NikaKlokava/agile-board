@@ -12,13 +12,17 @@ function App() {
 
   if (!isUserExist) {
     return <LoginPage />;
+  } else {
+    window.history.replaceState("", "", "/agile-board");
   }
 
   return (
     <Provider store={store}>
       <Routes>
         <Route path="/agile-board/authorization" element={<LoginPage />} />
-        <Route path="/agile-board" element={<BoardPage />} />
+        <Route path={"/agile-board"} element={<BoardPage />} />
+        <Route path={"/agile-board/:id"} element={<BoardPage />} />
+        <Route path={"/agile-board/board/:id"} element={<BoardPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Provider>

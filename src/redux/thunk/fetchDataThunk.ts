@@ -1,7 +1,7 @@
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { child, get, ref } from "firebase/database";
 import { auth, database } from "../../firebase";
-import { fetchBoardsData } from "../reducers/boardsSlice";
+import { changeStatus, fetchBoardsData } from "../reducers/boardsSlice";
 import { AppThunk } from "../store/store";
 
 export const fetchBoards = (): AppThunk => {
@@ -33,6 +33,7 @@ export const fetchBoards = (): AppThunk => {
       })
       .catch((error) => {
         console.error(error);
-      });
+      })
+      .finally(() => dispatch(changeStatus({ isLoading: false })));
   };
 };

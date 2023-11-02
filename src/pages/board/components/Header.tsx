@@ -10,6 +10,7 @@ import { EditBoardModal, NewTaskModal } from "./modals";
 import { BoardNavbarModal } from "./modals/BoardNavbarModal";
 import { DeleteModal } from "./modals/DeleteModal";
 import { OptionsModal } from "./modals/OptionsModal";
+import { UserProfileModal } from "./modals/UserProfileModal";
 import cl from "./styles/header.module.css";
 
 export const Header = () => {
@@ -18,6 +19,7 @@ export const Header = () => {
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [deleteBoardVisible, setDeleteBoardVisible] = useState<boolean>(false);
   const [boardNavbarVisible, setBoardNavbarVisible] = useState<boolean>(false);
+  const [userProfileVisible, setUserProfileVisible] = useState<boolean>(false);
 
   const activeBoard = useAppSelector((state) => state.activeBoard);
   const dispatch = useAppDispatch();
@@ -41,7 +43,12 @@ export const Header = () => {
       <div className={cl.app_title}>
         <div className={cl.app_logo}></div>
         <h1 className={cl.title}>AGILE-BOARD</h1>
-        <p className={cl.board_name}>{activeBoard.name}</p>
+        <div className={cl.board_name_container}>
+          <p className={cl.board_name}>{activeBoard.name}</p>
+          {activeBoard.usersEmail.length !== 0 && (
+            <p className={cl.creator}>{`by ${activeBoard.usersEmail[0]}`}</p>
+          )}
+        </div>
         <div
           className={cl.navbar}
           onClick={() => setBoardNavbarVisible(true)}
@@ -59,6 +66,10 @@ export const Header = () => {
           />
         )}
         <OptionsIcon onOpen={handleOptionsIconClick} />
+        <div
+          className={cl.user_profile}
+          onClick={() => setUserProfileVisible(true)}
+        />
         <p className={cl.sign_out} onClick={handleSignOutClick}>
           Sign Out
         </p>
@@ -94,6 +105,9 @@ export const Header = () => {
       )}
       {boardNavbarVisible && (
         <BoardNavbarModal onClose={() => setBoardNavbarVisible(false)} />
+      )}
+      {userProfileVisible && (
+        <UserProfileModal onClose={() => setUserProfileVisible(false)} />
       )}
     </div>
   );

@@ -30,17 +30,37 @@
   font-weight: bold;
 }
 
+.board_name_container {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .board_name {
   font-size: 25px;
   font-family: 'Philosopher', sans-serif;
   color: rgb(43, 43, 43);
-  margin-left: 30px;
+
+}
+
+.creator {
+  font-size: 14px;
+  color: #2b2b2baf;
 }
 
 .options {
   display: flex;
   align-items: center;
   column-gap: 20px;
+}
+
+.user_profile {
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+  background: url("../../../../assets/user.svg");
+  cursor: pointer;
 }
 
 .sign_out {
