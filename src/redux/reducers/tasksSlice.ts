@@ -57,7 +57,6 @@ export const tasksSlice = createSlice({
       );
     },
     resetTasks: () => {},
-    awaitUserTasksData: () => {},
     saveTaskData: (_, _action: PayloadAction<{ newTask: Task }>) => {},
     updateTaskData: (_, _action: PayloadAction<{ updatedTask: Task }>) => {},
     updateSubtasksData: (
@@ -79,7 +78,6 @@ export const {
   deleteTask,
   resetTasks,
   fetchTasksData,
-  awaitUserTasksData,
   saveTaskData,
   updateTaskData,
   updateSubtasksData,

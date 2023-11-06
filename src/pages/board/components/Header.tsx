@@ -1,5 +1,6 @@
 import { signOut } from "firebase/auth";
 import { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hook";
 import { resetBoards } from "../../../redux/reducers/boardsSlice";
@@ -23,6 +24,7 @@ export const Header = () => {
 
   const activeBoard = useAppSelector((state) => state.activeBoard);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleOptionsIconClick = useCallback(() => {
     setOptionsVisible((prev) => !prev);
@@ -36,6 +38,7 @@ export const Header = () => {
     dispatch(resetTasks());
     dispatch(resetBoards());
     signOut(auth);
+    navigate("/agile-board");
   };
 
   return (

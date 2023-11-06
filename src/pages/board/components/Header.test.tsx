@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import { Header } from "./Header";
 import App from "../../../App";
@@ -20,9 +20,11 @@ describe("Test the Header component", () => {
   test("The Header renders correctly", () => {
     const headerSnap = renderer
       .create(
-        <Provider store={store}>
-          <Header />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <Header />
+          </Provider>
+        </BrowserRouter>
       )
       .toJSON();
     expect(headerSnap).toMatchSnapshot();
@@ -38,6 +40,7 @@ describe("Test the button Add New Task", () => {
     act(() => {
       store.dispatch(changeStatus({ isLoading: false }));
       store.dispatch(addBoard(MockBoard));
+      store.dispatch(selectBoard(MockBoard));
     });
 
     const addNewTaskBtn = screen.queryByTestId("add-new-task-btn");
@@ -52,6 +55,7 @@ describe("Test the button Add New Task", () => {
       </MemoryRouter>
     );
     act(() => {
+      store.dispatch(addBoard(MockBoardWithoutColumn));
       store.dispatch(selectBoard(MockBoardWithoutColumn));
     });
 
@@ -65,6 +69,9 @@ describe("Test the button Add New Task", () => {
         <App />
       </MemoryRouter>
     );
+    act(() => {
+      store.dispatch(selectBoard(MockBoard));
+    });
     const addNewTaskBtn = screen.getByTestId("add-new-task-btn");
 
     act(() => {

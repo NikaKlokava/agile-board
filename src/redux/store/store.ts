@@ -13,7 +13,6 @@ import thunk from "redux-thunk";
 import {
   deleteTaskSaga,
   saveTasksSaga,
-  fetchTasksSaga,
   updateSubtasksSaga,
   updateTasksSaga,
 } from "../saga/saga";
@@ -46,7 +45,6 @@ const store = configureStore({
   middleware: (gDM) => gDM().concat(saga, thunk),
 });
 
-saga.run(fetchTasksSaga);
 saga.run(saveTasksSaga);
 saga.run(updateTasksSaga);
 saga.run(updateSubtasksSaga);

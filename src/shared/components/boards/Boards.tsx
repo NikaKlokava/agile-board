@@ -20,17 +20,6 @@ export const Boards = ({ onBoardVisible }: Props) => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const actvieId = Number(id?.slice(3));
-
-    if (!id || isNaN(actvieId))
-      dispatch(selectBoard(boards[0])) && navigate(`/agile-board/board/id=0`);
-    else
-      dispatch(selectBoard(boards[actvieId])) &&
-        navigate(`/agile-board/board/id=${actvieId}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const userBoards = boards.filter(
     (board) => board.usersEmail[0] === auth.currentUser?.email
   );
@@ -38,6 +27,29 @@ export const Boards = ({ onBoardVisible }: Props) => {
   const sharedBoards = boards.filter(
     (board) => board.usersEmail[0] !== auth.currentUser?.email
   );
+
+  useEffect(() => {
+    const isMyBoard = id?.slice(0, 5) === "id=mb";
+    const noBoardId = isNaN(Number(id?.slice(5)));
+    const boardId = Number(id?.slice(5));
+
+    const updateActiveBoard = (boards: Boards, id: number, path: string) => {
+      dispatch(selectBoard(boards[id]));
+      navigate(`/agile-board/board/id=${path}`);
+    };
+
+    if (!id || noBoardId) {
+      updateActiveBoard(userBoards, 0, "mb0");
+    } else {
+      if (isMyBoard) {
+        updateActiveBoard(userBoards, boardId, `mb${boardId}`);
+      } else {
+        !sharedBoards[boardId] && updateActiveBoard(userBoards, 0, "mb0");
+        updateActiveBoard(sharedBoards, boardId, `sb${boardId}`);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boards]);
 
   return (
     <>
@@ -55,7 +67,7 @@ export const Boards = ({ onBoardVisible }: Props) => {
                   )}
                   key={index}
                   onClick={() => {
-                    navigate(`/agile-board/board/id=${index}`);
+                    navigate(`/agile-board/board/id=mb${index}`);
                     dispatch(selectBoard(board));
                   }}
                 >
@@ -80,7 +92,7 @@ export const Boards = ({ onBoardVisible }: Props) => {
                   )}
                   key={index}
                   onClick={() => {
-                    navigate(`/agile-board/board/id=shared${index}`);
+                    navigate(`/agile-board/board/id=sb${index}`);
                     dispatch(selectBoard(board));
                   }}
                 >
