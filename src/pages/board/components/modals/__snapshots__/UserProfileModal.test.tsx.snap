@@ -78,6 +78,18 @@ Array [
         </p>
       </div>
     </div>
+    <button
+      className="button"
+      data-testid="sign_out_btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <div
+        className="button_text"
+      >
+        Sign Out
+      </div>
+    </button>
   </div>,
 ]
 `;

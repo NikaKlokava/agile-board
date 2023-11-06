@@ -156,3 +156,15 @@ input[type=checkbox] {
   background: url("../../../../assets/avatar.svg");
   align-self: center;
 }
+
+@media screen and (max-width:500px) {
+  .form_container {
+    row-gap: 10px;
+  }
+
+  .title,
+  .subtitle,
+  .subtask_text {
+    font-size: 12px;
+  }
+}
