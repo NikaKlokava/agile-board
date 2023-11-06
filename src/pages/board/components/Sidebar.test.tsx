@@ -4,10 +4,10 @@ import { Sidebar } from "./Sidebar";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
 import { act } from "react-dom/test-utils";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import App from "../../../App";
-import { addBoard } from "../../../redux/reducers/boardsSlice";
-import { MockTestAddBoard } from "../../../mocks/TestMocks";
+import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
+import { MockBoard } from "../../../mocks/BoardMocks";
 jest.mock("../../../shared/hooks/useAuthorization", () => ({
   useAuthorization: () => ({ isUserExist: true }),
 }));
@@ -18,9 +18,11 @@ describe("Test the Sidebar component", () => {
   test("The Sidebar renders correctly", () => {
     const sidebarSnap = renderer
       .create(
-        <Provider store={store}>
-          <Sidebar />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <Sidebar />
+          </Provider>
+        </BrowserRouter>
       )
       .toJSON();
     expect(sidebarSnap).toMatchSnapshot();
@@ -35,7 +37,8 @@ describe("Test the New Board element", () => {
       </MemoryRouter>
     );
     act(() => {
-      store.dispatch(addBoard(MockTestAddBoard));
+      store.dispatch(changeStatus({ isLoading: false }));
+      store.dispatch(addBoard(MockBoard));
     });
 
     await waitFor(() => {

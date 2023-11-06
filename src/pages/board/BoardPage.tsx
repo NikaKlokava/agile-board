@@ -12,12 +12,10 @@ export const BoardPage = () => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-  const isLoading = false;
-
   return (
     <div className={cl.board}>
       <Header />
-      <BoardContent isLoading={isLoading} />
+      <BoardContent />
       <Footer />
     </div>
   );

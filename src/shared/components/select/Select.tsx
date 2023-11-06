@@ -9,7 +9,7 @@ export const Select = memo(() => {
   return (
     <FieldWrapper fieldName={"Current Status"}>
       <Field as="select" name="columnTitle">
-        {activeBoard.columns.map((column, i) => (
+        {activeBoard.columns?.map((column, i) => (
           <option key={i} value={column.title}>
             {column.title}
           </option>

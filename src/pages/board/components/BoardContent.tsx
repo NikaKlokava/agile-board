@@ -7,15 +7,16 @@ import { cloneDeep } from "lodash";
 import { Loader } from "../../../shared/components/loader";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hook";
 import cl from "./styles/board_content.module.css";
-import { updateUserTaskData } from "../../../redux/thunk/saveDataThunk";
+import { updateTaskData } from "../../../redux/reducers/tasksSlice";
 
-export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
+export const BoardContent = () => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
 
   const boards = useAppSelector((state) => state.boards.boards);
+  const isLoading = useAppSelector((state) => state.boards.isLoading);
 
   const activeBoard = useAppSelector((state) => state.activeBoard);
 
@@ -41,12 +42,12 @@ export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
         time,
       })
     );
-    const newTask = {
+    const newTask: Task = {
       ...task,
       columnUuid,
       time,
     };
-    dispatch(updateUserTaskData(newTask));
+    dispatch(updateTaskData({ updatedTask: newTask }));
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -69,7 +70,7 @@ export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
       <Sidebar />
       <div className={cl.board_data_wrapper}>
         <div className={cl.board_data}>
-          {activeBoard.columns.map((column, index) => {
+          {activeBoard?.columns?.map((column, index) => {
             return (
               <div
                 className={cl.content_column}
@@ -99,11 +100,13 @@ export const BoardContent = ({ isLoading }: { isLoading: boolean }) => {
                             }}
                           >
                             <div className={cl.task_title}>{task.title}</div>
-                            <div className={cl.task_success}>{`${checkedStatus(
-                              task
-                            )} of ${
-                              task.subtasks.length
-                            } completed subtasks`}</div>
+                            {task.subtasks && task.subtasks?.length !== 0 && (
+                              <div
+                                className={cl.task_success}
+                              >{`${checkedStatus(task)} of ${
+                                task?.subtasks?.length
+                              } completed subtasks`}</div>
+                            )}
                           </div>
                         );
                       }

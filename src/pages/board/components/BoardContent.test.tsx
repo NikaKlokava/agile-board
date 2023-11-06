@@ -5,8 +5,8 @@ import App from "../../../App";
 import store from "../../../redux/store/store";
 import { BoardContent } from "./BoardContent";
 import { Provider } from "react-redux";
-import { MockTestAddBoard } from "../../../mocks/TestMocks";
-import { addBoard } from "../../../redux/reducers/boardsSlice";
+import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
+import { MockBoard } from "../../../mocks/BoardMocks";
 
 jest.mock("../../../shared/hooks/useAuthorization", () => ({
   useAuthorization: () => ({ isUserExist: true }),
@@ -19,7 +19,7 @@ describe("Test the BoardContent component", () => {
     const boardContentSnap = renderer
       .create(
         <Provider store={store}>
-          <BoardContent isLoading={true} />
+          <BoardContent />
         </Provider>
       )
       .toJSON();
@@ -47,7 +47,8 @@ describe("Test the New Column element", () => {
     );
 
     act(() => {
-      store.dispatch(addBoard(MockTestAddBoard));
+      store.dispatch(changeStatus({ isLoading: false }));
+      store.dispatch(addBoard(MockBoard));
     });
 
     await waitFor(() => {

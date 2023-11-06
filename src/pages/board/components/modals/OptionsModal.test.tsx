@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import App from "../../../../App";
-import { MockTestAddBoard } from "../../../../mocks/TestMocks";
+import { MockBoard } from "../../../../mocks/BoardMocks";
 import { addBoard } from "../../../../redux/reducers/boardsSlice";
 import store from "../../../../redux/store/store";
 import { OptionsModal } from "./OptionsModal";
@@ -40,7 +40,7 @@ describe("Test the OptionsModal component", () => {
     );
 
     act(() => {
-      store.dispatch(addBoard(MockTestAddBoard));
+      store.dispatch(addBoard(MockBoard));
     });
 
     const optionsIcon = screen.getByTestId("options-icon");
@@ -67,7 +67,7 @@ describe("Test the OptionsModal component", () => {
       </MemoryRouter>
     );
     act(() => {
-      store.dispatch(addBoard(MockTestAddBoard));
+      store.dispatch(addBoard(MockBoard));
     });
 
     const optionsIcon = screen.getByTestId("options-icon");

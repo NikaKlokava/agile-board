@@ -1,0 +1,31 @@
+.login_btn_container {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.Google_icon,
+.Facebook_icon {
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+}
+
+.Google_icon {
+  background: url("../../../assets/gmail.svg");
+}
+
+.Facebook_icon {
+  background: url("../../../assets/facebook.svg");
+}
+
+.login_text {
+  font-size: 24px;
+  color: rgb(122, 0, 0);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.login_text:hover {
+  color: rgb(169, 0, 0);
+}

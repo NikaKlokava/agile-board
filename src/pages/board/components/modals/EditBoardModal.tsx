@@ -33,14 +33,14 @@ export const EditBoardModal = ({ onClose }: Props) => {
 
   const initialData = {
     name: activeBoard.name,
-    columns: activeBoard.columns.reduce((accum: string[], current) => {
+    columns: activeBoard?.columns?.reduce((accum: string[], current) => {
       return [...accum, current.title];
     }, []),
     uuid: activeBoard.uuid,
     usersEmail: initialUsersEmail,
   };
 
-  const uuids = activeBoard.columns.reduce(
+  const uuids = activeBoard?.columns?.reduce(
     (accum: string[], current): string[] => {
       return [...accum, current.uuid!];
     },
@@ -54,14 +54,14 @@ export const EditBoardModal = ({ onClose }: Props) => {
         validationSchema={EditBoardSchema}
         onSubmit={(values) => {
           const columns = values.columns
-            .filter((column) => column && column.trimStart().length !== 0)
-            .map((column) => column.trimStart());
+            ?.filter((column) => column && column.trimStart().length !== 0)
+            ?.map((column) => column.trimStart());
 
           const newColumns = columns.reduce(
             (accum: { title: string; uuid: string }[], curr, i) => {
               const newColumn = {
                 title: curr,
-                uuid: uuids[i] ? uuids[i] : uuidv4(),
+                uuid: uuids && uuids[i] ? uuids[i] : uuidv4(),
               };
               return [...accum, newColumn];
             },
@@ -99,7 +99,7 @@ export const EditBoardModal = ({ onClose }: Props) => {
                 <>
                   <div className={cl.container}>
                     <p className={cl.title}>Board Columns</p>
-                    {props.values.columns.map((_, index) => (
+                    {props.values.columns?.map((_, index) => (
                       <Input
                         key={index}
                         formikName={`columns[${index}]`}

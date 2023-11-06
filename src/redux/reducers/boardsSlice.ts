@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: BoardsType | never[] = {
   boards: [],
+  isLoading: true,
 };
 
 export const boardsSlice = createSlice({
@@ -11,6 +12,13 @@ export const boardsSlice = createSlice({
   reducers: {
     fetchBoardsData: (state: BoardsType, action: PayloadAction<Boards>) => {
       state.boards = action.payload;
+      state.isLoading = false;
+    },
+    changeStatus: (
+      state: BoardsType,
+      action: PayloadAction<{ isLoading: boolean }>
+    ) => {
+      state.isLoading = action.payload.isLoading;
     },
     addBoard: (state: BoardsType, action: PayloadAction<BoardType>) => {
       state.boards = [...state.boards, action.payload];
@@ -49,6 +57,7 @@ export const {
   deleteBoard,
   resetBoards,
   fetchBoardsData,
+  changeStatus,
 } = boardsSlice.actions;
 
 export default boardsSlice.reducer;

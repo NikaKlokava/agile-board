@@ -34,13 +34,7 @@ Array [
       />
       <div
         className="container"
-      >
-        <p
-          className="title"
-        >
-          Subtasks (undefined of undefined)
-        </p>
-      </div>
+      />
       <div
         className="container"
       >
