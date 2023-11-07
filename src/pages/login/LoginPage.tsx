@@ -10,7 +10,7 @@ import cl from "./login.module.css";
 
 export const LoginPage = () => {
   useEffect(() => {
-    window.history.replaceState("", "", "/agile-board/authorization");
+    window.history.replaceState("", "", "/agile-board#/authorization");
   }, []);
 
   const handleLoginGoogleClick = useCallback(() => {
