@@ -7,7 +7,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <HashRouter basename="/agile-board">
+  <HashRouter>
     <App />
-  </HashRouter>
+   </HashRouter>
 );
