@@ -1,58 +1,43 @@
-# Getting Started with Create React App
+
+# _`Agile-Board`_
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 #
 
-# _`Agile-Board`_
+## [_Website_](https://NikaKlokava.github.io/agile-board)
+#
+
+## Description
+
+This application allows you to create boards to work with Agile projects. For each board you can create your own tasks with subtasks, which will help you to manage your work successfully. You can share your boards with your team members and work together **in real time**. All your created data with boards and tasks is automatically saved in the database, which guarantees reliable operation and the ability to work at any time convenient for you. Enjoy it!
+
+#
 
 ## Work with:
 
-- github actions(create workflow with SSH);
+- github actions (create workflow with SSH);
+- Firebase Authentication (sign-in providers: _Google, Facebook_; signInWithPopup/withRedirect);
+- Firebase Realtime Database (onValue, get, update, remove)
 - react components;
-- react hooks: _useEffect, useState, useMemo_;
+- react hooks: _useEffect,useCallback, useState, useMemo_;
 - redux hooks: _useDispatch, useSelector_;
+- react-router-dom hooks: _useNavigate, useParams_,
+- custom hooks (incl. _useAppDispatch, useAppSelector_ );
 - libraries :
   - Redux(@reduxjs/toolkit)
+  - Redux-Saga (for educational purposes.)
+  - Redux-Thunk;
+  - Firebase;
   - formik;
+  - husky;
   - react-router-dom;
   - classnames;
   - lodash;
   - uuid;
+  - yup;
+- drag and drop;
 - unit tests, snapshot tests, TDD;
-- useFormikContext, validationSchema;
+- validationSchema, form submitting, Field, FieldArray;
 - mocks;
 - css modules;
-
-## [_Website_](https://NikaKlokava.github.io/agile-board)
-
-#
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
