@@ -35,7 +35,7 @@ export const Boards = ({ onBoardVisible }: Props) => {
 
     const updateActiveBoard = (boards: Boards, id: number, path: string) => {
       dispatch(selectBoard(boards[id]));
-      navigate(`/agile-board/board/id=${path}`);
+      navigate(`/id=${path}`);
     };
 
     if (!id || noBoardId) {
@@ -67,7 +67,7 @@ export const Boards = ({ onBoardVisible }: Props) => {
                   )}
                   key={index}
                   onClick={() => {
-                    navigate(`/agile-board/board/id=mb${index}`);
+                    navigate(`/id=mb${index}`);
                     dispatch(selectBoard(board));
                   }}
                 >
@@ -92,7 +92,7 @@ export const Boards = ({ onBoardVisible }: Props) => {
                   )}
                   key={index}
                   onClick={() => {
-                    navigate(`/agile-board/board/id=sb${index}`);
+                    navigate(`/id=sb${index}`);
                     dispatch(selectBoard(board));
                   }}
                 >

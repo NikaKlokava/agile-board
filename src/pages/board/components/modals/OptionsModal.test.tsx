@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import App from "../../../../App";
 import { MockBoard } from "../../../../mocks/BoardMocks";
@@ -33,11 +32,7 @@ describe("Test the OptionsModal component", () => {
   });
 
   test("The EditBoardModal should be visible by click on edit board", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
 
     act(() => {
       store.dispatch(addBoard(MockBoard));
@@ -61,11 +56,7 @@ describe("Test the OptionsModal component", () => {
   });
 
   test("The DeleteBoardModal should be visible by click on delete board", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
     act(() => {
       store.dispatch(addBoard(MockBoard));
     });

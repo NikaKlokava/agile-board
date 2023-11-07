@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import renderer, { act } from "react-test-renderer";
 import App from "../../../App";
 import store from "../../../redux/store/store";
@@ -30,9 +29,7 @@ describe("Test the BoardContent component", () => {
 describe("Test the New Column element", () => {
   test("The New Column element should not be visible if we have no active board", () => {
     render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
         <App />
-      </MemoryRouter>
     );
     const newColumnEl = screen.queryByTestId("add_column");
 
@@ -40,11 +37,7 @@ describe("Test the New Column element", () => {
   });
 
   test("The New Column element should be visible if we have active board", async () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
 
     act(() => {
       store.dispatch(changeStatus({ isLoading: false }));
@@ -60,11 +53,7 @@ describe("Test the New Column element", () => {
 
 describe("Test the Task Container", () => {
   test("The task container should not be visible if there is no task", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
     const taskContainerElements = screen.queryAllByTestId("task-container");
 
     taskContainerElements.forEach((taskElement) => {

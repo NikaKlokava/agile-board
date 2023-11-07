@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 import { Header } from "./Header";
 import App from "../../../App";
@@ -32,11 +32,7 @@ describe("Test the Header component", () => {
 });
 describe("Test the button Add New Task", () => {
   test("The button Add New Task should be visible when you open the page and have at least one column", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
     act(() => {
       store.dispatch(changeStatus({ isLoading: false }));
       store.dispatch(addBoard(MockBoard));
@@ -49,11 +45,7 @@ describe("Test the button Add New Task", () => {
   });
 
   test("The button Add New Task should not be visible if have not at least one column", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
     act(() => {
       store.dispatch(addBoard(MockBoardWithoutColumn));
       store.dispatch(selectBoard(MockBoardWithoutColumn));
@@ -64,11 +56,7 @@ describe("Test the button Add New Task", () => {
   });
 
   test("The NewTaskModal should be visible on button Add New Task click", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
     act(() => {
       store.dispatch(selectBoard(MockBoard));
     });
@@ -86,11 +74,7 @@ describe("Test the button Add New Task", () => {
 
 describe("Test the icon Options", () => {
   test("The OptionsModal should be visible by clicking", () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
     const optionsIcon = screen.getByTestId("options-icon");
 
     act(() => {

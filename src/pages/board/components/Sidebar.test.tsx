@@ -4,7 +4,7 @@ import { Sidebar } from "./Sidebar";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
 import { act } from "react-dom/test-utils";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import App from "../../../App";
 import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
 import { MockBoard } from "../../../mocks/BoardMocks";
@@ -31,11 +31,7 @@ describe("Test the Sidebar component", () => {
 
 describe("Test the New Board element", () => {
   test("The NewBoardModal should be visible on click", async () => {
-    render(
-      <MemoryRouter initialEntries={["/agile-board"]}>
-        <App />
-      </MemoryRouter>
-    );
+    render(<App />);
     act(() => {
       store.dispatch(changeStatus({ isLoading: false }));
       store.dispatch(addBoard(MockBoard));
