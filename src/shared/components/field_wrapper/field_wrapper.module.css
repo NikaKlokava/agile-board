@@ -14,3 +14,9 @@
   flex-direction: column;
   row-gap: 15px;
 }
+
+@media screen and (max-width:500px) {
+  .title {
+    font-size: 12px;
+  }
+}

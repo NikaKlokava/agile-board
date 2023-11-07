@@ -42,12 +42,6 @@ exports[`Test the BoardPage component The BoardPage renders correctly 1`] = `
         className="user_profile"
         onClick={[Function]}
       />
-      <p
-        className="sign_out"
-        onClick={[Function]}
-      >
-        Sign Out
-      </p>
     </div>
   </div>
   <div

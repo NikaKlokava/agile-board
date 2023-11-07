@@ -168,7 +168,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
                         name={`checked.${i}`}
                         onClick={() => handleCheckClick(subtask.uuid)}
                       />
-                      <p>{subtask.text}</p>
+                      <p className={cl.subtask_text}>{subtask.text}</p>
                     </div>
                   );
                 })}

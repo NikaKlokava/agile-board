@@ -39,12 +39,6 @@ exports[`Test the Header component The Header renders correctly 1`] = `
       className="user_profile"
       onClick={[Function]}
     />
-    <p
-      className="sign_out"
-      onClick={[Function]}
-    >
-      Sign Out
-    </p>
   </div>
 </div>
 `;

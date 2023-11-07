@@ -1,10 +1,5 @@
-import { signOut } from "firebase/auth";
 import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hook";
-import { resetBoards } from "../../../redux/reducers/boardsSlice";
-import { resetTasks } from "../../../redux/reducers/tasksSlice";
+import { useAppSelector } from "../../../redux/hooks/hook";
 import { Button } from "../../../shared/components/button";
 import { OptionsIcon } from "../../../shared/components/options_icon";
 import { EditBoardModal, NewTaskModal } from "./modals";
@@ -23,8 +18,6 @@ export const Header = () => {
   const [userProfileVisible, setUserProfileVisible] = useState<boolean>(false);
 
   const activeBoard = useAppSelector((state) => state.activeBoard);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const handleOptionsIconClick = useCallback(() => {
     setOptionsVisible((prev) => !prev);
@@ -33,13 +26,6 @@ export const Header = () => {
   const handleAddNewTaskClick = useCallback(() => {
     setNewTaskVisible(true);
   }, []);
-
-  const handleSignOutClick = () => {
-    dispatch(resetTasks());
-    dispatch(resetBoards());
-    signOut(auth);
-    navigate("/agile-board");
-  };
 
   return (
     <div className={cl.header_wrapper}>
@@ -73,9 +59,6 @@ export const Header = () => {
           className={cl.user_profile}
           onClick={() => setUserProfileVisible(true)}
         />
-        <p className={cl.sign_out} onClick={handleSignOutClick}>
-          Sign Out
-        </p>
       </div>
       {newTaskVisible && (
         <NewTaskModal onClose={() => setNewTaskVisible(false)} />

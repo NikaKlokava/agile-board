@@ -44,3 +44,16 @@ textarea:focus,
 select:focus {
   border: 0.5px solid #7c52de;
 }
+
+@media screen and (max-width:500px) {
+
+  input,
+  textarea,
+  select {
+    font-size: 12px;
+    letter-spacing: 0.7px;
+    min-height: 33px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

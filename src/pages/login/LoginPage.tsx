@@ -47,6 +47,12 @@ export const LoginPage = () => {
       <div className={cl.login_modal}>
         <h1 className={cl.title}>AGILE-BOARD</h1>
         <div className={cl.line} />
+        <div className={cl.greeting_container}>
+          <p className={cl.subtitle}>Hello!</p>
+          <p className={cl.subtitle}>
+            To continue using the board, please Log In.
+          </p>
+        </div>
         <div className={cl.login_container}>
           <LoginItem type="Google" onClick={handleLoginGoogleClick} />
           <LoginItem type="Facebook" onClick={handleLoginFacebookClick} />

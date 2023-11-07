@@ -63,13 +63,7 @@
   cursor: pointer;
 }
 
-.sign_out {
-  font-size: 20px;
-  color: #7c52de;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   .header_wrapper {
     padding-right: 0px;
   }
@@ -102,5 +96,33 @@
     height: 25px;
     background: url("../../../../assets/down.svg");
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 700px) {
+
+  .board_name {
+    font-size: 16px;
+  }
+
+  .navbar {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url("../../../../assets/down.svg");
+    cursor: pointer;
+  }
+
+  .user_profile {
+    width: 25px;
+    height: 25px;
+    background-size: 25px 25px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .creator {
+    display: none;
   }
 }

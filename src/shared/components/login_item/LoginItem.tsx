@@ -11,7 +11,7 @@ export const LoginItem = memo(({ type, onClick }: Props) => {
     <div className={cl.login_btn_container}>
       <div className={cl[`${type}_icon`]} />
       <p data-testid="login_btn" className={cl.login_text} onClick={onClick}>
-        {`  Log in with ${type}`}
+        {`  Log In with ${type}`}
       </p>
     </div>
   );
