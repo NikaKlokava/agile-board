@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
 import { updateUserBoardData } from "../../../../redux/thunk/saveDataThunk";
 import cl from "./modal_styles.module.css";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   onClose: () => void;
@@ -82,6 +83,7 @@ export const EditBoardModal = ({ onClose }: Props) => {
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} />
             <h2 className={cl.modal_title} data-testid="edit-board-modal">
               Edit Board
             </h2>

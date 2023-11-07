@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
 import { v4 as uuidv4 } from "uuid";
 import cl from "./modal_styles.module.css";
 import { updateTaskData } from "../../../../redux/reducers/tasksSlice";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   taskUuid: string;
@@ -115,6 +116,7 @@ export const EditTaskModal = ({
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} />
             <h2 className={cl.modal_title} data-testid="new-task-modal">
               Edit Task
             </h2>

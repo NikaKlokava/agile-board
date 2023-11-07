@@ -17,6 +17,7 @@ import {
 } from "../../../../redux/reducers/tasksSlice";
 import { useAppSelector, useAppDispatch } from "../../../../redux/hooks/hook";
 import { updateTaskData } from "../../../../redux/reducers/tasksSlice";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   taskUuid: string | undefined;
@@ -139,6 +140,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} center={true} />
             <div className={cl.modal_task_container}>
               <h2 className={cl.modal_task_title} data-testid="task-modal">
                 {task?.title}
