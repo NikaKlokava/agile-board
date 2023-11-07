@@ -28,7 +28,10 @@ export const fetchBoards = (): AppThunk => {
           });
           dispatch(fetchBoardsData(userBoards));
           dispatch(changeStatus({ isLoading: false }));
-        } else console.log("No boards available");
+        } else {
+          console.log("No boards available");
+          dispatch(changeStatus({ isLoading: false }));
+        }
       });
     } catch (error) {
       console.log(error);

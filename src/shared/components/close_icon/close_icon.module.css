@@ -1,0 +1,15 @@
+.close_icon,
+.close_icon_center {
+  position: absolute;
+  align-self: end;
+  width: 30px;
+  height: 30px;
+  background-size: 30px 30px;
+  background: url("../../../assets/close.svg");
+  cursor: pointer;
+}
+
+.close_icon_center {
+  align-self: center;
+  right: 70px;
+}

@@ -16,6 +16,10 @@ Array [
       onReset={[Function]}
       onSubmit={[Function]}
     >
+      <div
+        className="close_icon"
+        onClick={[Function]}
+      />
       <h2
         className="modal_title"
         data-testid="edit-board-modal"

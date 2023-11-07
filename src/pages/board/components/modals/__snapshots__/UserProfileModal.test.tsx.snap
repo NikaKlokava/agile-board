@@ -10,6 +10,10 @@ Array [
     className="modal_container"
   >
      
+    <div
+      className="close_icon"
+      onClick={[Function]}
+    />
     <h2
       className="modal_title"
     >
@@ -17,11 +21,6 @@ Array [
     </h2>
     <div
       className="profile_avatar"
-      style={
-        Object {
-          "background": "url(\\"undefined\\")",
-        }
-      }
     />
     <div
       className="container"

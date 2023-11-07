@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import cl from "./modal_styles.module.css";
 import { addUserBoardData } from "../../../../redux/thunk/saveDataThunk";
 import { useAppDispatch } from "../../../../redux/hooks/hook";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   onClose: () => void;
@@ -58,6 +59,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} />
             <h2 className={cl.modal_title} data-testid="new-board-modal">
               Add New Board
             </h2>

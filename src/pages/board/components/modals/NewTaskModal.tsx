@@ -12,6 +12,7 @@ import { addNewTask } from "../../../../redux/reducers/tasksSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
 import cl from "./modal_styles.module.css";
 import { saveTaskData } from "../../../../redux/reducers/tasksSlice";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   onClose: () => void;
@@ -74,6 +75,7 @@ export const NewTaskModal = ({ onClose }: Props) => {
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} />
             <h2 className={cl.modal_title} data-testid="new-task-modal">
               Add New Task
             </h2>
