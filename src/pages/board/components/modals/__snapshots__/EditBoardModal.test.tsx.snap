@@ -16,6 +16,10 @@ Array [
       onReset={[Function]}
       onSubmit={[Function]}
     >
+      <div
+        className="close_icon"
+        onClick={[Function]}
+      />
       <h2
         className="modal_title"
         data-testid="edit-board-modal"
@@ -23,12 +27,24 @@ Array [
         Edit Board
       </h2>
       <div
+        className="board_creator_container"
+      >
+        <p
+          className="subtitle"
+        >
+          Board Creator
+        </p>
+        <p
+          className="subtitle"
+        />
+      </div>
+      <div
         className="container"
       >
         <p
           className="title"
         >
-          Task name
+          Board name
         </p>
         <input
           autoComplete="off"
@@ -63,6 +79,30 @@ Array [
           className="button_text"
         >
           Add New Column
+        </div>
+      </button>
+      <div
+        className="container"
+      >
+        <p
+          className="title"
+        >
+          Board Members
+        </p>
+      </div>
+      <button
+        className="button"
+        data-testid="add-new-member-btn"
+        onClick={[Function]}
+        type="button"
+      >
+        <div
+          className="button_icon"
+        />
+        <div
+          className="button_text"
+        >
+          Add New Member
         </div>
       </button>
       <button

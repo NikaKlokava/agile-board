@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the UserProfileModal component The UserProfileModal renders correctly 1`] = `
+Array [
+  <div
+    className="modal_wrapper"
+    onClick={[Function]}
+  />,
+  <div
+    className="modal_container"
+  >
+     
+    <div
+      className="close_icon"
+      onClick={[Function]}
+    />
+    <h2
+      className="modal_title"
+    >
+      Profile
+    </h2>
+    <div
+      className="profile_avatar"
+    />
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Email
+      </p>
+      <div
+        className="line"
+      />
+      <p />
+    </div>
+    <div
+      className="container"
+    >
+      <p
+        className="title"
+      >
+        Statistics
+      </p>
+      <div
+        className="line"
+      />
+      <div
+        className="statistics_item"
+      >
+        <p>
+          My boards
+        </p>
+        <p>
+          0
+        </p>
+      </div>
+      <div
+        className="statistics_item"
+      >
+        <p>
+          Shared boards
+        </p>
+        <p>
+          0
+        </p>
+      </div>
+      <div
+        className="statistics_item"
+      >
+        <p>
+          Tasks
+        </p>
+        <p>
+          0
+        </p>
+      </div>
+    </div>
+    <button
+      className="button"
+      data-testid="sign_out_btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <div
+        className="button_text"
+      >
+        Sign Out
+      </div>
+    </button>
+  </div>,
+]
+`;

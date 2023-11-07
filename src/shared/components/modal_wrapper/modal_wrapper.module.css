@@ -41,8 +41,8 @@
   .modal_container {
     row-gap: 20px;
     padding: 20px;
-    min-width: 80%;
-    max-width: 80%;
+    min-width: 70%;
+    max-width: 70%;
     border-radius: 10px;
   }
 }

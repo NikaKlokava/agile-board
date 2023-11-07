@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Boards } from "../../../../shared/components/boards";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { NewBoardModal } from "./NewBoardModal";
+import { useAppSelector } from "../../../../redux/hooks/hook";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   onClose: () => void;
@@ -11,9 +12,7 @@ type Props = {
 export const BoardNavbarModal = ({ onClose }: Props) => {
   const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
 
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useAppSelector((state) => state.activeBoard);
   const noBoard = activeBoard.name === "";
 
   if (newBoardVisible || noBoard)
@@ -21,6 +20,7 @@ export const BoardNavbarModal = ({ onClose }: Props) => {
 
   return (
     <ModalWrapper onWrapperClick={onClose}>
+      <CloseIcon onClose={onClose} />
       <Boards onBoardVisible={() => setNewBoardVisible(true)} />
     </ModalWrapper>
   );

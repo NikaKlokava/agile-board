@@ -5,11 +5,12 @@ import { FieldWrapper } from "../field_wrapper";
 type Props = {
   name?: string;
   formikName: string;
+  fieldName: string
 };
 
-export const FieldName = memo(({ name, formikName }: Props) => {
+export const FieldName = memo(({ name, formikName, fieldName }: Props) => {
   return (
-    <FieldWrapper fieldName={"Task name"}>
+    <FieldWrapper fieldName={fieldName}>
       <FastField
         placeholder="e.g Take coffee break"
         autoComplete="off"

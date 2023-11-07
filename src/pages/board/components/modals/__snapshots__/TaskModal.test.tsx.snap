@@ -17,6 +17,10 @@ Array [
       onSubmit={[Function]}
     >
       <div
+        className="close_icon_center"
+        onClick={[Function]}
+      />
+      <div
         className="modal_task_container"
       >
         <h2
@@ -34,13 +38,7 @@ Array [
       />
       <div
         className="container"
-      >
-        <p
-          className="title"
-        >
-          Subtasks (undefined of undefined)
-        </p>
-      </div>
+      />
       <div
         className="container"
       >

@@ -1,44 +1,52 @@
 import { FieldArray, Form, Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewColumn } from "../../../../redux/actionCreators/newBoardCreator";
 import { Button } from "../../../../shared/components/button";
 import { FieldName } from "../../../../shared/components/field_name";
 import { Input } from "../../../../shared/components/input";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { EditBoardSchema } from "../../../../utils/utils";
 import { AddBtn } from "../../../../shared/components/add_button";
+import { updateBoard } from "../../../../redux/reducers/boardsSlice";
+import { v4 as uuidv4 } from "uuid";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks/hook";
+import { updateUserBoardData } from "../../../../redux/thunk/saveDataThunk";
 import cl from "./modal_styles.module.css";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   onClose: () => void;
 };
 
 export const EditBoardModal = ({ onClose }: Props) => {
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useAppSelector((state) => state.activeBoard);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (values: BoardType) => {
-    const columns = values.columns.filter(
-      (column) => column?.title && column.title.trimStart().length !== 0
-    );
-    dispatch(addNewColumn(values.uuid, values.name, columns));
+  const onSubmit = (updatedBoard: UpdateBoardAction) => {
+    updatedBoard.usersEmail.unshift(activeBoard.usersEmail[0]);
+
+    dispatch(updateBoard(updatedBoard));
+    dispatch(updateUserBoardData(updatedBoard));
     onClose();
   };
+  const initialUsersEmail = activeBoard.usersEmail.filter(
+    (email) => activeBoard.usersEmail[0] !== email
+  );
 
   const initialData = {
     name: activeBoard.name,
-    columns: activeBoard.columns.reduce((accum: string[], current) => {
+    columns: activeBoard?.columns?.reduce((accum: string[], current) => {
       return [...accum, current.title];
     }, []),
     uuid: activeBoard.uuid,
+    usersEmail: initialUsersEmail,
   };
 
-  const uuids = activeBoard.columns.reduce((accum: string[], current) => {
-    return [...accum, current.uuid];
-  }, []);
+  const uuids = activeBoard?.columns?.reduce(
+    (accum: string[], current): string[] => {
+      return [...accum, current.uuid!];
+    },
+    []
+  );
 
   return (
     <ModalWrapper onWrapperClick={onClose}>
@@ -46,18 +54,24 @@ export const EditBoardModal = ({ onClose }: Props) => {
         initialValues={initialData}
         validationSchema={EditBoardSchema}
         onSubmit={(values) => {
-          const columns = values.columns.filter(
-            (column) => column && column.trimStart().length !== 0
-          );
+          const columns = values.columns
+            ?.filter((column) => column && column.trimStart().length !== 0)
+            ?.map((column) => column.trimStart());
+
           const newColumns = columns.reduce(
-            (accum: { title: string; uuid: string }[], current, index) => {
-              return [...accum, { title: current, uuid: uuids[index] }];
+            (accum: { title: string; uuid: string }[], curr, i) => {
+              const newColumn = {
+                title: curr,
+                uuid: uuids && uuids[i] ? uuids[i] : uuidv4(),
+              };
+              return [...accum, newColumn];
             },
             []
           );
           onSubmit({
             ...values,
             columns: newColumns,
+            time: activeBoard.time,
           });
         }}
       >
@@ -69,10 +83,15 @@ export const EditBoardModal = ({ onClose }: Props) => {
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} />
             <h2 className={cl.modal_title} data-testid="edit-board-modal">
               Edit Board
             </h2>
-            <FieldName formikName={"name"} />
+            <div className={cl.board_creator_container}>
+              <p className={cl.subtitle}>Board Creator</p>
+              <p className={cl.subtitle}>{activeBoard.usersEmail?.[0]}</p>
+            </div>
+            <FieldName formikName={"name"} fieldName={"Board name"} />
             {props.errors.name && props.touched.name && (
               <p style={{ color: "red" }}>{props.errors.name}</p>
             )}
@@ -82,7 +101,7 @@ export const EditBoardModal = ({ onClose }: Props) => {
                 <>
                   <div className={cl.container}>
                     <p className={cl.title}>Board Columns</p>
-                    {props.values.columns.map((_, index) => (
+                    {props.values.columns?.map((_, index) => (
                       <Input
                         key={index}
                         formikName={`columns[${index}]`}
@@ -96,6 +115,30 @@ export const EditBoardModal = ({ onClose }: Props) => {
                     add={arrayHelpers.push}
                     text="Add New Column"
                     testid={"add-new-column-btn"}
+                  />
+                </>
+              )}
+            />
+            <FieldArray
+              name="usersEmail"
+              render={(arrayHelpers) => (
+                <>
+                  <div className={cl.container}>
+                    <p className={cl.title}>Board Members</p>
+                    {props.values.usersEmail?.map((_, index) => (
+                      <Input
+                        key={index}
+                        formikName={`usersEmail[${index}]`}
+                        remove={arrayHelpers.remove}
+                        index={index}
+                        type="email"
+                      />
+                    ))}
+                  </div>
+                  <AddBtn
+                    add={arrayHelpers.push}
+                    text="Add New Member"
+                    testid={"add-new-member-btn"}
                   />
                 </>
               )}

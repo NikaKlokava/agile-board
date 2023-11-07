@@ -1,10 +1,18 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import renderer from "react-test-renderer";
+import renderer, { act } from "react-test-renderer";
 import App from "../../../App";
+import store from "../../../redux/store/store";
 import { BoardContent } from "./BoardContent";
 import { Provider } from "react-redux";
-import store from "../../../redux/store/store";
+import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
+import { MockBoard } from "../../../mocks/BoardMocks";
+
+jest.mock("../../../shared/hooks/useAuthorization", () => ({
+  useAuthorization: () => ({ isUserExist: true }),
+}));
+
+beforeEach(() => jest.clearAllMocks());
 
 describe("Test the BoardContent component", () => {
   test("The BoardContent renders correctly", () => {
@@ -38,11 +46,10 @@ describe("Test the New Column element", () => {
       </MemoryRouter>
     );
 
-    const boardNameInpt = screen.getByTestId("board-name-inpt");
-    const newBoardBtn = screen.getByTestId("create-new-board-btn");
-
-    fireEvent.change(boardNameInpt, { target: { value: "mockname" } });
-    fireEvent.click(newBoardBtn);
+    act(() => {
+      store.dispatch(changeStatus({ isLoading: false }));
+      store.dispatch(addBoard(MockBoard));
+    });
 
     await waitFor(() => {
       const newColumnEl = screen.queryByTestId("add-column-element");

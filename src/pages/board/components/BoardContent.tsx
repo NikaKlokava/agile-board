@@ -1,34 +1,53 @@
 import { EditBoardModal, NewBoardModal, TaskModal } from "./modals";
 import React, { useState } from "react";
 import { Sidebar } from "./Sidebar";
-import { useDispatch, useSelector } from "react-redux";
 import { checkedStatus } from "../../../utils/utils";
+import { moveTask } from "../../../redux/reducers/tasksSlice";
+import { cloneDeep } from "lodash";
+import { Loader } from "../../../shared/components/loader";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hook";
 import cl from "./styles/board_content.module.css";
-import { moveTask } from "../../../redux/actionCreators/newBoardCreator";
+import { updateTaskData } from "../../../redux/reducers/tasksSlice";
 
 export const BoardContent = () => {
-  const [newBoardVisible, setNewBoardVisible] = useState<boolean>(true);
+  const [newBoardVisible, setNewBoardVisible] = useState<boolean>(false);
   const [editBoardVisible, setEditBoardVisible] = useState<boolean>(false);
   const [taskModalVisile, setTaskModalVisile] = useState<boolean>(false);
   const [currentTaskUuid, setCurrentTaskUuid] = useState<string>();
 
-  const boards = useSelector<RootState, Boards>((state) => state.boards.boards);
+  const boards = useAppSelector((state) => state.boards.boards);
+  const isLoading = useAppSelector((state) => state.boards.isLoading);
 
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useAppSelector((state) => state.activeBoard);
 
-  const tasks = useSelector<RootState, TasksType>((state) => state.tasks.tasks);
+  const tasks = useAppSelector((state) => state.tasks.tasks);
+  const copyTasks = cloneDeep(tasks);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleOnDrag = (e: React.DragEvent, taskUuid: string) => {
     e.dataTransfer.setData("task", taskUuid);
   };
 
-  const handleOnDrop = (e: React.DragEvent, colUuid: string) => {
+  const handleOnDrop = (e: React.DragEvent, columnUuid: string) => {
     const data = e.dataTransfer.getData("task");
-    dispatch(moveTask(data, colUuid));
+    const taskIndex = tasks.findIndex((task) => task.uuid === data);
+    const task = tasks[taskIndex];
+
+    const time = new Date().getTime();
+    dispatch(
+      moveTask({
+        taskUuid: data,
+        columnUuid,
+        time,
+      })
+    );
+    const newTask: Task = {
+      ...task,
+      columnUuid,
+      time,
+    };
+    dispatch(updateTaskData({ updatedTask: newTask }));
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -37,32 +56,34 @@ export const BoardContent = () => {
 
   const noBoards = boards.length === 0;
 
-  if (newBoardVisible || noBoards)
+  if (!isLoading && (newBoardVisible || noBoards))
     return (
       <div>
         <NewBoardModal onClose={() => setNewBoardVisible(false)} />
       </div>
     );
 
+  if (isLoading) return <Loader />;
+
   return (
     <div className={cl.board_content_wrapper}>
       <Sidebar />
       <div className={cl.board_data_wrapper}>
         <div className={cl.board_data}>
-          {activeBoard.columns.map((column, index) => {
+          {activeBoard?.columns?.map((column, index) => {
             return (
               <div
                 className={cl.content_column}
                 key={index}
-                onDrop={(e) => handleOnDrop(e, column.uuid)}
+                onDrop={(e) => column.uuid && handleOnDrop(e, column.uuid)}
                 onDragOver={handleDragOver}
               >
                 <div className={cl.title_container}>
                   <div className={cl.column_circle} />
                   <div className={cl.column_title}>{column.title}</div>
                 </div>
-                {tasks &&
-                  tasks
+                {copyTasks &&
+                  copyTasks
                     .sort((a, b) => a.time - b.time)
                     .map((task, index) => {
                       if (task.columnUuid === column.uuid) {
@@ -79,11 +100,13 @@ export const BoardContent = () => {
                             }}
                           >
                             <div className={cl.task_title}>{task.title}</div>
-                            <div className={cl.task_success}>{`${checkedStatus(
-                              task
-                            )} of ${
-                              task.subtasks.length
-                            } completed tasks`}</div>
+                            {task.subtasks && task.subtasks?.length !== 0 && (
+                              <div
+                                className={cl.task_success}
+                              >{`${checkedStatus(task)} of ${
+                                task?.subtasks?.length
+                              } completed subtasks`}</div>
+                            )}
                           </div>
                         );
                       }

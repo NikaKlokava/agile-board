@@ -16,6 +16,10 @@ Array [
       onReset={[Function]}
       onSubmit={[Function]}
     >
+      <div
+        className="close_icon"
+        onClick={[Function]}
+      />
       <h2
         className="modal_title"
         data-testid="new-board-modal"
@@ -28,7 +32,7 @@ Array [
         <p
           className="title"
         >
-          Task name
+          Board name
         </p>
         <input
           autoComplete="off"

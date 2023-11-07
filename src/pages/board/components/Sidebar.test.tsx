@@ -1,18 +1,28 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { render, screen, waitFor } from "@testing-library/react";
 import renderer from "react-test-renderer";
-import App from "../../../App";
 import { Sidebar } from "./Sidebar";
 import { Provider } from "react-redux";
 import store from "../../../redux/store/store";
+import { act } from "react-dom/test-utils";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import App from "../../../App";
+import { addBoard, changeStatus } from "../../../redux/reducers/boardsSlice";
+import { MockBoard } from "../../../mocks/BoardMocks";
+jest.mock("../../../shared/hooks/useAuthorization", () => ({
+  useAuthorization: () => ({ isUserExist: true }),
+}));
+
+beforeEach(() => jest.clearAllMocks());
 
 describe("Test the Sidebar component", () => {
   test("The Sidebar renders correctly", () => {
     const sidebarSnap = renderer
       .create(
-        <Provider store={store}>
-          <Sidebar />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <Sidebar />
+          </Provider>
+        </BrowserRouter>
       )
       .toJSON();
     expect(sidebarSnap).toMatchSnapshot();
@@ -26,11 +36,10 @@ describe("Test the New Board element", () => {
         <App />
       </MemoryRouter>
     );
-    const boardNameInpt = screen.getByTestId("board-name-inpt");
-    const newBoardBtn = screen.getByTestId("create-new-board-btn");
-
-    fireEvent.change(boardNameInpt, { target: { value: "mockname" } });
-    fireEvent.click(newBoardBtn);
+    act(() => {
+      store.dispatch(changeStatus({ isLoading: false }));
+      store.dispatch(addBoard(MockBoard));
+    });
 
     await waitFor(() => {
       const newBoardEl = screen.getByTestId("new-board");

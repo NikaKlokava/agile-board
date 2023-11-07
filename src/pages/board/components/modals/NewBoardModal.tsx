@@ -1,31 +1,41 @@
 import { Button } from "../../../../shared/components/button";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { FieldArray, Form, Formik } from "formik";
-import { addBoard } from "../../../../redux/actionCreators/newBoardCreator";
 import { Input } from "../../../../shared/components/input";
 import { BoardSchema, initialBoardData } from "../../../../utils/utils";
-import { useDispatch } from "react-redux";
 import { FieldName } from "../../../../shared/components/field_name";
-import cl from "./modal_styles.module.css";
 import { AddBtn } from "../../../../shared/components/add_button";
+import { addBoard } from "../../../../redux/reducers/boardsSlice";
+import { auth } from "../../../../firebase";
+import { v4 as uuidv4 } from "uuid";
+import cl from "./modal_styles.module.css";
+import { addUserBoardData } from "../../../../redux/thunk/saveDataThunk";
+import { useAppDispatch } from "../../../../redux/hooks/hook";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   onClose: () => void;
 };
 
 export const NewBoardModal = ({ onClose }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (values: NewBoardType) => {
-    const columns = values.columns.filter(
+  const onSubmit = (values: BoardType) => {
+    const columns = values.columns?.filter(
       (column) => column?.title && column.title.trimStart().length !== 0
     );
-    dispatch(
-      addBoard({
-        name: values.name,
-        columns: columns,
-      })
-    );
+    const newBoard: BoardType = {
+      name: values.name,
+      uuid: uuidv4(),
+      time: new Date().getTime(),
+      columns: columns,
+      usersEmail: [auth.currentUser?.email!],
+    };
+
+    values.name && auth.currentUser?.email && dispatch(addBoard(newBoard));
+
+    auth.currentUser?.email && dispatch(addUserBoardData(newBoard));
+
     onClose();
   };
 
@@ -37,7 +47,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
         onSubmit={(values) => {
           onSubmit({
             ...values,
-            columns: values.columns.map((e) => ({ title: e })),
+            columns: values.columns?.map((e) => ({ title: e, uuid: uuidv4() })),
           });
         }}
       >
@@ -49,10 +59,11 @@ export const NewBoardModal = ({ onClose }: Props) => {
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} />
             <h2 className={cl.modal_title} data-testid="new-board-modal">
               Add New Board
             </h2>
-            <FieldName formikName={"name"} />
+            <FieldName formikName={"name"} fieldName={"Board name"} />
             {props.errors.name && props.touched.name && (
               <p style={{ color: "red" }}>{props.errors.name}</p>
             )}
@@ -62,7 +73,7 @@ export const NewBoardModal = ({ onClose }: Props) => {
                 <>
                   <div className={cl.container}>
                     <p className={cl.title}>Board Columns</p>
-                    {props.values.columns.map((_, index) => (
+                    {props.values.columns?.map((_, index) => (
                       <Input
                         key={index}
                         formikName={`columns[${index}]`}

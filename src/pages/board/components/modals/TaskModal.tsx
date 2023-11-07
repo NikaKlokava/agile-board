@@ -1,9 +1,4 @@
 import { Field, Form, Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  checkSubtask,
-  moveTask,
-} from "../../../../redux/actionCreators/newBoardCreator";
 import { ModalWrapper } from "../../../../shared/components/modal_wrapper";
 import { Select } from "../../../../shared/components/select";
 import { checkedStatus } from "../../../../utils/utils";
@@ -15,6 +10,14 @@ import { DeleteModal } from "./DeleteModal";
 import classes from "classnames";
 import cl from "./modal_styles.module.css";
 import { EditTaskModal } from "./EditTaskModal";
+import {
+  checkSubtask,
+  moveTask,
+  updateSubtasksData,
+} from "../../../../redux/reducers/tasksSlice";
+import { useAppSelector, useAppDispatch } from "../../../../redux/hooks/hook";
+import { updateTaskData } from "../../../../redux/reducers/tasksSlice";
+import { CloseIcon } from "../../../../shared/components/close_icon/CloseIcon";
 
 type Props = {
   taskUuid: string | undefined;
@@ -27,36 +30,80 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
   const [editTaskVisible, setEditTaskVisible] = useState<boolean>(false);
   const [checkedSubtasks, setCheckedSubtasks] = useState<number>(0);
 
-  const activeBoard = useSelector<RootState, BoardType>(
-    (state) => state.activeBoard
-  );
+  const activeBoard = useAppSelector((state) => state.activeBoard);
 
-  const tasks: TasksType = useSelector<RootState, TasksType>(
-    (state) => state.tasks.tasks
-  );
+  const tasks: Tasks = useAppSelector((state) => state.tasks.tasks);
+
   const taskIndex = tasks.findIndex((task) => task.uuid === taskUuid);
-  const task: TaskType = tasks[taskIndex];
+  const task: Task = tasks[taskIndex];
 
-  const columnIndex = activeBoard.columns.findIndex(
-    (column) => column.uuid === task.columnUuid
+  const columnIndex = activeBoard.columns?.findIndex(
+    (column) => column?.uuid === task.columnUuid
   );
-  const columnTitle = activeBoard.columns[columnIndex]?.title;
+  const columnTitle = activeBoard.columns?.[columnIndex]?.title;
 
   useMemo(() => {
     const checked = checkedStatus(task);
     setCheckedSubtasks(checked);
   }, [task]);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
+  const handleCheckClick = (uuid: string | undefined) => {
+    const currentSubtask: SubtaskType = task?.subtasks?.reduce(
+      (accum, curr) => {
+        if (curr.uuid === uuid) return curr;
+        return accum;
+      }
+    );
+
+    const newSubtasks = task?.subtasks?.map((subtask) => {
+      if (subtask.uuid === uuid)
+        return {
+          ...subtask,
+          checked: !currentSubtask.checked,
+        };
+      else return subtask;
+    });
+
+    uuid &&
+      dispatch(
+        checkSubtask({ taskUuid: task.uuid, updatedSubtasks: newSubtasks })
+      );
+    dispatch(
+      updateSubtasksData({ taskUuid: task.uuid, updatedSubtasks: newSubtasks })
+    );
+  };
 
   const onSubmit = (values: TaskModalType) => {
-    const columnIndex = activeBoard.columns.findIndex(
+    const columnIndex = activeBoard.columns?.findIndex(
       (column) => column.title === values.columnTitle
     );
-    const columnUuid = activeBoard.columns[columnIndex].uuid;
+    const columnUuid = activeBoard.columns?.[columnIndex].uuid;
+    const time = new Date().getTime();
 
-    dispatch(moveTask(values.taskUuid, columnUuid));
+    dispatch(
+      moveTask({
+        taskUuid: values.taskUuid,
+        columnUuid,
+        time,
+      })
+    );
+    const newTask: Task = {
+      ...task,
+      columnUuid,
+      time,
+    };
+    dispatch(updateTaskData({ updatedTask: newTask }));
     onClose();
+  };
+
+  const initialData = {
+    checked: task?.subtasks?.reduce((accum: boolean[], current) => {
+      return [...accum, current.checked];
+    }, []),
+    taskUuid: task?.uuid,
+    columnTitle: columnTitle,
   };
 
   if (editTaskVisible)
@@ -82,13 +129,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
   return (
     <ModalWrapper onWrapperClick={onClose}>
       <Formik
-        initialValues={{
-          checked: task?.subtasks.reduce((accum: boolean[], current) => {
-            return [...accum, current.checked];
-          }, []),
-          taskUuid: task?.uuid,
-          columnTitle: columnTitle,
-        }}
+        initialValues={initialData}
         onSubmit={(values) => onSubmit(values)}
       >
         {(props) => (
@@ -99,6 +140,7 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
             }}
             className={cl.form_container}
           >
+            <CloseIcon onClose={onClose} center={true} />
             <div className={cl.modal_task_container}>
               <h2 className={cl.modal_task_title} data-testid="task-modal">
                 {task?.title}
@@ -108,9 +150,11 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
             <p className={cl.description}>{task?.description}</p>
             {task?.subtasks?.length !== 0 && (
               <div className={cl.container}>
-                <p
-                  className={cl.title}
-                >{`Subtasks (${checkedSubtasks} of ${task?.subtasks?.length})`}</p>
+                {task?.subtasks && task.subtasks?.length !== 0 && (
+                  <p
+                    className={cl.title}
+                  >{`Subtasks (${checkedSubtasks} of ${task?.subtasks?.length})`}</p>
+                )}
                 {task?.subtasks?.map((subtask, i) => {
                   return (
                     <div
@@ -124,17 +168,15 @@ export const TaskModal = memo(({ taskUuid, onClose }: Props) => {
                         className={cl.checkbox}
                         type="checkbox"
                         name={`checked.${i}`}
-                        onClick={() => {
-                          dispatch(checkSubtask(subtask.uuid));
-                        }}
+                        onClick={() => handleCheckClick(subtask.uuid)}
                       />
-                      <p>{subtask.text}</p>
+                      <p className={cl.subtask_text}>{subtask.text}</p>
                     </div>
                   );
                 })}
               </div>
             )}
-            <Select colUuid={task?.columnUuid} />
+            <Select />
             <Button
               text={"Save"}
               withIcon={false}
