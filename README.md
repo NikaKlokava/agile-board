@@ -1,16 +1,14 @@
-
-# _`Agile-Board`_
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-#
+# <p align="center"> _*`Agile-Board`*_ </p>
 
 ## [_Website_](https://NikaKlokava.github.io/agile-board)
-#
 
-## Description
 
-This application allows you to create boards to work with Agile projects. For each board you can create your own tasks with subtasks, which will help you to manage your work successfully. You can share your boards with your team members and work together **in real time**. All your created data with boards and tasks is automatically saved in the database, which guarantees reliable operation and the ability to work at any time convenient for you. Enjoy it!
+### Project
+
+- This application allows you to create boards to work with Agile projects. 
+- For each board you can create your own tasks with subtasks, which will help you to manage your work successfully. 
+- You can share your boards with your team members and work together **in real time**. 
+- All your created data with boards and tasks is automatically saved in the database, which guarantees reliable operation and the ability to work at any time convenient for you. Enjoy it!
 
 #
 
@@ -26,7 +24,7 @@ This application allows you to create boards to work with Agile projects. For ea
 - custom hooks (incl. _useAppDispatch, useAppSelector_ );
 - libraries :
   - Redux(@reduxjs/toolkit)
-  - Redux-Saga (for educational purposes.)
+  - Redux-Saga (for educational purposes)
   - Redux-Thunk;
   - Firebase;
   - formik;
